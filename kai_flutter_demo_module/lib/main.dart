@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:kai_flutter_demo_module/test_page_1.dart';
+import 'package:kai_flutter_demo_module/test_page_2.dart';
+import 'package:kai_flutter_demo_module/test_page_3.dart';
+import 'package:kai_flutter_demo_module/test_page_4.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,6 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      initialRoute: '/',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -19,7 +24,16 @@ class MyApp extends StatelessWidget {
         // counter didn't reset back to zero; the application is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: {
+        '/': (context) => MyHomePage(title: 'Flutter Demo Home Page'),
+        'test_page_1': (context) {
+          //ModalRoute.of(context).settings.arguments
+          return TestPage1(title: 'Test Page 01');
+        },
+        'test_page_2': (context) => TestPage2(),
+        'test_page_3': (context) => TestPage3(),
+        'test_page_4': (context) => TestPage4(),
+      },
     );
   }
 }
@@ -97,6 +111,22 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, "test_page_1"),
+              child: Text("test_page_1"),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, "test_page_2"),
+              child: Text("test_page_2"),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, "test_page_3"),
+              child: Text("test_page_3"),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, "test_page_4"),
+              child: Text("test_page_4"),
+            ),
           ],
         ),
       ),
@@ -104,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
