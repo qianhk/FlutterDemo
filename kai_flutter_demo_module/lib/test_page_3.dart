@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kai_flutter_demo_module/kai_drawer.dart';
 
 class TestPage3 extends StatefulWidget {
   TestPage3({Key key, this.title = "TestPage3"}) : super(key: key);
@@ -56,16 +57,7 @@ class _TestPage3State extends State<TestPage3> {
             // controller: _tabController,
           ),
         ),
-        drawer: Container(
-          color: Colors.pink,
-          constraints: BoxConstraints.expand(width: 240),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("Drawer"),
-            ],
-          ),
-        ),
+        drawer: KaiDrawer(),
         bottomNavigationBar: BottomNavigationBar(
           // 底部导航
           items: <BottomNavigationBarItem>[

@@ -3,6 +3,11 @@ import 'package:kai_flutter_demo_module/test_page_1.dart';
 import 'package:kai_flutter_demo_module/test_page_2.dart';
 import 'package:kai_flutter_demo_module/test_page_3.dart';
 import 'package:kai_flutter_demo_module/test_page_4.dart';
+import 'package:kai_flutter_demo_module/test_page_5.dart';
+import 'package:kai_flutter_demo_module/test_page_6.dart';
+import 'package:kai_flutter_demo_module/test_page_7.dart';
+import 'package:kai_flutter_demo_module/test_page_8.dart';
+import 'package:kai_flutter_demo_module/test_page_9.dart';
 
 void main() => runApp(MyApp());
 
@@ -33,6 +38,11 @@ class MyApp extends StatelessWidget {
         'test_page_2': (context) => TestPage2(),
         'test_page_3': (context) => TestPage3(),
         'test_page_4': (context) => TestPage4(),
+        'test_page_5': (context) => TestPage5(),
+        'test_page_6': (context) => TestPage6(),
+        'test_page_7': (context) => TestPage7(),
+        'test_page_8': (context) => TestPage8(),
+        'test_page_9': (context) => TestPage9(),
       },
     );
   }
@@ -126,6 +136,26 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               onPressed: () => Navigator.pushNamed(context, "test_page_4"),
               child: Text("test_page_4"),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, "test_page_5"),
+              child: Text("test_page_5"),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, "test_page_6"),
+              child: Text("test_page_6"),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, "test_page_7"),
+              child: Text("test_page_7"),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, "test_page_8"),
+              child: Text("test_page_8"),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, "test_page_9"),
+              child: Text("test_page_9"),
             ),
           ],
         ),
