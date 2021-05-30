@@ -41,9 +41,19 @@ class _TestPage4State extends State<TestPage4> {
                 icon: Icon(Icons.home),
                 onPressed: () => _onItemTapped(0),
               ),
-              IconButton(
-                icon: Icon(Icons.hot_tub),
-                onPressed: () => _onItemTapped(1),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.hot_tub),
+                  Text(
+                    "Button",
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
               ),
               SizedBox(), //中间位置空出
               IconButton(
