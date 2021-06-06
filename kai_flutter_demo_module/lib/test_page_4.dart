@@ -10,10 +10,23 @@ class TestPage4 extends StatefulWidget {
 
 class _TestPage4State extends State<TestPage4> {
   int _selectedIndex = 1;
+  DateTime _lastPressedAt;
+
+  Future<bool> _onWillPop() async {
+    if (_lastPressedAt == null || DateTime.now().difference(_lastPressedAt) > Duration(seconds: 1)) {
+      _lastPressedAt = DateTime.now();
+      print("需要连续按两次返回");
+      return false;
+    }
+    print("连续两次返回");
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
         ),
@@ -22,7 +35,7 @@ class _TestPage4State extends State<TestPage4> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'Text:',
+                '1秒内连续按两次返回键退出',
               ),
             ],
           ),
@@ -67,7 +80,9 @@ class _TestPage4State extends State<TestPage4> {
             ],
             mainAxisAlignment: MainAxisAlignment.spaceAround, //均分底部导航栏横向空间
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   void _onItemTapped(int index) {

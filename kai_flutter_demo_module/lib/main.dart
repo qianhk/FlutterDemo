@@ -66,8 +66,26 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+class EntryInfo {
+  String title;
+  String router;
+
+  EntryInfo(this.title, this.router);
+}
+
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  List<EntryInfo> _EntryInfoList = [
+    EntryInfo("Stack Positioned", "test_page_1"),
+    EntryInfo("BoxDecoration Shadow Transform", "test_page_2"),
+    EntryInfo("Drawer BottomNavigationBar TabBarView", "test_page_3"),
+    EntryInfo("CircularNotchedRectangle FloatingActionButtonLocation", "test_page_4"),
+    EntryInfo("test5", "test_page_5"),
+    EntryInfo("test6", "test_page_6"),
+    EntryInfo("test7", "test_page_7"),
+    EntryInfo("test8", "test_page_8"),
+    EntryInfo("test9", "test_page_9"),
+  ];
 
   void _incrementCounter() {
     setState(() {
@@ -121,41 +139,30 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
-            ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, "test_page_1"),
-              child: Text("test_page_1"),
-            ),
-            ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, "test_page_2"),
-              child: Text("test_page_2"),
-            ),
-            ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, "test_page_3"),
-              child: Text("test_page_3"),
-            ),
-            ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, "test_page_4"),
-              child: Text("test_page_4"),
-            ),
-            ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, "test_page_5"),
-              child: Text("test_page_5"),
-            ),
-            ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, "test_page_6"),
-              child: Text("test_page_6"),
-            ),
-            ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, "test_page_7"),
-              child: Text("test_page_7"),
-            ),
-            ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, "test_page_8"),
-              child: Text("test_page_8"),
-            ),
-            ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, "test_page_9"),
-              child: Text("test_page_9"),
+            Expanded(
+              child: ListView.separated(
+                itemBuilder: (BuildContext context, int index) {
+                  EntryInfo info = _EntryInfoList[index];
+                  return ListTile(
+                    title: Text(info.title),
+                    trailing: Text(
+                      info.router,
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    onTap: () => Navigator.pushNamed(context, info.router, arguments: info.title),
+                  );
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return Divider(
+                    height: 1,
+                    thickness: 1,
+                    indent: 12,
+                    endIndent: 12,
+                    color: Colors.green,
+                  );
+                },
+                itemCount: _EntryInfoList.length,
+              ),
             ),
           ],
         ),
