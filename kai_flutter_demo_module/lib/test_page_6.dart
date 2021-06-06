@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class TestPage6 extends StatefulWidget {
   @override
@@ -7,6 +8,7 @@ class TestPage6 extends StatefulWidget {
 
 class _ThemeTestRouteState extends State<TestPage6> {
   Color _themeColor = Colors.teal; //当前路由主题色
+  int _beginJs = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,56 @@ class _ThemeTestRouteState extends State<TestPage6> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[Icon(Icons.favorite), Icon(Icons.airport_shuttle), Text("  颜色固定黑色")]),
             ),
+            SizedBox(
+              height: 30,
+            ),
+            FutureBuilder<String>(
+              future: mockNetworkData(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                // 请求已结束
+                if (snapshot.connectionState == ConnectionState.done) {
+                  if (snapshot.hasError) {
+                    // 请求失败，显示错误
+                    return Text(
+                      "Error: ${snapshot.error}",
+                      style: TextStyle(color: Colors.red),
+                      textAlign: TextAlign.center,
+                    );
+                  } else {
+                    // 请求成功，显示数据
+                    return Text("Contents: ${snapshot.data}");
+                  }
+                } else {
+                  // 请求未结束，显示loading
+                  return CircularProgressIndicator();
+                }
+              },
+            ),
+            StreamBuilder<int>(
+              stream: counter(_beginJs), //
+              //initialData: ,// a Stream<int> or null
+              initialData: _beginJs,
+              builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+                if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                }
+                switch (snapshot.connectionState) {
+                  case ConnectionState.none:
+                    print('没有Stream');
+                    return Text('没有Stream');
+                  case ConnectionState.waiting:
+                    print('等待数据... init=${snapshot.data}');
+                    return Text('等待数据... init=${snapshot.data}');
+                  case ConnectionState.active:
+                    _beginJs = snapshot.data;
+                    return Text('active: ${snapshot.data}');
+                  case ConnectionState.done:
+                    print('Stream已关闭');
+                    return Text('Stream已关闭');
+                }
+                return null; // unreachable
+              },
+            )
           ],
         ),
         floatingActionButton: FloatingActionButton(
@@ -43,4 +95,21 @@ class _ThemeTestRouteState extends State<TestPage6> {
       ),
     );
   }
+}
+
+Future<String> mockNetworkData() async {
+  if (Random().nextBool()) {
+    return Future.delayed(Duration(seconds: 2), () => "我是从互联网上获取的数据");
+  } else {
+    return Future.delayed(Duration(seconds: 2), () {
+      // throw UnimplementedError("kai unimplement get network.");
+      throw UnimplementedError("kai un implement get data from network, only for test.");
+    });
+  }
+}
+
+Stream<int> counter(int js) {
+  return Stream.periodic(Duration(seconds: 1), (i) {
+    return i + js;
+  });
 }

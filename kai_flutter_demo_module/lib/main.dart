@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
         // or press Run > Flutter Hot Reload in a Flutter IDE). Notice that the
         // counter didn't reset back to zero; the application is not restarted.
         primarySwatch: Colors.blue,
+        // materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       ),
       routes: {
         '/': (context) => MyHomePage(title: 'Flutter Demo Home Page'),
@@ -82,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
     EntryInfo("CircularNotchedRectangle FloatingActionButtonLocation", "test_page_4"),
     EntryInfo("InheritedWidget", "test_page_5"),
     EntryInfo("Theme Test", "test_page_6"),
-    EntryInfo("test7", "test_page_7"),
+    EntryInfo("Dialog", "test_page_7"),
     EntryInfo("test8", "test_page_8"),
     EntryInfo("test9", "test_page_9"),
   ];
