@@ -120,6 +120,18 @@ class _TestPage5State extends State<TestPage5> {
                   ),
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.only(top: 40),
+                child:
+                    //背景为蓝色，则title自动为白色
+                    KaiNavBar(color: Colors.blue, title: "标题"),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 20),
+                child:
+                    //背景为白色，则title自动为黑色
+                    KaiNavBar(color: Colors.yellow[100], title: "标题"),
+              ),
             ],
           ),
         ),
@@ -151,5 +163,46 @@ class CartModel extends ChangeNotifier {
     _items.add(item);
     // 通知监听器（订阅者），重新构建InheritedProvider， 更新状态。
     notifyListeners();
+  }
+}
+
+class KaiNavBar extends StatelessWidget {
+  final String title;
+  final Color color; //背景颜色
+
+  KaiNavBar({
+    Key key,
+    this.color,
+    this.title,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      constraints: BoxConstraints(
+        minHeight: 52,
+        minWidth: double.infinity,
+      ),
+      decoration: BoxDecoration(
+        color: color,
+        boxShadow: [
+          //阴影
+          BoxShadow(
+            color: Colors.black26,
+            offset: Offset(0, 3),
+            blurRadius: 3,
+          ),
+        ],
+      ),
+      child: Text(
+        title,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          //根据背景色亮度来确定Title颜色
+          color: color.computeLuminance() < 0.5 ? Colors.white : Colors.black,
+        ),
+      ),
+      alignment: Alignment.center,
+    );
   }
 }
