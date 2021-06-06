@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
     EntryInfo("BoxDecoration Shadow Transform", "test_page_2"),
     EntryInfo("Drawer BottomNavigationBar TabBarView", "test_page_3"),
     EntryInfo("CircularNotchedRectangle FloatingActionButtonLocation", "test_page_4"),
-    EntryInfo("test5", "test_page_5"),
+    EntryInfo("InheritedWidget", "test_page_5"),
     EntryInfo("test6", "test_page_6"),
     EntryInfo("test7", "test_page_7"),
     EntryInfo("test8", "test_page_8"),
