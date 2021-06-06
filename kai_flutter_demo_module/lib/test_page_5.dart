@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:kai_flutter_demo_module/change_notifier_provider.dart';
+import 'package:kai_flutter_demo_module/consumer.dart';
+
 class TestPage5 extends StatefulWidget {
   TestPage5({Key key, this.title = "InheritedWidget"}) : super(key: key);
   final String title;
@@ -9,7 +12,9 @@ class TestPage5 extends StatefulWidget {
 }
 
 class ShareDataWidget extends InheritedWidget {
-  ShareDataWidget({@required this.data, Widget child}) : super(child: child);
+  ShareDataWidget({@required this.data, Widget child}) : super(child: child) {
+    print("ShareDataWidget: " + data.toString());
+  }
 
   final int data; //需要在子树中共享的数据，保存点击次数
 
@@ -53,6 +58,7 @@ class __TestWidgetState extends State<_TestWidget> {
 
 class _TestPage5State extends State<TestPage5> {
   int _count = 0;
+  CartModel _cartModel = CartModel();
 
   @override
   Widget build(BuildContext context) {
@@ -78,11 +84,72 @@ class _TestPage5State extends State<TestPage5> {
                 onPressed: () => setState(() {
                   ++_count;
                 }),
-              )
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 40),
+                child: ChangeNotifierProvider<CartModel>(
+                  data: _cartModel,
+                  child: Builder(
+                    builder: (context) {
+                      print("ChangeNotifierProvider build");
+                      return Column(
+                        children: <Widget>[
+                          Consumer(
+                            builder: (BuildContext context, CartModel cart) {
+                              return Text("总价1: ${cart.totalPrice}");
+                            },
+                            child: null,
+                          ),
+                          Builder(builder: (context) {
+                            var cart = ChangeNotifierProvider.of<CartModel>(context);
+                            return Text("总价2: ${cart.totalPrice}");
+                          }),
+                          Builder(builder: (context) {
+                            print("ElevatedButton(添加商品) build");
+                            return ElevatedButton(
+                              child: Text("添加商品"),
+                              onPressed: () {
+                                //给购物车中添加商品，添加后总价会更新
+                                ChangeNotifierProvider.of<CartModel>(context, listen: false).add(Item(20.0, 1));
+                              },
+                            );
+                          }),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+class Item {
+  Item(this.price, this.count);
+
+  double price; //商品单价
+  int count; // 商品份数
+//... 省略其它属性
+}
+
+class CartModel extends ChangeNotifier {
+  // 用于保存购物车中商品列表
+  final List<Item> _items = [];
+
+  // 禁止改变购物车里的商品信息
+  // UnmodifiableListView<Item> get items => UnmodifiableListView(_items);
+
+  // 购物车中商品的总价
+  double get totalPrice => _items.fold(0, (value, item) => value + item.count * item.price);
+
+  // 将 [item] 添加到购物车。这是唯一一种能从外部改变购物车的方法。
+  void add(Item item) {
+    _items.add(item);
+    // 通知监听器（订阅者），重新构建InheritedProvider， 更新状态。
+    notifyListeners();
   }
 }
