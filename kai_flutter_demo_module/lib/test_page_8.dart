@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 
 class TestPage8 extends StatefulWidget {
   TestPage8({Key key, this.title = "TestPage8"}) : super(key: key);
@@ -9,20 +10,143 @@ class TestPage8 extends StatefulWidget {
 }
 
 class _TestPage8State extends State<TestPage8> {
+  String _operation = "No Gesture detected!";
+  double _top = 0.0; //距顶部的偏移
+  double _left = 0.0; //距左边的偏移
+  double _beginX, _beginY;
+  bool _appendInit;
+  TapGestureRecognizer _tapGestureRecognizer = new TapGestureRecognizer();
+  bool _toggle = false; //变色开关
+
+  @override
+  void dispose() {
+    //用到GestureRecognizer的话一定要调用其dispose方法释放资源
+    _tapGestureRecognizer.dispose();
+    super.dispose();
+  }
+
+  void updateText(String text) {
+    //更新显示的事件名
+    setState(() {
+      _operation = text;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Text:',
+      body: GestureDetector(
+        onTap: () => updateText("Tap"),
+        onDoubleTap: () => updateText("DoubleTap"),
+        onLongPress: () => updateText("LongPress"),
+        child: Center(
+          child:
+              // Listener(
+              //     child: ConstrainedBox(
+              //       constraints: BoxConstraints.tight(Size(300.0, 150.0)),
+              //       child: Center(child: Text("Box A")),
+              //     ),
+              //     behavior: HitTestBehavior.translucent,
+              //     onPointerDown: (event) => print("down A")),
+              Container(
+            width: 400,
+            height: 600,
+            color: Colors.green[50],
+            child: Stack(
+              // fit: StackFit.expand,
+              children: <Widget>[
+                Listener(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints.tight(Size(300.0, 200.0)),
+                    child: DecoratedBox(decoration: BoxDecoration(color: Colors.blue)),
+                  ),
+                  onPointerDown: (event) => print("down0"),
+                ),
+                Listener(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints.tight(Size(200.0, 100.0)),
+                    // child: Center(child: Text("左上角200*100范围内非文本区域点击")),
+                    child: Center(child: Text(_operation)),
+                  ),
+                  onPointerDown: (event) => print("down1"),
+                  //可以试出来deferToChild只管非透明区域，透明区域传下去  translucent自己也管透明区域也传下去 opaque当自己不透明不传下去
+                  behavior: HitTestBehavior.translucent, //放开此行注释后可以"点透"
+                  // behavior: HitTestBehavior.opaque,
+                ),
+                Positioned(
+                  top: _top,
+                  left: _left,
+                  child: GestureDetector(
+                    child: CircleAvatar(child: Text("Kai")),
+                    //手指按下时会触发此回调
+                    // onPanDown: (DragDownDetails e) {
+                    //   //打印手指按下的位置(相对于屏幕)
+                    //   print("用户手指按下：${e.globalPosition}");
+                    //   _appendInit = true;
+                    //   _beginX = e.globalPosition.dx;
+                    //   _beginY = e.globalPosition.dy;
+                    // },
+                    //手指滑动时会触发此回调
+                    // onPanUpdate: (DragUpdateDetails e) {
+                    //   //用户手指滑动时，更新偏移，重新构建
+                    //   setState(() {
+                    //     if (_appendInit) {
+                    //       _left += (e.globalPosition.dx - _beginX);
+                    //       _top += (e.globalPosition.dy - _beginY);
+                    //       _appendInit = false;
+                    //     } else {
+                    //       _left += e.delta.dx;
+                    //       _top += e.delta.dy;
+                    //     }
+                    //     // print("用户滑动：${e.globalPosition} _left=$_left _top=$_top");
+                    //   });
+                    // },
+                    // onPanEnd: (DragEndDetails e) {
+                    //   //打印滑动结束时在x、y轴上的速度
+                    //   print(e.velocity);
+                    // },
+                    // onPanCancel: () {
+                    //   print("onPanCancel");
+                    // },
+                    onVerticalDragUpdate: (DragUpdateDetails details) {
+                      setState(() {
+                        _top += details.delta.dy;
+                      });
+                    },
+                    onHorizontalDragUpdate: (DragUpdateDetails details) {
+                      setState(() {
+                        _left += details.delta.dx;
+                      });
+                    },
+                  ),
+                ),
+                Positioned(
+                  top: 260,
+                  child: Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(text: "你好世界"),
+                        TextSpan(
+                          text: "点我变色",
+                          style: TextStyle(fontSize: 30.0, color: _toggle ? Colors.blue : Colors.red),
+                          recognizer: _tapGestureRecognizer
+                            ..onTap = () {
+                              setState(() {
+                                _toggle = !_toggle;
+                              });
+                            },
+                        ),
+                        TextSpan(text: "你好世界"),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

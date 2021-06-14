@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
         'test_page_5': (context) => TestPage5(),
         'test_page_6': (context) => TestPage6(),
         'test_page_7': (context) => TestPage7(),
-        'test_page_8': (context) => TestPage8(),
+        'test_page_8': (context) => TestPage8(title: ModalRoute.of(context).settings.arguments),
         'test_page_9': (context) => TestPage9(),
       },
     );
@@ -84,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
     EntryInfo("InheritedWidget", "test_page_5"),
     EntryInfo("Theme Test", "test_page_6"),
     EntryInfo("Dialog", "test_page_7"),
-    EntryInfo("test8", "test_page_8"),
+    EntryInfo("Touch Listener Gesture", "test_page_8"),
     EntryInfo("test9", "test_page_9"),
   ];
 
