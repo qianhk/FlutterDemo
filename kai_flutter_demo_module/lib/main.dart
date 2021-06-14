@@ -140,29 +140,58 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
-            Expanded(
-              child: ListView.separated(
-                itemBuilder: (BuildContext context, int index) {
-                  EntryInfo info = _EntryInfoList[index];
-                  return ListTile(
-                    title: Text(info.title),
-                    trailing: Text(
-                      info.router,
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    onTap: () => Navigator.pushNamed(context, info.router, arguments: info.title),
-                  );
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return Divider(
-                    height: 1,
-                    thickness: 1,
-                    indent: 12,
-                    endIndent: 12,
-                    color: Colors.green,
-                  );
-                },
-                itemCount: _EntryInfoList.length,
+            // NotificationListener<KaiNotification>(
+            NotificationListener(
+              onNotification: (notification) {
+                switch (notification.runtimeType) {
+                  case ScrollStartNotification:
+                    print("开始滚动");
+                    break;
+                  case ScrollUpdateNotification:
+                    // print("正在滚动");
+                    break;
+                  case ScrollEndNotification:
+                    print("滚动停止");
+                    break;
+                  case OverscrollNotification:
+                    print("滚动到边界");
+                    break;
+                  case KaiNotification:
+                    {
+                      KaiNotification notify = notification;
+                      print("KaiNotification:" + notify.msg);
+                    }
+                    break;
+                }
+                return false;
+              },
+              child: Expanded(
+                child: ListView.separated(
+                  itemBuilder: (BuildContext context, int index) {
+                    EntryInfo info = _EntryInfoList[index];
+                    return ListTile(
+                      title: Text(info.title),
+                      trailing: Text(
+                        info.router,
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      onTap: () {
+                        KaiNotification("Click List Item _ " + info.title).dispatch(context);
+                        Navigator.pushNamed(context, info.router, arguments: info.title);
+                      },
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return Divider(
+                      height: 1,
+                      thickness: 1,
+                      indent: 12,
+                      endIndent: 12,
+                      color: Colors.green,
+                    );
+                  },
+                  itemCount: _EntryInfoList.length,
+                ),
               ),
             ),
           ],
@@ -175,4 +204,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+}
+
+class KaiNotification extends Notification {
+  KaiNotification(this.msg);
+
+  final String msg;
 }
