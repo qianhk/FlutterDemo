@@ -9,6 +9,8 @@ import 'package:kai_flutter_demo_module/test_page_7.dart';
 import 'package:kai_flutter_demo_module/test_page_8.dart';
 import 'package:kai_flutter_demo_module/test_page_9.dart';
 
+import 'test_dart_syntax.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -112,6 +114,14 @@ class _MyHomePageState extends State<MyHomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.restaurant_menu),
+            onPressed: () {
+              syntaxMain();
+            },
+          )
+        ],
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
