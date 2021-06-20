@@ -54,6 +54,15 @@ class _TestPage1State extends State<TestPage1> {
               child: Text("I am Jack"),
             ),
             Positioned(
+              right: 40,
+              top: 400,
+              child: Image.asset(
+                'assets/images/zccat.png',
+                width: 160,
+                // height: 100,
+              ),
+            ),
+            Positioned(
               top: 18.0,
               right: 20,
               child: Text("Your friend"),
