@@ -9,7 +9,7 @@ class TestPage8 extends StatefulWidget {
   _TestPage8State createState() => _TestPage8State();
 }
 
-class _TestPage8State extends State<TestPage8> {
+class _TestPage8State extends State<TestPage8> with SingleTickerProviderStateMixin {
   String _operation = "No Gesture detected!";
   double _top = 0.0; //距顶部的偏移
   double _left = 0.0; //距左边的偏移
@@ -17,6 +17,21 @@ class _TestPage8State extends State<TestPage8> {
   bool _appendInit;
   TapGestureRecognizer _tapGestureRecognizer = new TapGestureRecognizer();
   bool _toggle = false; //变色开关
+  AnimationController _controller;
+  CurvedAnimation _curve;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 2000),
+    )..value = 0.5;
+    _curve = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeIn,
+    );
+  }
 
   @override
   void dispose() {
@@ -40,7 +55,14 @@ class _TestPage8State extends State<TestPage8> {
       ),
       body: GestureDetector(
         onTap: () => updateText("Tap"),
-        onDoubleTap: () => updateText("DoubleTap"),
+        onDoubleTap: () {
+          updateText("DoubleTap");
+          if (_controller.isCompleted) {
+            _controller.reverse();
+          } else {
+            _controller.forward();
+          }
+        },
         onLongPress: () => updateText("LongPress"),
         child: Center(
           child:
@@ -57,6 +79,7 @@ class _TestPage8State extends State<TestPage8> {
             color: Colors.green[50],
             child: Stack(
               // fit: StackFit.expand,
+              clipBehavior: Clip.antiAlias,
               children: <Widget>[
                 Listener(
                   child: ConstrainedBox(
@@ -80,7 +103,7 @@ class _TestPage8State extends State<TestPage8> {
                   top: _top,
                   left: _left,
                   child: GestureDetector(
-                    child: CircleAvatar(child: Text("Kai")),
+                    child: RotationTransition(turns: _curve, child: CircleAvatar(child: Text("Kai"))),
                     //手指按下时会触发此回调
                     // onPanDown: (DragDownDetails e) {
                     //   //打印手指按下的位置(相对于屏幕)

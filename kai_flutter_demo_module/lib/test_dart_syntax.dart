@@ -1,3 +1,5 @@
+import 'dart:io';
+
 //省略常用的类变量+factory的工厂构造函数法
 
 class Person {
@@ -22,8 +24,23 @@ class Person2 {
   set innerName(String name) => _innerName = name;
 }
 
+Future<String> getNetworkData() {
+  // 将耗时操作包裹到Future的回调函数中
+  return Future<String>(() {
+    sleep(Duration(seconds: 1));
+    return "Hello kai";
+    // throw Exception("error");
+  });
+}
+
 void syntaxMain() {
   print("------------- syntaxMain ---------------");
+  var future = getNetworkData();
+  future
+      .then((value) => print(value)) // Hello lqr
+      .catchError((err) => print(err))
+      .whenComplete(() => print("执行完成")); // 不管成功与否都会执行
+
   // 用 const常量 去接收一个常量构造函数的结果，可以省略 const
   // const p1 = const Person("lqr", 18);
   const p1 = Person("lqr", 18);

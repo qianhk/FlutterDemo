@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'dart:isolate';
 
 class TestPage6 extends StatefulWidget {
   @override
@@ -9,6 +12,52 @@ class TestPage6 extends StatefulWidget {
 class _ThemeTestRouteState extends State<TestPage6> {
   Color _themeColor = Colors.teal; //当前路由主题色
   int _beginJs = 0;
+  List _httpDatas;
+  List _httpDatas2;
+
+  Future<void> _testUseHttpLoadData() async {
+    String dataURL = 'https://jsonplaceholder.typicode.com/posts';
+    http.Response response = await http.get(dataURL);
+    setState(() {
+      _httpDatas = jsonDecode(response.body);
+    });
+  }
+
+  Future<void> _testUseHttpLoadDataByIsolate() async {
+    ReceivePort receivePort = ReceivePort();
+    await Isolate.spawn(_dataLoader, receivePort.sendPort);
+    SendPort sendPort = await receivePort.first;
+    List msg = await _sendReceive(sendPort, "https://jsonplaceholder.typicode.com/posts");
+
+    setState(() {
+      _httpDatas2 = msg;
+    });
+  }
+
+// The entry point for the isolate.
+  static Future<void> _dataLoader(SendPort sendPort) async {
+    // Open the ReceivePort for incoming messages.
+    ReceivePort port = ReceivePort();
+
+    // Notify any other isolates what port this isolate listens to.
+    sendPort.send(port.sendPort);
+
+    await for (var msg in port) {
+      String data = msg[0];
+      SendPort replyTo = msg[1];
+
+      String dataURL = data;
+      http.Response response = await http.get(dataURL);
+      // Lots of JSON to parse
+      replyTo.send(jsonDecode(response.body));
+    }
+  }
+
+  Future _sendReceive(SendPort port, msg) {
+    ReceivePort response = ReceivePort();
+    port.send([msg, response.sendPort]);
+    return response.first;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +85,8 @@ class _ThemeTestRouteState extends State<TestPage6> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[Icon(Icons.favorite), Icon(Icons.airport_shuttle), Text("  颜色固定黑色")]),
             ),
+            Text('_httpDatas length=${_httpDatas?.length ?? 0}'),
+            Text('_httpDatas2 Isolate length=${_httpDatas2?.length ?? 0}'),
             SizedBox(
               height: 30,
             ),
@@ -89,15 +140,23 @@ class _ThemeTestRouteState extends State<TestPage6> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-            onPressed: () => //切换主题
-                setState(() => _themeColor = _themeColor == Colors.teal ? Colors.orange : Colors.teal),
+            onPressed: () {
+              //切换主题
+              setState(() => _themeColor = _themeColor == Colors.teal ? Colors.orange : Colors.teal);
+              if (_httpDatas == null) {
+                _testUseHttpLoadData();
+              }
+              if (_httpDatas2 == null) {
+                _testUseHttpLoadDataByIsolate();
+              }
+            },
             child: Icon(Icons.palette)),
       ),
     );
   }
 }
 
-Future<String> mockNetworkData() async {
+Future<String> mockNetworkData() {
   if (Random().nextBool()) {
     return Future.delayed(Duration(seconds: 2), () => "我是从互联网上获取的数据");
   } else {

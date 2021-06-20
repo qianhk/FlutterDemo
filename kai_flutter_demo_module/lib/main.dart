@@ -8,6 +8,7 @@ import 'package:kai_flutter_demo_module/test_page_6.dart';
 import 'package:kai_flutter_demo_module/test_page_7.dart';
 import 'package:kai_flutter_demo_module/test_page_8.dart';
 import 'package:kai_flutter_demo_module/test_page_9.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'test_dart_syntax.dart';
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': (context) => MyHomePage(title: 'Flutter Demo Home Page'),
-        'test_page_1': (context) {
+        '/test_page_1': (context) {
           //ModalRoute.of(context).settings.arguments
           return TestPage1(title: 'Test Page 01');
         },
@@ -76,10 +77,12 @@ class EntryInfo {
   EntryInfo(this.title, this.router);
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   int _counter = 0;
+  AnimationController _controller;
+  CurvedAnimation _curve;
   List<EntryInfo> _EntryInfoList = [
-    EntryInfo("Stack Positioned", "test_page_1"),
+    EntryInfo("Stack Positioned", "/test_page_1"),
     EntryInfo("BoxDecoration Shadow Transform", "test_page_2"),
     EntryInfo("Drawer BottomNavigationBar TabBarView", "test_page_3"),
     EntryInfo("CircularNotchedRectangle FloatingActionButtonLocation", "test_page_4"),
@@ -90,7 +93,40 @@ class _MyHomePageState extends State<MyHomePage> {
     EntryInfo("test9", "test_page_9"),
   ];
 
+  @override
+  void dispose() {
+    savePressedCount();
+    super.dispose();
+  }
+
+  void savePressedCount() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    print('savePressedCount save main $_counter times.');
+    await prefs.setInt('main_counter', _counter);
+  }
+
+  void readPressedCount() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _counter = (prefs.getInt('main_counter') ?? 0) + 1;
+    print('readPressedCount Pressed $_counter times.');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 2000),
+      vsync: this,
+    )..value = 0.5;
+    _curve = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeIn,
+    );
+    readPressedCount();
+  }
+
   void _incrementCounter() {
+    _controller.forward();
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
@@ -143,9 +179,11 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
+            FadeTransition(
+                opacity: _curve,
+                child: Text(
+                  'You have pushed the button this many times:',
+                )),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,

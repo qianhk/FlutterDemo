@@ -10,6 +10,11 @@ class TestPage9 extends StatefulWidget {
 
 class _TestPage9State extends State<TestPage9> {
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
