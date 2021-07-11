@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/constraintLayout"
+<LinearLayout android:id="@+id/constraintLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.main.PlaceholderFragment">
 
     <TextView
@@ -19,5 +20,15 @@
         app:layout_constraintTop_toTopOf="@+id/constraintLayout"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1" />
+    <Button
+        android:id="@+id/btn_jni_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="StringFromJNI"/>
+    <Button
+        android:id="@+id/btn_jni_sum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jni_Sum"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
@@ -13,11 +14,14 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.njnu.kai.android.host.R;
+import com.njnu.kai.testc.NdkJniTest;
+
+import java.util.Locale;
 
 /**
  * A placeholder fragment containing a simple view.
  */
-public class PlaceholderFragment extends Fragment {
+public class PlaceholderFragment extends Fragment implements View.OnClickListener {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -54,6 +58,22 @@ public class PlaceholderFragment extends Fragment {
                 textView.setText(s);
             }
         });
+        root.findViewById(R.id.btn_jni_string).setOnClickListener(this);
+        root.findViewById(R.id.btn_jni_sum).setOnClickListener(this);
         return root;
+    }
+
+    @Override
+    public void onClick(View v) {
+        final int viewId = v.getId();
+        if (viewId == R.id.btn_jni_string) {
+            final String tmpStr = NdkJniTest.stringFromJNI();
+            Toast.makeText(getContext(), tmpStr, Toast.LENGTH_SHORT).show();
+        } else if (viewId == R.id.btn_jni_sum) {
+            int a = 3, b = 4;
+            int sum = NdkJniTest.sum(a, b);
+            Toast.makeText(getContext(), String.format(Locale.getDefault(), "%d + %d = %d", a, b, sum)
+                    , Toast.LENGTH_SHORT).show();
+        }
     }
 }
