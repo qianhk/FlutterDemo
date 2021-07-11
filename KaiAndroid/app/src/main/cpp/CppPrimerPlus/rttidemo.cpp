@@ -7,16 +7,26 @@
 
 using namespace kaicpp;
 
-void rttiDemoMain() {
+void kaiTestCrash(DerivedClass *p) {
+    printf("before kaiTestCrash\n");
+    p->printInfoVirtual();
+    printf("after kaiTestCrash\n");
+}
+
+void rttiDemoMain(bool crashIt) {
     BaseClass baseClass = BaseClass(3000);
     DerivedClass derivedClass = DerivedClass();
     BaseClass *pBase = &baseClass;
     DerivedClass *pDerived = &derivedClass;
     pBase = pDerived;
     pDerived = dynamic_cast<DerivedClass *>(pBase); // ok
+    kaiTestCrash(pDerived);
     pBase = &baseClass;
     pDerived = dynamic_cast<DerivedClass *>(pBase); // return 0
-//    pDerived->printInfoVirtual(); //空指针 EXC_BAD_ACCESS (code=1, address=0x0)
+    if (crashIt) {
+//        pDerived->printInfoVirtual(); //空指针 EXC_BAD_ACCESS (code=1, address=0x0)
+        kaiTestCrash(pDerived);
+    }
     RTTIDemo rttiDemo;
     RTTIDemo *pRttiDemo = &rttiDemo;
 

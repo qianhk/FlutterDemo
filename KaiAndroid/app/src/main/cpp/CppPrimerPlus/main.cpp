@@ -27,7 +27,7 @@ using IntStack = kaicpp::Stack<int, n>;
 //typedef 无法用在模板别名上
 //typedef template <typename T> kaicpp::Stack<T, 3> xxxx;
 
-int mainEntry() {
+int mainEntry(bool crashIt) {
 
 #if defined(KAI_DLL_EXPORTS)
     std::cout << "in exe: defined KAI_DLL_EXPORTS\n";
@@ -226,7 +226,7 @@ int mainEntry() {
     std::cout << "---------------- exception test ------------\n";
     exceptionTestMain();
     std::cout << "---------------- RTTI (Runtime Type Identification) 运行阶段类型识别 只对有虚函数的类起作用 ------------\n";
-    rttiDemoMain();
+    rttiDemoMain(crashIt);
     std::cout << "---------------- stl ------------\n";
     stlTestMain();
     std::cout << "---------------- over ------------\n";

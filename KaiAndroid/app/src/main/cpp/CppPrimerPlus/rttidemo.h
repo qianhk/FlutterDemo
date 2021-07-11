@@ -11,6 +11,6 @@ public:
     void doSth();
 };
 
-void rttiDemoMain();
+void rttiDemoMain(bool crashIt);
 
 #endif //CPPPRACTICE_RTTIDEMO_H

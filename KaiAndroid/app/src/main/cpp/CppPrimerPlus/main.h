@@ -5,6 +5,6 @@
 #ifndef KAIANDROID_MAIN_H
 #define KAIANDROID_MAIN_H
 
-int mainEntry();
+int mainEntry(bool crashIt);
 
 #endif //KAIANDROID_MAIN_H

@@ -60,6 +60,7 @@ public class PlaceholderFragment extends Fragment implements View.OnClickListene
         });
         root.findViewById(R.id.btn_jni_string).setOnClickListener(this);
         root.findViewById(R.id.btn_jni_sum).setOnClickListener(this);
+        root.findViewById(R.id.btn_crash_it).setOnClickListener(this);
         return root;
     }
 
@@ -74,6 +75,10 @@ public class PlaceholderFragment extends Fragment implements View.OnClickListene
             int sum = NdkJniTest.sum(a, b);
             Toast.makeText(getContext(), String.format(Locale.getDefault(), "%d + %d = %d", a, b, sum)
                     , Toast.LENGTH_SHORT).show();
+        } else if (viewId == R.id.btn_crash_it) {
+//            String tmpStr = null;
+//            tmpStr.length();
+            NdkJniTest.testCrashInNative(true);
         }
     }
 }

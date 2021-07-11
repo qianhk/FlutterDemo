@@ -11,6 +11,8 @@ public class NdkJniTest {
     }
 
     public static native String stringFromJNI();
+
     public static native int sum(int a, int b);
 
+    public static native void testCrashInNative(boolean crashIt);
 }
