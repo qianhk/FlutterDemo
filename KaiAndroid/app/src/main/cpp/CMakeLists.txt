@@ -3,7 +3,7 @@
 
 # Sets the minimum version of CMake required to build the native library.
 
-cmake_minimum_required(VERSION 3.10.2)
+cmake_minimum_required(VERSION 3.18)
 
 # Declares and names the project.
 
@@ -23,18 +23,24 @@ MESSAGE("PROJECT_BINARY_DIR=${PROJECT_BINARY_DIR}")
 MESSAGE(STATUS "CMAKE_SYSTEM is ${CMAKE_SYSTEM}")
 MESSAGE(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
 
+include_directories("./CppPrimerPlus")
+
+AUX_SOURCE_DIRECTORY(./CppPrimerPlus CppPrimerPlus_DIR_SRCS)
+
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
 
-add_library( ${PROJECT_NAME}
+add_subdirectory(ModernCpp)
 
-             # Sets the library as a shared library.
-             SHARED
+add_library(${PROJECT_NAME}
 
-             # Provides a relative path to your source file(s).
-             NdkJniTest.cpp )
+        # Sets the library as a shared library.
+        SHARED
+
+        # Provides a relative path to your source file(s).
+        NdkJniTest.cpp ${CppPrimerPlus_DIR_SRCS})
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -43,11 +49,11 @@ add_library( ${PROJECT_NAME}
 # completing its build.
 
 find_library( # Sets the name of the path variable.
-              log-lib
+        log-lib
 
-              # Specifies the name of the NDK library that
-              # you want CMake to locate.
-              log )
+        # Specifies the name of the NDK library that
+        # you want CMake to locate.
+        log)
 
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
@@ -55,6 +61,8 @@ find_library( # Sets the name of the path variable.
 
 target_link_libraries(${PROJECT_NAME}
 
-                       # Links the target library to the log library
-                       # included in the NDK.
-                       ${log-lib} )
+        libModernCpp
+
+        # Links the target library to the log library
+        # included in the NDK.
+        ${log-lib})
