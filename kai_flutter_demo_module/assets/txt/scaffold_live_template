@@ -1,25 +1,18 @@
 import 'package:flutter/material.dart';
 
-class TestPage9 extends StatefulWidget {
-  TestPage9({
-    Key key,
-  }) : super(key: key);
+class $NAME$ extends StatefulWidget {
+  const $NAME$({Key key}) : super(key: key);
 
   @override
-  _TestPage9State createState() => _TestPage9State();
+  _$NAME$State createState() => _$NAME$State();
 }
 
-class _TestPage9State extends State<TestPage9> {
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
+class _$NAME$State extends State<$NAME$> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('widget.title'),
+        title: Text('$NAME$'),
       ),
       body: Center(
         child: Column(
@@ -28,6 +21,7 @@ class _TestPage9State extends State<TestPage9> {
             Text(
               'Text:',
             ),
+            $END$
           ],
         ),
       ),

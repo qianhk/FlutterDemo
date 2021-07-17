@@ -1,0 +1,40 @@
+import 'package:flutter/material.dart';
+
+class $NAME$ extends StatefulWidget {
+  const $NAME$({Key key}) : super(key: key);
+
+  @override
+  _$NAME$State createState() => _$NAME$State();
+}
+
+class _$NAME$State extends State<$NAME$> {
+
+  List _dataList = <$END$>[];
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Divider divider = Divider(height: 1, thickness: 1, indent: 12, endIndent: 12, color: Colors.green);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('$NAME$'),
+      ),
+      body: ListView.separated(
+        itemCount: _dataList?.length ?? 0,
+        itemBuilder: (BuildContext context, int index) {
+          var itemData = _dataList[index];
+          return ListTile(
+            title: Text('t'),
+          );
+        },
+        separatorBuilder: (BuildContext context, int index) {
+          return divider;
+        },
+      ),
+    );
+  }
+}

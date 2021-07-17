@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:kai_flutter_demo_module/test_page_1.dart';
 import 'package:kai_flutter_demo_module/test_page_2.dart';
 import 'package:kai_flutter_demo_module/test_page_3.dart';
 import 'package:kai_flutter_demo_module/test_page_4.dart';
-import 'package:kai_flutter_demo_module/test_page_5.dart';
+import 'package:kai_flutter_demo_module/test_page_5.dart' as TestCustomProvider;
 import 'package:kai_flutter_demo_module/test_page_6.dart';
 import 'package:kai_flutter_demo_module/test_page_7.dart';
 import 'package:kai_flutter_demo_module/test_page_8.dart';
 import 'package:kai_flutter_demo_module/test_page_9.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'provider_counter/provider_counter_main.dart';
 import 'test_dart_syntax.dart';
+import 'provider_shopper/screens/login.dart' as Shopper;
+import 'provider_shopper/models/cart.dart' as Shopper;
+import 'provider_shopper/models/catalog.dart' as Shopper;
 
 void main() => runApp(MyApp());
 
@@ -18,37 +23,56 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      initialRoute: '/',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or press Run > Flutter Hot Reload in a Flutter IDE). Notice that the
-        // counter didn't reset back to zero; the application is not restarted.
-        primarySwatch: Colors.blue,
-        // materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      ),
-      routes: {
-        '/': (context) => MyHomePage(title: 'Flutter Demo Home Page'),
-        '/test_page_1': (context) {
-          //ModalRoute.of(context).settings.arguments
-          return TestPage1(title: 'Test Page 01');
-        },
-        'test_page_2': (context) => TestPage2(),
-        'test_page_3': (context) => TestPage3(),
-        'test_page_4': (context) => TestPage4(),
-        'test_page_5': (context) => TestPage5(),
-        'test_page_6': (context) => TestPage6(),
-        'test_page_7': (context) => TestPage7(),
-        'test_page_8': (context) => TestPage8(title: ModalRoute.of(context).settings.arguments),
-        'test_page_9': (context) => TestPage9(),
-      },
-    );
+    return MultiProvider(
+        providers: [
+          // In this sample app, CatalogModel never changes, so a simple Provider
+          // is sufficient.
+          Provider(create: (context) => Shopper.CatalogModel()),
+          // CartModel is implemented as a ChangeNotifier, which calls for the use
+          // of ChangeNotifierProvider. Moreover, CartModel depends
+          // on CatalogModel, so a ProxyProvider is needed.
+          ChangeNotifierProxyProvider<Shopper.CatalogModel, Shopper.CartModel>(
+            create: (context) => Shopper.CartModel(),
+            update: (context, catalog, cart) {
+              if (cart == null) throw ArgumentError.notNull('cart');
+              cart.catalog = catalog;
+              return cart;
+            },
+          ),
+        ],
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          initialRoute: '/',
+          theme: ThemeData(
+            // This is the theme of your application.
+            //
+            // Try running your application with "flutter run". You'll see the
+            // application has a blue toolbar. Then, without quitting the app, try
+            // changing the primarySwatch below to Colors.green and then invoke
+            // "hot reload" (press "r" in the console where you ran "flutter run",
+            // or press Run > Flutter Hot Reload in a Flutter IDE). Notice that the
+            // counter didn't reset back to zero; the application is not restarted.
+            primarySwatch: Colors.blue,
+            // materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          ),
+          routes: {
+            '/': (context) => MyHomePage(title: 'Flutter Demo Home Page'),
+            '/test_page_1': (context) {
+              //ModalRoute.of(context).settings.arguments
+              return TestPage1(title: 'Test Page 01');
+            },
+            'test_page_2': (context) => TestPage2(),
+            'test_page_3': (context) => TestPage3(),
+            'test_page_4': (context) => TestPage4(),
+            'test_page_5': (context) => TestCustomProvider.TestPage5(),
+            'test_page_6': (context) => TestPage6(),
+            'test_page_7': (context) => TestPage7(),
+            'test_page_8': (context) => TestPage8(title: ModalRoute.of(context).settings.arguments),
+            'test_page_9': (context) => TestPage9(),
+            '/provider_counter_page': (context) => ProviderCounterPage(),
+            '/provider_shopper_page': (context) => Shopper.MyLogin(),
+          },
+        ));
   }
 }
 
@@ -90,6 +114,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     EntryInfo("Theme Test", "test_page_6"),
     EntryInfo("Dialog", "test_page_7"),
     EntryInfo("Touch Listener Gesture", "test_page_8"),
+    EntryInfo("Provider Counter", "/provider_counter_page"),
+    EntryInfo("Provider Shopper", "/provider_shopper_page"),
     EntryInfo("test9", "test_page_9"),
   ];
 

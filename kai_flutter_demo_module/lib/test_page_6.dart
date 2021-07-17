@@ -10,7 +10,7 @@ class TestPage6 extends StatefulWidget {
 }
 
 class _ThemeTestRouteState extends State<TestPage6> {
-  Color _themeColor = Colors.teal; //当前路由主题色
+  MaterialColor _themeColor = Colors.teal; //当前路由主题色
   int _beginJs = 0;
   List _httpDatas;
   List _httpDatas2;
@@ -128,13 +128,13 @@ class _ThemeTestRouteState extends State<TestPage6> {
                     print('等待数据... init=${snapshot.data}');
                     return Text('等待数据... init=${snapshot.data}');
                   case ConnectionState.active:
-                    _beginJs = snapshot.data;
+                    _beginJs = snapshot.data ?? 0;
                     return Text('active: ${snapshot.data}');
                   case ConnectionState.done:
                     print('Stream已关闭');
                     return Text('Stream已关闭');
                 }
-                return null; // unreachable
+                return Text('Unknown'); // unreachable
               },
             )
           ],
