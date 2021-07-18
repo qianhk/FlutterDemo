@@ -1,4 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
+import 'provider_shopper/models/cart.dart' as Shopper;
+import 'provider_shopper/models/catalog.dart' as Shopper;
+import 'package:json_annotation/json_annotation.dart';
+
+part 'test_dart_syntax.g.dart';
 
 //省略常用的类变量+factory的工厂构造函数法
 
@@ -31,6 +37,86 @@ Future<String> getNetworkData() {
     return "Hello kai";
     // throw Exception("error");
   });
+}
+
+class User {
+  final String name;
+  final String email;
+
+  User(this.name, this.email);
+
+  User.fromJson(Map<String, dynamic> json)
+      : name = json['name'],
+        email = json['email'];
+
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'email': email,
+      };
+}
+
+@JsonSerializable()
+class Address {
+  String street;
+  String city;
+
+  Address(this.street, this.city);
+
+  factory Address.fromJson(Map<String, dynamic> json) => _$AddressFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AddressToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class User2 {
+  User2(this.id, this.name, this.email, this.isAdult, this.registrationDateMillis, this.address);
+
+  @JsonKey(required: true)
+  final int id;
+
+  final String name;
+  final String email;
+
+  @JsonKey(defaultValue: true)
+  final bool isAdult;
+
+  @JsonKey(name: 'date_millis')
+  final int registrationDateMillis;
+
+  Address address;
+
+  factory User2.fromJson(Map<String, dynamic> json) => _$User2FromJson(json);
+
+  Map<String, dynamic> toJson() => _$User2ToJson(this);
+}
+
+void testJson() {
+  String jsonString = '{"id":1,"name":"John Smith","email":"john@example.com","date_millis":123456,'
+      '"address":{"city":"ShangHai","street":"马当路"}}';
+  Map<String, dynamic> userMap = jsonDecode(jsonString);
+  print('1. Howdy, ${userMap['name']}! email=${userMap['email']}.');
+
+  var user = User.fromJson(userMap);
+  print('2. Howdy, ${user.name}! email=${user.email}.');
+
+  String json = jsonEncode(user);
+  print('3. ToJson = $json');
+
+  var user2 = User2.fromJson(userMap);
+  print('4. Howdy, ${user2.name}! email=${user2.isAdult} ${user2.address.city}.');
+  print('5. jsonEncode = ${jsonEncode(user2)}');
+  print('6. ToJson = ${user2.toJson()}');
+}
+
+void unit_test() {
+  // test('adding item increases total cost', () {
+  //   final cart = Shopper.CartModel();
+  //   final startingPrice = cart.totalPrice;
+  //   cart.addListener(() {
+  //     expect(cart.totalPrice, greaterThan(startingPrice));
+  //   });
+  //   cart.add(Shopper.Item('Dash'));
+  // });
 }
 
 void syntaxMain() {
@@ -66,6 +152,9 @@ void syntaxMain() {
   man.running();
   man.flying();
   print("Extension say=${pp2.name.sayHello()} *3=${pp2 * 3} size=${pp2.name.size}");
+
+  unit_test();
+  testJson();
 }
 
 class Animal {

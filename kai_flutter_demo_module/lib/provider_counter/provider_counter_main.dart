@@ -21,7 +21,7 @@ class _ProviderCounterPageState extends State<ProviderCounterPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const Text('You have pushed the button this many times:'),
+                const Text('Kai have pushed the button this many times:'),
                 Consumer<Counter>(
                   builder: (context, counter, child) => Text(
                     '${counter.value}',
@@ -31,14 +31,15 @@ class _ProviderCounterPageState extends State<ProviderCounterPage> {
               ],
             ),
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              var counter = context.read<Counter>();
-              counter.increment();
-            },
-            tooltip: 'Increment',
-            child: const Icon(Icons.add),
-          ),
+          floatingActionButton: Builder(
+              builder: (context) => FloatingActionButton(
+                    onPressed: () {
+                      var counter = context.read<Counter>();
+                      counter.increment();
+                    },
+                    tooltip: 'Increment',
+                    child: const Icon(Icons.add),
+                  )),
         ));
   }
 }
