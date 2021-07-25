@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_boost/flutter_boost.dart';
 import 'package:provider/provider.dart';
 import '../models/cart.dart';
 import '../models/catalog.dart';
@@ -73,7 +74,8 @@ class _MyAppBar extends StatelessWidget {
       actions: [
         IconButton(
           icon: const Icon(Icons.shopping_cart),
-          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MyCart())),
+          // onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => MyCart())),
+          onPressed: () => BoostNavigator.instance.push('/provider_shopper_page_cart'),
         ),
       ],
     );

@@ -84,8 +84,12 @@ public class PlaceholderFragment extends Fragment implements View.OnClickListene
 //            tmpStr.length();
             NdkJniTest.testCrashInNative(true);
         } else if (viewId == R.id.btn_flutter) {
+            final HashMap<String, Object> arguments = new HashMap<>();
+            arguments.put("title", "Home Title From Native");
+            arguments.put("key2", "Value2 From Navite");
+            arguments.put("key3", 666);
             FlutterBoostRouteOptions options = new FlutterBoostRouteOptions.Builder()
-                    .pageName("/test_page_1").arguments(new HashMap<>()).requestCode(1111).build();
+                    .pageName("/home").arguments(arguments).requestCode(1111).build();
             FlutterBoost.instance().open(options);
         }
     }

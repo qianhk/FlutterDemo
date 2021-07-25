@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_boost/flutter_boost.dart';
 import '../common/theme.dart';
 import 'catalog.dart';
 
@@ -38,7 +39,8 @@ class MyLogin extends StatelessWidget {
               ElevatedButton(
                 child: const Text('ENTER'),
                 onPressed: () {
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyCatalog()));
+                  // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyCatalog()));
+                  BoostNavigator.instance.pushReplacement('/provider_shopper_page_catalog');
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.yellow,
