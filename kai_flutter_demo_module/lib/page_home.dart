@@ -60,8 +60,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   void readPressedCount() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    _counter = (prefs.getInt('main_counter') ?? 0) + 1;
     print('readPressedCount Pressed $_counter times.');
+    setState(() {
+      _counter = (prefs.getInt('main_counter') ?? 0) + 1;
+    });
   }
 
   @override

@@ -11,6 +11,7 @@ import 'package:kai_flutter_demo_module/test_page_8.dart';
 import 'package:kai_flutter_demo_module/test_page_9.dart';
 import 'package:provider/provider.dart';
 
+import 'dialog_page.dart';
 import 'provider_counter/provider_counter_main.dart';
 import 'provider_shopper/screens/login.dart' as Shopper;
 import 'provider_shopper/screens/catalog.dart' as Shopper;
@@ -100,6 +101,14 @@ class MyApp extends StatelessWidget {
     },
     '/provider_shopper_page_cart': (settings, uniqueId) {
       return PageRouteBuilder<dynamic>(settings: settings, pageBuilder: (_, __, ___) => Shopper.MyCart());
+    },
+    '/dialogPage': (settings, uniqueId) {
+      return PageRouteBuilder<dynamic>(
+        opaque: false,
+        barrierColor: Colors.green,
+        settings: settings,
+        pageBuilder: (_, __, ___) => DialogPage(),
+      );
     },
   };
 

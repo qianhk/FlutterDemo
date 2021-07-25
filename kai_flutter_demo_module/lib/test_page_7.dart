@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_boost/boost_navigator.dart';
+import 'package:flutter_boost/flutter_boost.dart';
+import 'package:flutter_boost/overlay_entry.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class TestPage7 extends StatefulWidget {
@@ -31,6 +34,7 @@ class _TestPage7State extends State<TestPage7> {
     print('onPressedDialog2=${result}');
     if (result != null) {
       print("选择了：${result == 1 ? "中文简体" : "美国英语"}");
+      Fluttertoast.showToast(msg: "选择了：${result == 1 ? "中文简体" : "美国英语"}");
     }
   }
 
@@ -64,8 +68,22 @@ class _TestPage7State extends State<TestPage7> {
   }
 
   Future<int> changeLanguage() async {
+    var instance = BoostNavigator.instance;
+    var appState2 = instance.appState;
+    var topContainer2 = appState2.topContainer;
+    var navigator2 = topContainer2.navigator;
+    var context2 = navigator2.context;
+    // FlutterBoost.containerManager?.remove("2000000");
+    // BoostChannel.instance.
+    var currentContext = overlayKey.currentContext;
+    var currentState = overlayKey.currentState;
+    var currentWidget = overlayKey.currentWidget;
+    var boostContainer = BoostContainer.of(context);
+    var selfContext = context;
     return showDialog<int>(
         context: context,
+        useRootNavigator: false,
+        // barrierDismissible: false,
         builder: (BuildContext context) {
           return SimpleDialog(
             title: const Text('请选择语言'),
@@ -101,40 +119,51 @@ class _TestPage7State extends State<TestPage7> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: onPressedDialog1,
-              child: Text("showDeleteConfirmDialog"),
-              style: ButtonStyle(padding: MaterialStateProperty.all(EdgeInsets.zero)),
-            ),
-            DecoratedBox(
-              decoration: BoxDecoration(color: Colors.green[200]),
-              child: ElevatedButton(
-                onPressed: onPressedDialog2,
-                child: Text("请选择语言"),
-                style: ButtonStyle(minimumSize: MaterialStateProperty.all(Size.zero), tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+      body: SizedBox.expand(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              ElevatedButton(
+                onPressed: () => BoostNavigator.instance.push(
+                  "/dialogPage",
+                  // withContainer: true,
+                  // opaque: false, //如果开启新容器，需要指定opaque为false
+                ),
+                child: Text("dialogPage"),
               ),
-            ),
-            ElevatedButton(
-              onPressed: showDeleteConfirmDialogWithCheck1,
-              child: Text("复选框可点击1"),
-              style: ButtonStyle(tapTargetSize: MaterialTapTargetSize.shrinkWrap),
-            ),
-            ElevatedButton(onPressed: showDeleteConfirmDialogWithCheck2, child: Text("复选框可点击2")),
-            ElevatedButton(onPressed: showDeleteConfirmDialogWithCheck3, child: Text("复选框可点击3")),
-            ElevatedButton(onPressed: onPressedDialog5, child: Text("显示列表对话框")),
-            ElevatedButton(onPressed: onPressedDialog6, child: Text("自定义对话框")),
-            ElevatedButton(onPressed: _showModalBottomSheet, child: Text("显示底部菜单列表")),
-            Builder(builder: (context) {
-              return ElevatedButton(onPressed: () => _showBottomSheet(context), child: Text("_showBottomSheet"));
-            }),
-            ElevatedButton(onPressed: showLoadingDialog, child: Text("showLoadingDialog")),
-            ElevatedButton(onPressed: _showDatePicker1, child: Text("_showDatePicker1")),
-            ElevatedButton(onPressed: _showDatePicker2, child: Text("_showDatePicker2")),
-          ],
+              ElevatedButton(
+                onPressed: onPressedDialog1,
+                child: Text("showDeleteConfirmDialog"),
+                style: ButtonStyle(padding: MaterialStateProperty.all(EdgeInsets.zero)),
+              ),
+              DecoratedBox(
+                decoration: BoxDecoration(color: Colors.green[200]),
+                child: ElevatedButton(
+                  onPressed: onPressedDialog2,
+                  child: Text("请选择语言"),
+                  style: ButtonStyle(minimumSize: MaterialStateProperty.all(Size.zero), tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+                ),
+              ),
+              SizedBox(height: 8),
+              ElevatedButton(
+                onPressed: showDeleteConfirmDialogWithCheck1,
+                child: Text("复选框可点击1"),
+                style: ButtonStyle(tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+              ),
+              ElevatedButton(onPressed: showDeleteConfirmDialogWithCheck2, child: Text("复选框可点击2")),
+              ElevatedButton(onPressed: showDeleteConfirmDialogWithCheck3, child: Text("复选框可点击3")),
+              ElevatedButton(onPressed: onPressedDialog5, child: Text("显示列表对话框")),
+              ElevatedButton(onPressed: onPressedDialog6, child: Text("自定义对话框")),
+              ElevatedButton(onPressed: _showModalBottomSheet, child: Text("显示底部菜单列表")),
+              Builder(builder: (context) {
+                return ElevatedButton(onPressed: () => _showBottomSheet(context), child: Text("_showBottomSheet"));
+              }),
+              ElevatedButton(onPressed: showLoadingDialog, child: Text("showLoadingDialog")),
+              ElevatedButton(onPressed: _showDatePicker1, child: Text("_showDatePicker1")),
+              ElevatedButton(onPressed: _showDatePicker2, child: Text("_showDatePicker2")),
+            ],
+          ),
         ),
       ),
     );
