@@ -86,7 +86,7 @@ public class PlaceholderFragment extends Fragment implements View.OnClickListene
         } else if (viewId == R.id.btn_flutter) {
             final HashMap<String, Object> arguments = new HashMap<>();
             arguments.put("title", "Home Title From Native");
-            arguments.put("key2", "Value2 From Navite");
+            arguments.put("key2", "Value2 From Native");
             arguments.put("key3", 666);
             FlutterBoostRouteOptions options = new FlutterBoostRouteOptions.Builder()
                     .pageName("/home").arguments(arguments).requestCode(1111).build();

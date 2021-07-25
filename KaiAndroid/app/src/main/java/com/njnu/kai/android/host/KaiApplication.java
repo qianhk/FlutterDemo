@@ -3,11 +3,14 @@ package com.njnu.kai.android.host;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.idlefish.flutterboost.FlutterBoost;
 import com.idlefish.flutterboost.FlutterBoostDelegate;
 import com.idlefish.flutterboost.FlutterBoostRouteOptions;
 import com.idlefish.flutterboost.containers.FlutterBoostActivity;
+
+import java.util.Map;
 
 import io.flutter.embedding.android.FlutterActivityLaunchConfigs;
 
@@ -25,9 +28,26 @@ public class KaiApplication extends Application {
         FlutterBoost.instance().setup(this, new FlutterBoostDelegate() {
             @Override
             public void pushNativeRoute(FlutterBoostRouteOptions options) {
-                //这里根据options.pageName来判断你想跳转哪个页面，这里简单给一个
-//                Intent intent = new Intent(FlutterBoost.instance().currentActivity(), YourTargetAcitvity.class);
-//                FlutterBoost.instance().currentActivity().startActivityForResult(intent, options.requestCode());
+                final Activity currentActivity = FlutterBoost.instance().currentActivity();
+                Intent intent = new Intent(currentActivity, SecondTestActivity.class);
+                final Map<String, Object> arguments = options.arguments();
+                if (arguments != null) {
+                    for (Map.Entry<String, Object> entry : arguments.entrySet()) {
+                        final String entryKey = entry.getKey();
+                        final Object objValue = entry.getValue();
+                        if (objValue instanceof Long || objValue instanceof Integer) {
+                            intent.putExtra(entryKey, ((Number) objValue).longValue());
+                        } else if (objValue instanceof String) {
+                            intent.putExtra(entryKey, (String) objValue);
+                        } else if (objValue instanceof Double || objValue instanceof Float) {
+                            intent.putExtra(entryKey, ((Number) objValue).doubleValue());
+                        } else {
+                            intent.putExtra(entryKey, "unsupport type: " + objValue);
+                        }
+                    }
+                }
+                currentActivity.startActivityForResult(intent, options.requestCode());
+                Toast.makeText(currentActivity, String.format("Native: %s", options.pageName()), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -41,6 +61,7 @@ public class KaiApplication extends Application {
                         .urlParams(options.arguments())
                         .build(currentActivity);
                 currentActivity.startActivity(intent);
+                Toast.makeText(currentActivity, String.format("Flutter: %s", options.pageName()), Toast.LENGTH_SHORT).show();
             }
         }, engine -> {
         });

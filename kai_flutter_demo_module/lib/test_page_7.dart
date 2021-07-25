@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class TestPage7 extends StatefulWidget {
   TestPage7({Key key, this.title = "对话框"}) : super(key: key);
@@ -16,8 +17,10 @@ class _TestPage7State extends State<TestPage7> {
     bool delete = await showDeleteConfirmDialog1();
     if (delete == null) {
       print("取消删除");
+      Fluttertoast.showToast(msg: "取消删除");
     } else {
       print("已确认删除");
+      Fluttertoast.showToast(msg: "已确认删除");
       //... 删除文件
     }
   }

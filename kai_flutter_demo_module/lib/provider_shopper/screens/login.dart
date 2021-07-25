@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_boost/flutter_boost.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../common/theme.dart';
 import 'catalog.dart';
 
@@ -45,7 +46,28 @@ class MyLogin extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   primary: Colors.yellow,
                 ),
-              )
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              ElevatedButton(
+                child: const Text('to native Page'),
+                onPressed: () {
+                  // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyCatalog()));
+                  Map args = <String, dynamic>{
+                    'title': 'From Flutter (Login.dart)',
+                    'keyInt': 1983,
+                    'keyFloat': 12.24,
+                    "keyMap": {'hahaKey': 'hahaValue'}
+                  };
+                  BoostNavigator.instance
+                      .push('nativeTestPage', arguments: args)
+                      .then((value) => Fluttertoast.showToast(msg: 'kaiReturnValue: $value'));
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.yellow,
+                ),
+              ),
             ],
           ),
         ),

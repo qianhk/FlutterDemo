@@ -77,13 +77,20 @@ class MyApp extends StatelessWidget {
     },
     'test_page_8': (settings, uniqueId) {
       return PageRouteBuilder<dynamic>(
-          settings: settings, pageBuilder: (_, __, ___) => TestPage8(title: (settings.arguments as Map)['title']));
+          settings: settings,
+          pageBuilder: (_, __, ___) => TestPage8(
+                title: (settings.arguments as Map)['title'],
+              ));
     },
     'test_page_9': (settings, uniqueId) {
       return PageRouteBuilder<dynamic>(settings: settings, pageBuilder: (_, __, ___) => TestPage9());
     },
     '/provider_counter_page': (settings, uniqueId) {
-      return PageRouteBuilder<dynamic>(settings: settings, pageBuilder: (_, __, ___) => ProviderCounterPage());
+      return PageRouteBuilder<dynamic>(
+          settings: settings,
+          pageBuilder: (_, __, ___) => ProviderCounterPage(
+                title: (settings.arguments as Map)['title'],
+              ));
     },
     '/provider_shopper_page_login': (settings, uniqueId) {
       return PageRouteBuilder<dynamic>(settings: settings, pageBuilder: (_, __, ___) => Shopper.MyLogin());

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProviderCounterPage extends StatefulWidget {
-  const ProviderCounterPage({Key key}) : super(key: key);
+  final String title;
+  const ProviderCounterPage({Key key, this.title}) : super(key: key);
 
   @override
   _ProviderCounterPageState createState() => _ProviderCounterPageState();
@@ -15,7 +16,7 @@ class _ProviderCounterPageState extends State<ProviderCounterPage> {
         create: (context) => Counter(),
         child: Scaffold(
           appBar: AppBar(
-            title: Text('ProviderCounter'),
+            title: Text(widget.title ?? 'ProviderCounter'),
           ),
           body: Center(
             child: Column(
