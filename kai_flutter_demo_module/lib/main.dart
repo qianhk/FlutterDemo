@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boost/flutter_boost.dart';
 import 'package:provider/provider.dart';
 import 'package:kai_flutter_demo_module/test_page_1.dart';
 import 'package:kai_flutter_demo_module/test_page_2.dart';
@@ -17,7 +18,12 @@ import 'provider_shopper/screens/login.dart' as Shopper;
 import 'provider_shopper/models/cart.dart' as Shopper;
 import 'provider_shopper/models/catalog.dart' as Shopper;
 
-void main() => runApp(MyApp());
+// class CustomFlutterBinding extends WidgetsFlutterBinding with BoostFlutterBinding {}
+
+void main() {
+// BoostFlutterBinding();
+  runApp(MyApp());
+}
 
 void main2() => runApp(Stack(
       fit: StackFit.expand,

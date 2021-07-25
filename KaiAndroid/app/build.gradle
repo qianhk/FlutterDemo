@@ -77,4 +77,6 @@ dependencies {
 
 dependencies {
     implementation project(':flutter')
+
+    implementation project(':flutter_boost')
 }

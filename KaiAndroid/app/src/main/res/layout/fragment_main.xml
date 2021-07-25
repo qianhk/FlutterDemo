@@ -22,6 +22,11 @@
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1" />
     <Button
+        android:id="@+id/btn_flutter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Flutter Demo"/>
+    <Button
         android:id="@+id/btn_jni_string"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

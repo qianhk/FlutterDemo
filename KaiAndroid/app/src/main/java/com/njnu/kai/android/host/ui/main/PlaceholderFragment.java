@@ -13,9 +13,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.idlefish.flutterboost.FlutterBoost;
+import com.idlefish.flutterboost.FlutterBoostRouteOptions;
 import com.njnu.kai.android.host.R;
 import com.njnu.kai.testc.NdkJniTest;
 
+import java.util.HashMap;
 import java.util.Locale;
 
 /**
@@ -58,6 +61,7 @@ public class PlaceholderFragment extends Fragment implements View.OnClickListene
                 textView.setText(s);
             }
         });
+        root.findViewById(R.id.btn_flutter).setOnClickListener(this);
         root.findViewById(R.id.btn_jni_string).setOnClickListener(this);
         root.findViewById(R.id.btn_jni_sum).setOnClickListener(this);
         root.findViewById(R.id.btn_crash_it).setOnClickListener(this);
@@ -79,6 +83,10 @@ public class PlaceholderFragment extends Fragment implements View.OnClickListene
 //            String tmpStr = null;
 //            tmpStr.length();
             NdkJniTest.testCrashInNative(true);
+        } else if (viewId == R.id.btn_flutter) {
+            FlutterBoostRouteOptions options = new FlutterBoostRouteOptions.Builder()
+                    .pageName("/test_page_1").arguments(new HashMap<>()).requestCode(1111).build();
+            FlutterBoost.instance().open(options);
         }
     }
 }
