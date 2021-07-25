@@ -32,14 +32,15 @@ class _ProviderCounterPageState extends State<ProviderCounterPage> {
             ),
           ),
           floatingActionButton: Builder(
-              builder: (context) => FloatingActionButton(
-                    onPressed: () {
-                      var counter = context.read<Counter>();
-                      counter.increment();
-                    },
-                    tooltip: 'Increment',
-                    child: const Icon(Icons.add),
-                  )),
+            builder: (context) => FloatingActionButton(
+              onPressed: () {
+                var counter = context.read<Counter>();
+                counter.increment();
+              },
+              tooltip: 'Increment',
+              child: const Icon(Icons.add),
+            ),
+          ),
         ));
   }
 }

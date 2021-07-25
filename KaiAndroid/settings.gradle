@@ -1,2 +1,8 @@
 include ':app'
 rootProject.name = "KaiAndroid"
+
+setBinding(new Binding([gradle: this]))
+evaluate(new File(settingsDir.parentFile, 'kai_flutter_demo_module/.android/include_flutter.groovy'))
+
+include ':kai_flutter_demo_module'
+project(":kai_flutter_demo_module").projectDir = new File("../", "kai_flutter_demo_module")
