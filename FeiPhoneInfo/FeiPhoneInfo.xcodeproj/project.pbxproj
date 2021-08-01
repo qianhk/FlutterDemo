@@ -11,7 +11,7 @@
 		2A50AA201E4B3DB500B88151 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A50AA1F1E4B3DB500B88151 /* Images.xcassets */; };
 		2A50AA241E4B40AF00B88151 /* LaunchScreen2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A50AA231E4B40AF00B88151 /* LaunchScreen2.storyboard */; };
 		2A6675DA26B6700E000666AC /* TestEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6675D926B6700E000666AC /* TestEntryViewController.m */; };
-		2A6675DE26B685F6000666AC /* DemoBoostDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6675DD26B685F6000666AC /* DemoBoostDelegate.m */; };
+		2A6675DE26B685F6000666AC /* DemoFlutterBoostDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6675DD26B685F6000666AC /* DemoFlutterBoostDelegate.m */; };
 		D9016893144EA0A0002C65EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D94E0D7C143054DB00552FBE /* Foundation.framework */; };
 		D90168D0144EDB4B002C65EF /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9016896144EA4D1002C65EF /* IOKit.framework */; };
 		D91B8E2E1432C71800E62AE5 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D91B8E2D1432C71800E62AE5 /* BaseViewController.m */; };
@@ -77,8 +77,8 @@
 		2A50AA231E4B40AF00B88151 /* LaunchScreen2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen2.storyboard; sourceTree = "<group>"; };
 		2A6675D826B6700E000666AC /* TestEntryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestEntryViewController.h; sourceTree = "<group>"; };
 		2A6675D926B6700E000666AC /* TestEntryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestEntryViewController.m; sourceTree = "<group>"; };
-		2A6675DC26B685F6000666AC /* DemoBoostDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoBoostDelegate.h; sourceTree = "<group>"; };
-		2A6675DD26B685F6000666AC /* DemoBoostDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoBoostDelegate.m; sourceTree = "<group>"; };
+		2A6675DC26B685F6000666AC /* DemoFlutterBoostDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoFlutterBoostDelegate.h; sourceTree = "<group>"; };
+		2A6675DD26B685F6000666AC /* DemoFlutterBoostDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoFlutterBoostDelegate.m; sourceTree = "<group>"; };
 		2A6675DF26B68C64000666AC /* libFlutterPluginRegistrant.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFlutterPluginRegistrant.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B582E7ECFBEA39F9E007F372 /* Pods_FeiPhoneInfo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FeiPhoneInfo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9016896144EA4D1002C65EF /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
@@ -204,8 +204,8 @@
 		2A6675DB26B685DF000666AC /* Flutter */ = {
 			isa = PBXGroup;
 			children = (
-				2A6675DC26B685F6000666AC /* DemoBoostDelegate.h */,
-				2A6675DD26B685F6000666AC /* DemoBoostDelegate.m */,
+				2A6675DC26B685F6000666AC /* DemoFlutterBoostDelegate.h */,
+				2A6675DD26B685F6000666AC /* DemoFlutterBoostDelegate.m */,
 			);
 			path = Flutter;
 			sourceTree = "<group>";
@@ -254,13 +254,13 @@
 				2A6675DB26B685DF000666AC /* Flutter */,
 				2A6675D826B6700E000666AC /* TestEntryViewController.h */,
 				2A6675D926B6700E000666AC /* TestEntryViewController.m */,
-				2A50AA231E4B40AF00B88151 /* LaunchScreen2.storyboard */,
-				DCC45E2014792B850035B763 /* EGORefreshTableHeaderView.h */,
-				DCC45E2114792B850035B763 /* EGORefreshTableHeaderView.m */,
 				D94E0D89143054DB00552FBE /* FeiPhoneInfoAppDelegate.h */,
 				D94E0D8A143054DB00552FBE /* FeiPhoneInfoAppDelegate.m */,
 				D9AE8E1614307120007D9447 /* SwitchViewController.h */,
 				D9F31BD81431878D00C019BE /* SwitchViewController.m */,
+				2A50AA231E4B40AF00B88151 /* LaunchScreen2.storyboard */,
+				DCC45E2014792B850035B763 /* EGORefreshTableHeaderView.h */,
+				DCC45E2114792B850035B763 /* EGORefreshTableHeaderView.m */,
 				D9AE8E3314308585007D9447 /* GeneralViewController.h */,
 				D9AE8E3414308585007D9447 /* GeneralViewController.m */,
 				D9C8DD7E1430894500856CA1 /* TaskViewController.h */,
@@ -547,7 +547,7 @@
 				D91B8E401432CE2100E62AE5 /* CameraViewController.m in Sources */,
 				D91B8E431432CE3500E62AE5 /* HardwareViewController.m in Sources */,
 				D91B8E461432CE4800E62AE5 /* AboutViewController.m in Sources */,
-				2A6675DE26B685F6000666AC /* DemoBoostDelegate.m in Sources */,
+				2A6675DE26B685F6000666AC /* DemoFlutterBoostDelegate.m in Sources */,
 				DC92E5781452F163002F20D4 /* UIDevice-Capabilities.m in Sources */,
 				DC92E5791452F163002F20D4 /* UIDevice-Hardware.m in Sources */,
 				DC92E57A1452F163002F20D4 /* UIDevice-IOKitExtensions.m in Sources */,

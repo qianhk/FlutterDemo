@@ -10,6 +10,7 @@
 #import "AppGlobalUI.h"
 #import "FeiPhoneInfoAppDelegate.h"
 @import Flutter;
+#import <flutter_boost/FlutterBoost.h>
 
 @interface TestEntryViewController ()
 
@@ -24,15 +25,70 @@
     [_mTestArrasy addObject:[[TestEntryItem alloc] initWithTitle:@"NSLog" action:^{
         NSLog(@"lookKai log From Test Entry");
     }]];
-    [_mTestArrasy addObject:[[TestEntryItem alloc] initWithTitle:@"Flutter Demo" action:^{
-        [weakSelf showFlutterDemo];
+    [_mTestArrasy addObject:[[TestEntryItem alloc] initWithTitle:@"Normal Native VC" action:^{
+        [self.navigationController pushViewController:[UIViewController new] animated:YES];
     }]];
+    
+    [_mTestArrasy addObject:[[TestEntryItem alloc] initWithTitle:@"Normal Native With PageName" action:^{
+        [weakSelf showFlutterDemoUseBoostWith:@"/unexist_flutter_page"];
+    }]];
+    
+    [_mTestArrasy addObject:[[TestEntryItem alloc] initWithTitle:@"Flutter Demo: /home" action:^{
+        [weakSelf showFlutterDemoUseBoost];
+    }]];
+    
+    [_mTestArrasy addObject:[[TestEntryItem alloc] initWithTitle:@"Flutter Demo: provider_shopper" action:^{
+        [weakSelf showFlutterDemoUseBoostWith:@"/provider_shopper_page_login"];
+    }]];
+    
+  
+}
+
+- (void)showFlutterDemoUseBoost {
+    FlutterBoostRouteOptions *options = [FlutterBoostRouteOptions new];
+    options.pageName = @"/home";
+    options.arguments = @{@"key_kai" :@"value_kai", @"key_int": @666};
+
+    //页面是否透明（用于透明弹窗场景），若不设置，默认情况下为true
+    options.opaque = true;
+
+    //这个是push操作完成的回调，而不是页面关闭的回调！！！！
+    options.completion = ^(BOOL success) {
+        NSLog(@"lookKai openPage completion: %@", @(success));
+    };
+
+    
+    options.onPageFinished = ^(NSDictionary *resultDic){
+        NSLog(@"lookKai openPage onPageFinished result=%@", resultDic);
+    };
+
+    [FlutterBoost.instance open:options];
+}
+
+
+- (void)showFlutterDemoUseBoostWith:(NSString *)pageName {
+    FlutterBoostRouteOptions *options = [FlutterBoostRouteOptions new];
+    options.pageName = pageName;
+
+    //这个是push操作完成的回调，而不是页面关闭的回调！！！！
+    options.completion = ^(BOOL success) {
+        NSLog(@"lookKai openPage completion: %@", @(success));
+    };
+
+    
+    options.onPageFinished = ^(NSDictionary *resultDic){
+        NSLog(@"lookKai openPage onPageFinished result=%@", resultDic);
+    };
+
+    [FlutterBoost.instance open:options];
 }
 
 - (void)showFlutterDemo {
     FlutterEngine *flutterEngine = ((FeiPhoneInfoAppDelegate *)UIApplication.sharedApplication.delegate).flutterEngine;
     FlutterViewController *flutterViewController = [[FlutterViewController alloc] initWithEngine:flutterEngine nibName:nil bundle:nil];
-    [self presentViewController:flutterViewController animated:YES completion:nil];
+//    [self presentViewController:flutterViewController animated:YES completion:nil];
+//    self.parentViewController
+    [self.navigationController pushViewController:flutterViewController animated:YES];
 }
 
 
@@ -96,6 +152,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TestEntryItem* entryItem = [_mTestArrasy objectAtIndex:[indexPath row]];
+    NSLog(@"lookKai click entry: %@", entryItem.title);
     entryItem.action();
 }
 

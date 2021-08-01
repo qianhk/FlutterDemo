@@ -85,6 +85,12 @@
     [self.view addSubview:hardwareController.view];
     [self.view addSubview:aboutController.view];
     [self.view addSubview:testEntryController.view];
+    
+    [self addChildViewController:generalController];
+    [self addChildViewController:profilesController];
+    [self addChildViewController:hardwareController];
+    [self addChildViewController:aboutController];
+    [self addChildViewController:testEntryController];
 
     tabBar.selectedItem = tabBarItem7;
     [self.view bringSubviewToFront:testEntryController.view];

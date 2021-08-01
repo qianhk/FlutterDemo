@@ -11,7 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DemoBoostDelegate : NSObject <FlutterBoostDelegate>
+@interface DemoFlutterBoostDelegate : NSObject <FlutterBoostDelegate>
+
+@property (nonatomic, weak) UINavigationController *navController;
 
 @end
 
