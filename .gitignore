@@ -61,5 +61,7 @@ app.*.map.json
 .cxx
 local.properties
 
+Pods/
+
 
 

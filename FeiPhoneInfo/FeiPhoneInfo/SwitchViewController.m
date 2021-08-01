@@ -15,6 +15,7 @@
 #import "HardwareViewController.h"
 #import "AboutViewController.h"
 #import "AppGlobalUI.h"
+#import "TestEntryViewController.h"
 
 @implementation SwitchViewController
 
@@ -53,14 +54,15 @@
 
     tabBar = [[UITabBar alloc] initWithFrame:CGRectZero];
     tabBar.backgroundColor = [UIColor cyanColor];
-    tabBarItem0 = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"General", @"for general info") image:[UIImage imageNamed:@"generalinfo.png"] tag:100];
-    tabBarItem1 = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Tasks", @"for phone tasks") image:[UIImage imageNamed:@"tasks.png"] tag:101];
+    tabBarItem1 = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"General", @"for general info") image:[UIImage imageNamed:@"generalinfo.png"] tag:101];
+    tabBarItem0 = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Tasks", @"for phone tasks") image:[UIImage imageNamed:@"tasks.png"] tag:100];
     tabBarItem2 = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Profiles", @"for phone profiles") image:[UIImage imageNamed:@"profiles.png"] tag:102];
 //	tabBarItem3 = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Network", @"for phone network") image:[UIImage imageNamed:@"network.png"] tag:103];
 //	tabBarItem4 = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Camera", @"for camera") image:[UIImage imageNamed:@"Camera.png"] tag:104];
     tabBarItem5 = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Hardware", @"for hardware text") image:[UIImage imageNamed:@"hardware.png"] tag:105];
     tabBarItem6 = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"About", @"for about prompt") image:[UIImage imageNamed:@"about.png"] tag:106];
-    NSArray *array = [NSArray arrayWithObjects:tabBarItem0, tabBarItem1, tabBarItem2/*,tabBarItem3*//*,tabBarItem4*/, tabBarItem5, tabBarItem6, nil];
+    tabBarItem7 = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Entry", @"for test function") image:[UIImage imageNamed:@"tasks.png"] tag:107];
+    NSArray *array = [NSArray arrayWithObjects:tabBarItem7, /*tabBarItem0, */tabBarItem1, tabBarItem2/*,tabBarItem3*//*,tabBarItem4*/, tabBarItem5, tabBarItem6, nil];
     [tabBar setItems:array animated:YES];
     [tabBar setDelegate:self];
     [self.view addSubview:tabBar];
@@ -72,18 +74,20 @@
 //	cameraController = [[CameraViewController alloc] initWithStyle:UITableViewStylePlain];
     hardwareController = [[HardwareViewController alloc] initWithStyle:UITableViewStylePlain];
     aboutController = [[AboutViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    testEntryController = [[TestEntryViewController alloc] initWithStyle:UITableViewStylePlain];
 
 //    generalController.view.bounds = CGRectMake(0, 20, rect.size.width, rect.size.height - 49);
     [self.view addSubview:generalController.view];
-    [self.view addSubview:taskController.view];
+//    [self.view addSubview:taskController.view];
     [self.view addSubview:profilesController.view];
 //	[self.view addSubview:networkController.view];
 //	[self.view addSubview:cameraController.view];
     [self.view addSubview:hardwareController.view];
     [self.view addSubview:aboutController.view];
+    [self.view addSubview:testEntryController.view];
 
-    tabBar.selectedItem = tabBarItem0;
-    [self.view bringSubviewToFront:generalController.view];
+    tabBar.selectedItem = tabBarItem7;
+    [self.view bringSubviewToFront:testEntryController.view];
 }
 
 - (void)viewSafeAreaInsetsDidChange {
@@ -135,24 +139,25 @@
 }
 
 - (void)dealloc {
-    [generalController release];
-    [taskController release];
-    [profilesController release];
-    [networkController release];
-    [cameraController release];
-    [hardwareController release];
-    [aboutController release];
-
-    [tabBarItem0 release];
-    [tabBarItem1 release];
-    [tabBarItem2 release];
-    [tabBarItem3 release];
-    [tabBarItem4 release];
-    [tabBarItem5 release];
-    [tabBarItem6 release];
-    [tabBar release];
-    [imgView release];
-    [bkgView release];
+//    [generalController release];
+//    [taskController release];
+//    [profilesController release];
+//    [networkController release];
+//    [cameraController release];
+//    [hardwareController release];
+//    [aboutController release];
+//    [testEntryController release];
+//
+//    [tabBarItem0 release];
+//    [tabBarItem1 release];
+//    [tabBarItem2 release];
+//    [tabBarItem3 release];
+//    [tabBarItem4 release];
+//    [tabBarItem5 release];
+//    [tabBarItem6 release];
+//    [tabBar release];
+//    [imgView release];
+//    [bkgView release];
 
     [super dealloc];
 }
@@ -216,11 +221,11 @@
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
     switch (item.tag) {
         case 100:
-            [self.view bringSubviewToFront:generalController.view];
+            [self.view bringSubviewToFront:taskController.view];
             break;
 
         case 101:
-            [self.view bringSubviewToFront:taskController.view];
+            [self.view bringSubviewToFront:generalController.view];
             break;
 
         case 102:
@@ -241,6 +246,10 @@
 
         case 106:
             [self.view bringSubviewToFront:aboutController.view];
+            break;
+            
+        case 107:
+            [self.view bringSubviewToFront:testEntryController.view];
             break;
 
         default:

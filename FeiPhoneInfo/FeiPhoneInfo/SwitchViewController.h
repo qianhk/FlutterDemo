@@ -15,6 +15,7 @@
 @class CameraViewController;
 @class HardwareViewController;
 @class AboutViewController;
+@class TestEntryViewController;
 
 @interface SwitchViewController : UIViewController<UITabBarDelegate>
 {
@@ -28,6 +29,7 @@
 	UITabBarItem* tabBarItem4;
 	UITabBarItem* tabBarItem5;
 	UITabBarItem* tabBarItem6;
+    UITabBarItem* tabBarItem7;
 	
 	GeneralViewController* generalController;
 	TaskViewController*	taskController;
@@ -36,6 +38,7 @@
 	CameraViewController* cameraController;
 	HardwareViewController* hardwareController;
 	AboutViewController* aboutController;
+    TestEntryViewController *testEntryController;
 	
 //	CGRect _rectbottom;
 }

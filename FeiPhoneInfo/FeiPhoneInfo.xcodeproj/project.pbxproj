@@ -10,6 +10,8 @@
 		19DD335A30A0CE7DF3D1E1A8 /* AppGlobalUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DD3A2B5EAFC0686720E403 /* AppGlobalUI.m */; };
 		2A50AA201E4B3DB500B88151 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A50AA1F1E4B3DB500B88151 /* Images.xcassets */; };
 		2A50AA241E4B40AF00B88151 /* LaunchScreen2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A50AA231E4B40AF00B88151 /* LaunchScreen2.storyboard */; };
+		2A6675DA26B6700E000666AC /* TestEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6675D926B6700E000666AC /* TestEntryViewController.m */; };
+		6D6166D730130FB5758EC71B /* libPods-FeiPhoneInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2672FA3787BF15956A6F83C /* libPods-FeiPhoneInfo.a */; };
 		D9016893144EA0A0002C65EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D94E0D7C143054DB00552FBE /* Foundation.framework */; };
 		D90168D0144EDB4B002C65EF /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9016896144EA4D1002C65EF /* IOKit.framework */; };
 		D91B8E2E1432C71800E62AE5 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D91B8E2D1432C71800E62AE5 /* BaseViewController.m */; };
@@ -84,10 +86,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0CC612B9C4501DA7D7CA2C00 /* Pods-FeiPhoneInfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeiPhoneInfo.release.xcconfig"; path = "Target Support Files/Pods-FeiPhoneInfo/Pods-FeiPhoneInfo.release.xcconfig"; sourceTree = "<group>"; };
 		19DD378A147F808099BDD273 /* AppGlobalUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppGlobalUI.h; sourceTree = "<group>"; };
 		19DD3A2B5EAFC0686720E403 /* AppGlobalUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppGlobalUI.m; sourceTree = "<group>"; };
 		2A50AA1F1E4B3DB500B88151 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2A50AA231E4B40AF00B88151 /* LaunchScreen2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen2.storyboard; sourceTree = "<group>"; };
+		2A6675D826B6700E000666AC /* TestEntryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestEntryViewController.h; sourceTree = "<group>"; };
+		2A6675D926B6700E000666AC /* TestEntryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestEntryViewController.m; sourceTree = "<group>"; };
+		A2672FA3787BF15956A6F83C /* libPods-FeiPhoneInfo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FeiPhoneInfo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9016896144EA4D1002C65EF /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		D901689C144EA9E2002C65EF /* IOPowerSources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOPowerSources.h; sourceTree = "<group>"; };
 		D901689D144EA9E2002C65EF /* IOPSKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOPSKeys.h; sourceTree = "<group>"; };
@@ -181,6 +187,7 @@
 		DCC45E1C14792B580035B763 /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blueArrow@2x.png"; path = "Resource/blueArrow@2x.png"; sourceTree = SOURCE_ROOT; };
 		DCC45E2014792B850035B763 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		DCC45E2114792B850035B763 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		F21B357353A864878F5A8D41 /* Pods-FeiPhoneInfo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeiPhoneInfo.debug.xcconfig"; path = "Target Support Files/Pods-FeiPhoneInfo/Pods-FeiPhoneInfo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +203,7 @@
 				D90168D0144EDB4B002C65EF /* IOKit.framework in Frameworks */,
 				D94E0D7B143054DB00552FBE /* UIKit.framework in Frameworks */,
 				D94E0D7F143054DB00552FBE /* CoreGraphics.framework in Frameworks */,
+				6D6166D730130FB5758EC71B /* libPods-FeiPhoneInfo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +221,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07E67ECEA31321B2D6B6A7EF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F21B357353A864878F5A8D41 /* Pods-FeiPhoneInfo.debug.xcconfig */,
+				0CC612B9C4501DA7D7CA2C00 /* Pods-FeiPhoneInfo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D94E0D6B143054DB00552FBE = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +239,7 @@
 				D94E0DA7143054DB00552FBE /* FeiPhoneInfoTests */,
 				D94E0D79143054DB00552FBE /* Frameworks */,
 				D94E0D77143054DB00552FBE /* Products */,
+				07E67ECEA31321B2D6B6A7EF /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -246,6 +264,7 @@
 				D94E0D7C143054DB00552FBE /* Foundation.framework */,
 				D94E0D7E143054DB00552FBE /* CoreGraphics.framework */,
 				D94E0DA0143054DB00552FBE /* SenTestingKit.framework */,
+				A2672FA3787BF15956A6F83C /* libPods-FeiPhoneInfo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -253,6 +272,8 @@
 		D94E0D80143054DB00552FBE /* FeiPhoneInfo */ = {
 			isa = PBXGroup;
 			children = (
+				2A6675D826B6700E000666AC /* TestEntryViewController.h */,
+				2A6675D926B6700E000666AC /* TestEntryViewController.m */,
 				2A50AA231E4B40AF00B88151 /* LaunchScreen2.storyboard */,
 				DCC45E2014792B850035B763 /* EGORefreshTableHeaderView.h */,
 				DCC45E2114792B850035B763 /* EGORefreshTableHeaderView.m */,
@@ -395,6 +416,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D94E0DB3143054DB00552FBE /* Build configuration list for PBXNativeTarget "FeiPhoneInfo" */;
 			buildPhases = (
+				30EEBE60113D17E9C8E0E939 /* [CP] Check Pods Manifest.lock */,
 				D94E0D72143054DB00552FBE /* Sources */,
 				D94E0D73143054DB00552FBE /* Frameworks */,
 				D94E0D74143054DB00552FBE /* Resources */,
@@ -511,6 +533,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		30EEBE60113D17E9C8E0E939 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FeiPhoneInfo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D94E0D9D143054DB00552FBE /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -547,6 +591,7 @@
 				DC92E5781452F163002F20D4 /* UIDevice-Capabilities.m in Sources */,
 				DC92E5791452F163002F20D4 /* UIDevice-Hardware.m in Sources */,
 				DC92E57A1452F163002F20D4 /* UIDevice-IOKitExtensions.m in Sources */,
+				2A6675DA26B6700E000666AC /* TestEntryViewController.m in Sources */,
 				DC92E57B1452F163002F20D4 /* UIDevice-Orientation.m in Sources */,
 				DC92E57C1452F163002F20D4 /* UIDevice-Reachability.m in Sources */,
 				DC92E5801452F2BF002F20D4 /* wwanconnect.c in Sources */,
@@ -668,14 +713,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -686,6 +731,7 @@
 		};
 		D94E0DB4143054DB00552FBE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F21B357353A864878F5A8D41 /* Pods-FeiPhoneInfo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -713,6 +759,7 @@
 		};
 		D94E0DB5143054DB00552FBE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CC612B9C4501DA7D7CA2C00 /* Pods-FeiPhoneInfo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
