@@ -1,0 +1,5 @@
+/* Localized versions of Info.plist keys */
+
+/* Bundle display name*/
+"CFBundleDisplayName" = "设备信息";
+"CFBundleName"="软件名称";
