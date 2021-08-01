@@ -11,7 +11,7 @@
 		2A50AA201E4B3DB500B88151 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A50AA1F1E4B3DB500B88151 /* Images.xcassets */; };
 		2A50AA241E4B40AF00B88151 /* LaunchScreen2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A50AA231E4B40AF00B88151 /* LaunchScreen2.storyboard */; };
 		2A6675DA26B6700E000666AC /* TestEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6675D926B6700E000666AC /* TestEntryViewController.m */; };
-		6D6166D730130FB5758EC71B /* libPods-FeiPhoneInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2672FA3787BF15956A6F83C /* libPods-FeiPhoneInfo.a */; };
+		2A6675DE26B685F6000666AC /* DemoBoostDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A6675DD26B685F6000666AC /* DemoBoostDelegate.m */; };
 		D9016893144EA0A0002C65EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D94E0D7C143054DB00552FBE /* Foundation.framework */; };
 		D90168D0144EDB4B002C65EF /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9016896144EA4D1002C65EF /* IOKit.framework */; };
 		D91B8E2E1432C71800E62AE5 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D91B8E2D1432C71800E62AE5 /* BaseViewController.m */; };
@@ -30,13 +30,6 @@
 		D94E0D92143054DB00552FBE /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = D94E0D90143054DB00552FBE /* MainWindow_iPhone.xib */; };
 		D94E0D96143054DB00552FBE /* FeiPhoneInfoAppDelegate_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = D94E0D95143054DB00552FBE /* FeiPhoneInfoAppDelegate_iPad.m */; };
 		D94E0D99143054DB00552FBE /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = D94E0D97143054DB00552FBE /* MainWindow_iPad.xib */; };
-		D94E0DA1143054DB00552FBE /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D94E0DA0143054DB00552FBE /* SenTestingKit.framework */; };
-		D94E0DA2143054DB00552FBE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D94E0D7A143054DB00552FBE /* UIKit.framework */; };
-		D94E0DA3143054DB00552FBE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D94E0D7C143054DB00552FBE /* Foundation.framework */; };
-		D94E0DA4143054DB00552FBE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D94E0D7E143054DB00552FBE /* CoreGraphics.framework */; };
-		D94E0DAC143054DB00552FBE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D94E0DAA143054DB00552FBE /* InfoPlist.strings */; };
-		D94E0DAE143054DB00552FBE /* FeiPhoneInfoTests.h in Resources */ = {isa = PBXBuildFile; fileRef = D94E0DAD143054DB00552FBE /* FeiPhoneInfoTests.h */; };
-		D94E0DB0143054DB00552FBE /* FeiPhoneInfoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D94E0DAF143054DB00552FBE /* FeiPhoneInfoTests.m */; };
 		D965E7BD1431BE7500457246 /* about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D965E7BC1431BE7500457246 /* about@2x.png */; };
 		D965E7C01431BFA600457246 /* network@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D965E7BF1431BFA600457246 /* network@2x.png */; };
 		D965E7C21431C08200457246 /* generalinfo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D965E7C11431C08200457246 /* generalinfo@2x.png */; };
@@ -73,17 +66,8 @@
 		DCC45E1D14792B580035B763 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC45E1B14792B580035B763 /* blueArrow.png */; };
 		DCC45E1E14792B580035B763 /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DCC45E1C14792B580035B763 /* blueArrow@2x.png */; };
 		DCC45E2214792B850035B763 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC45E2114792B850035B763 /* EGORefreshTableHeaderView.m */; };
+		E8C99FFB42711F9CD03BF028 /* Pods_FeiPhoneInfo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B582E7ECFBEA39F9E007F372 /* Pods_FeiPhoneInfo.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D94E0DA5143054DB00552FBE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D94E0D6D143054DB00552FBE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D94E0D75143054DB00552FBE;
-			remoteInfo = FeiPhoneInfo;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0CC612B9C4501DA7D7CA2C00 /* Pods-FeiPhoneInfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeiPhoneInfo.release.xcconfig"; path = "Target Support Files/Pods-FeiPhoneInfo/Pods-FeiPhoneInfo.release.xcconfig"; sourceTree = "<group>"; };
@@ -93,7 +77,10 @@
 		2A50AA231E4B40AF00B88151 /* LaunchScreen2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen2.storyboard; sourceTree = "<group>"; };
 		2A6675D826B6700E000666AC /* TestEntryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestEntryViewController.h; sourceTree = "<group>"; };
 		2A6675D926B6700E000666AC /* TestEntryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestEntryViewController.m; sourceTree = "<group>"; };
-		A2672FA3787BF15956A6F83C /* libPods-FeiPhoneInfo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FeiPhoneInfo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A6675DC26B685F6000666AC /* DemoBoostDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoBoostDelegate.h; sourceTree = "<group>"; };
+		2A6675DD26B685F6000666AC /* DemoBoostDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoBoostDelegate.m; sourceTree = "<group>"; };
+		2A6675DF26B68C64000666AC /* libFlutterPluginRegistrant.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFlutterPluginRegistrant.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B582E7ECFBEA39F9E007F372 /* Pods_FeiPhoneInfo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FeiPhoneInfo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9016896144EA4D1002C65EF /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		D901689C144EA9E2002C65EF /* IOPowerSources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOPowerSources.h; sourceTree = "<group>"; };
 		D901689D144EA9E2002C65EF /* IOPSKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOPSKeys.h; sourceTree = "<group>"; };
@@ -125,12 +112,7 @@
 		D94E0D94143054DB00552FBE /* FeiPhoneInfoAppDelegate_iPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FeiPhoneInfoAppDelegate_iPad.h; path = iPad/FeiPhoneInfoAppDelegate_iPad.h; sourceTree = "<group>"; };
 		D94E0D95143054DB00552FBE /* FeiPhoneInfoAppDelegate_iPad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = FeiPhoneInfoAppDelegate_iPad.m; path = iPad/FeiPhoneInfoAppDelegate_iPad.m; sourceTree = "<group>"; };
 		D94E0D98143054DB00552FBE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPad/en.lproj/MainWindow_iPad.xib; sourceTree = "<group>"; };
-		D94E0D9F143054DB00552FBE /* FeiPhoneInfoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeiPhoneInfoTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D94E0DA0143054DB00552FBE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		D94E0DA9143054DB00552FBE /* FeiPhoneInfoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FeiPhoneInfoTests-Info.plist"; sourceTree = "<group>"; };
-		D94E0DAB143054DB00552FBE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D94E0DAD143054DB00552FBE /* FeiPhoneInfoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeiPhoneInfoTests.h; sourceTree = "<group>"; };
-		D94E0DAF143054DB00552FBE /* FeiPhoneInfoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeiPhoneInfoTests.m; sourceTree = "<group>"; };
 		D965E7BC1431BE7500457246 /* about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about@2x.png"; sourceTree = "<group>"; };
 		D965E7BF1431BFA600457246 /* network@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "network@2x.png"; sourceTree = "<group>"; };
 		D965E7C11431C08200457246 /* generalinfo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "generalinfo@2x.png"; sourceTree = "<group>"; };
@@ -203,18 +185,7 @@
 				D90168D0144EDB4B002C65EF /* IOKit.framework in Frameworks */,
 				D94E0D7B143054DB00552FBE /* UIKit.framework in Frameworks */,
 				D94E0D7F143054DB00552FBE /* CoreGraphics.framework in Frameworks */,
-				6D6166D730130FB5758EC71B /* libPods-FeiPhoneInfo.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D94E0D9B143054DB00552FBE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D94E0DA1143054DB00552FBE /* SenTestingKit.framework in Frameworks */,
-				D94E0DA2143054DB00552FBE /* UIKit.framework in Frameworks */,
-				D94E0DA3143054DB00552FBE /* Foundation.framework in Frameworks */,
-				D94E0DA4143054DB00552FBE /* CoreGraphics.framework in Frameworks */,
+				E8C99FFB42711F9CD03BF028 /* Pods_FeiPhoneInfo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,13 +201,21 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		2A6675DB26B685DF000666AC /* Flutter */ = {
+			isa = PBXGroup;
+			children = (
+				2A6675DC26B685F6000666AC /* DemoBoostDelegate.h */,
+				2A6675DD26B685F6000666AC /* DemoBoostDelegate.m */,
+			);
+			path = Flutter;
+			sourceTree = "<group>";
+		};
 		D94E0D6B143054DB00552FBE = {
 			isa = PBXGroup;
 			children = (
 				DC92E56D1452F162002F20D4 /* UIDevice+ */,
 				D9F31BB214316AC600C019BE /* Resource */,
 				D94E0D80143054DB00552FBE /* FeiPhoneInfo */,
-				D94E0DA7143054DB00552FBE /* FeiPhoneInfoTests */,
 				D94E0D79143054DB00552FBE /* Frameworks */,
 				D94E0D77143054DB00552FBE /* Products */,
 				07E67ECEA31321B2D6B6A7EF /* Pods */,
@@ -247,7 +226,6 @@
 			isa = PBXGroup;
 			children = (
 				D94E0D76143054DB00552FBE /* FeiPhoneInfo.app */,
-				D94E0D9F143054DB00552FBE /* FeiPhoneInfoTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -255,6 +233,7 @@
 		D94E0D79143054DB00552FBE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2A6675DF26B68C64000666AC /* libFlutterPluginRegistrant.a */,
 				DC2FC41014793D0B00259FAD /* OpenGLES.framework */,
 				DC2FC409147930CA00259FAD /* QuartzCore.framework */,
 				DC2D35B014546A7000A57107 /* CoreTelephony.framework */,
@@ -264,7 +243,7 @@
 				D94E0D7C143054DB00552FBE /* Foundation.framework */,
 				D94E0D7E143054DB00552FBE /* CoreGraphics.framework */,
 				D94E0DA0143054DB00552FBE /* SenTestingKit.framework */,
-				A2672FA3787BF15956A6F83C /* libPods-FeiPhoneInfo.a */,
+				B582E7ECFBEA39F9E007F372 /* Pods_FeiPhoneInfo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -272,6 +251,7 @@
 		D94E0D80143054DB00552FBE /* FeiPhoneInfo */ = {
 			isa = PBXGroup;
 			children = (
+				2A6675DB26B685DF000666AC /* Flutter */,
 				2A6675D826B6700E000666AC /* TestEntryViewController.h */,
 				2A6675D926B6700E000666AC /* TestEntryViewController.m */,
 				2A50AA231E4B40AF00B88151 /* LaunchScreen2.storyboard */,
@@ -341,25 +321,6 @@
 			name = iPad;
 			sourceTree = "<group>";
 		};
-		D94E0DA7143054DB00552FBE /* FeiPhoneInfoTests */ = {
-			isa = PBXGroup;
-			children = (
-				D94E0DAD143054DB00552FBE /* FeiPhoneInfoTests.h */,
-				D94E0DAF143054DB00552FBE /* FeiPhoneInfoTests.m */,
-				D94E0DA8143054DB00552FBE /* Supporting Files */,
-			);
-			path = FeiPhoneInfoTests;
-			sourceTree = "<group>";
-		};
-		D94E0DA8143054DB00552FBE /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D94E0DA9143054DB00552FBE /* FeiPhoneInfoTests-Info.plist */,
-				D94E0DAA143054DB00552FBE /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		D9F31BB214316AC600C019BE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -417,9 +378,11 @@
 			buildConfigurationList = D94E0DB3143054DB00552FBE /* Build configuration list for PBXNativeTarget "FeiPhoneInfo" */;
 			buildPhases = (
 				30EEBE60113D17E9C8E0E939 /* [CP] Check Pods Manifest.lock */,
+				3FC7E07601D3C898E1DB58CB /* [CP-User] Run Flutter Build kai_flutter_demo_module Script */,
 				D94E0D72143054DB00552FBE /* Sources */,
 				D94E0D73143054DB00552FBE /* Frameworks */,
 				D94E0D74143054DB00552FBE /* Resources */,
+				A9187E78FE2491B932BC7D74 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -429,25 +392,6 @@
 			productName = FeiPhoneInfo;
 			productReference = D94E0D76143054DB00552FBE /* FeiPhoneInfo.app */;
 			productType = "com.apple.product-type.application";
-		};
-		D94E0D9E143054DB00552FBE /* FeiPhoneInfoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D94E0DB6143054DB00552FBE /* Build configuration list for PBXNativeTarget "FeiPhoneInfoTests" */;
-			buildPhases = (
-				D94E0D9A143054DB00552FBE /* Sources */,
-				D94E0D9B143054DB00552FBE /* Frameworks */,
-				D94E0D9C143054DB00552FBE /* Resources */,
-				D94E0D9D143054DB00552FBE /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D94E0DA6143054DB00552FBE /* PBXTargetDependency */,
-			);
-			name = FeiPhoneInfoTests;
-			productName = FeiPhoneInfoTests;
-			productReference = D94E0D9F143054DB00552FBE /* FeiPhoneInfoTests.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -481,7 +425,6 @@
 			projectRoot = "";
 			targets = (
 				D94E0D75143054DB00552FBE /* FeiPhoneInfo */,
-				D94E0D9E143054DB00552FBE /* FeiPhoneInfoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -521,15 +464,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D94E0D9C143054DB00552FBE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D94E0DAC143054DB00552FBE /* InfoPlist.strings in Resources */,
-				D94E0DAE143054DB00552FBE /* FeiPhoneInfoTests.h in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -555,18 +489,43 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D94E0D9D143054DB00552FBE /* ShellScript */ = {
+		3FC7E07601D3C898E1DB58CB /* [CP-User] Run Flutter Build kai_flutter_demo_module Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "[CP-User] Run Flutter Build kai_flutter_demo_module Script";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nset -u\nsource \"${SRCROOT}/../kai_flutter_demo_module/.ios/Flutter/flutter_export_environment.sh\"\nexport VERBOSE_SCRIPT_LOGGING=1 && \"$FLUTTER_ROOT\"/packages/flutter_tools/bin/xcode_backend.sh build";
+		};
+		A9187E78FE2491B932BC7D74 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FeiPhoneInfo/Pods-FeiPhoneInfo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Toast/Toast.framework",
+				"${BUILT_PRODUCTS_DIR}/flutter_boost/flutter_boost.framework",
+				"${BUILT_PRODUCTS_DIR}/fluttertoast/fluttertoast.framework",
+				"${PODS_ROOT}/../../kai_flutter_demo_module/.ios/Flutter/App.framework",
+				"${BUILT_PRODUCTS_DIR}/shared_preferences/shared_preferences.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Flutter/Flutter.framework/Flutter",
 			);
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/flutter_boost.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/fluttertoast.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/App.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/shared_preferences.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Flutter.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FeiPhoneInfo/Pods-FeiPhoneInfo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -588,6 +547,7 @@
 				D91B8E401432CE2100E62AE5 /* CameraViewController.m in Sources */,
 				D91B8E431432CE3500E62AE5 /* HardwareViewController.m in Sources */,
 				D91B8E461432CE4800E62AE5 /* AboutViewController.m in Sources */,
+				2A6675DE26B685F6000666AC /* DemoBoostDelegate.m in Sources */,
 				DC92E5781452F163002F20D4 /* UIDevice-Capabilities.m in Sources */,
 				DC92E5791452F163002F20D4 /* UIDevice-Hardware.m in Sources */,
 				DC92E57A1452F163002F20D4 /* UIDevice-IOKitExtensions.m in Sources */,
@@ -601,23 +561,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D94E0D9A143054DB00552FBE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D94E0DB0143054DB00552FBE /* FeiPhoneInfoTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D94E0DA6143054DB00552FBE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D94E0D75143054DB00552FBE /* FeiPhoneInfo */;
-			targetProxy = D94E0DA5143054DB00552FBE /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D94E0D83143054DB00552FBE /* InfoPlist.strings */ = {
@@ -650,14 +594,6 @@
 			name = MainWindow_iPad.xib;
 			sourceTree = "<group>";
 		};
-		D94E0DAA143054DB00552FBE /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D94E0DAB143054DB00552FBE /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		D9F31BDD1431A76200C019BE /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -677,13 +613,15 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -708,13 +646,15 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_C_LANGUAGE_STANDARD = c11;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -735,6 +675,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -763,6 +704,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -785,40 +727,6 @@
 			};
 			name = Release;
 		};
-		D94E0DB7143054DB00552FBE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FeiPhoneInfo.app/FeiPhoneInfo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FeiPhoneInfo/FeiPhoneInfo-Prefix.pch";
-				INFOPLIST_FILE = "FeiPhoneInfoTests/FeiPhoneInfoTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		D94E0DB8143054DB00552FBE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FeiPhoneInfo.app/FeiPhoneInfo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FeiPhoneInfo/FeiPhoneInfo-Prefix.pch";
-				INFOPLIST_FILE = "FeiPhoneInfoTests/FeiPhoneInfoTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -836,15 +744,6 @@
 			buildConfigurations = (
 				D94E0DB4143054DB00552FBE /* Debug */,
 				D94E0DB5143054DB00552FBE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D94E0DB6143054DB00552FBE /* Build configuration list for PBXNativeTarget "FeiPhoneInfoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D94E0DB7143054DB00552FBE /* Debug */,
-				D94E0DB8143054DB00552FBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

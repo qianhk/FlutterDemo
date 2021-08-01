@@ -37,7 +37,7 @@
 #pragma mark - View lifecycle
 
 - (id)init {
-    [super init];
+    self = [super init];
 
     if (self) {
 
@@ -139,27 +139,6 @@
 }
 
 - (void)dealloc {
-//    [generalController release];
-//    [taskController release];
-//    [profilesController release];
-//    [networkController release];
-//    [cameraController release];
-//    [hardwareController release];
-//    [aboutController release];
-//    [testEntryController release];
-//
-//    [tabBarItem0 release];
-//    [tabBarItem1 release];
-//    [tabBarItem2 release];
-//    [tabBarItem3 release];
-//    [tabBarItem4 release];
-//    [tabBarItem5 release];
-//    [tabBarItem6 release];
-//    [tabBar release];
-//    [imgView release];
-//    [bkgView release];
-
-    [super dealloc];
 }
 
 

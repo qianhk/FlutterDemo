@@ -1,7 +1,15 @@
 
 platform :ios, '9.0'
 
+flutter_application_path = '../kai_flutter_demo_module'
+load File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')
+
+use_frameworks!
+
 target 'FeiPhoneInfo' do
+
+	install_all_flutter_pods(flutter_application_path)
   # pod 'AFNetworking', '~> 3.0'
   # pod 'FBSDKCoreKit', '~> 4.9'
+  
 end

@@ -81,11 +81,7 @@ const NSString *KTTWuliSize = @"物理尺寸";
 }
 
 - (void)dealloc {
-    [arrBatteryState release];
-    [arrOrientation release];
-    [lastBacklightLevel release];
 
-    [super dealloc];
 }
 
 #pragma mark - View lifecycle
@@ -179,7 +175,7 @@ const NSString *KTTWuliSize = @"物理尺寸";
     [_dic setObject:@"[device serialnumber]" forKey:KTTSerialNo];
 
     [_arrKey addObject:KTTBacklightLevel];
-    [lastBacklightLevel release];
+
     lastBacklightLevel = [[device backlightlevel] copy];
     [_dic setObject:(lastBacklightLevel == nil) ? NSLocalizedString(@"Unknow", @"") : lastBacklightLevel forKey:KTTBacklightLevel];
 
@@ -245,7 +241,6 @@ const NSString *KTTWuliSize = @"物理尺寸";
     if ((lastBacklightLevel == nil && backlightLevel == nil) || [backlightLevel isEqualToString:lastBacklightLevel]) {
     } else {
         needRedraw = YES;
-        [lastBacklightLevel release];
         lastBacklightLevel = [backlightLevel copy];
         [_dic setObject:(lastBacklightLevel == nil) ? NSLocalizedString(@"Unknow", @"") : lastBacklightLevel forKey:KTTBacklightLevel];
     }
@@ -336,7 +331,7 @@ const NSString *KTTWuliSize = @"物理尺寸";
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         [super configCell:cell];
     }
     UILabel *label = (UILabel *) [cell viewWithTag:6666];

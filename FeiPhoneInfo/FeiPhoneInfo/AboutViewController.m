@@ -46,14 +46,14 @@
     [super viewDidLoad];
 	
 	
-	UIImageView* headerView = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 20, self.tableView.frame.size.width, 80)] autorelease];
+	UIImageView* headerView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, self.tableView.frame.size.width, 80)];
 	headerView.contentMode = UIViewContentModeCenter;
 	headerView.image = [UIImage imageNamed:@"logo_about.png"];
-	UIView* view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 100)] autorelease];
+	UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 100)];
 	[view addSubview:headerView];
 	self.tableView.tableHeaderView = view;
 	
-	UILabel* footerView = [[[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 48.0f)] autorelease];
+	UILabel* footerView = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 0.0f, 48.0f)];
     footerView.textAlignment = UITextAlignmentCenter;
     footerView.backgroundColor = [UIColor clearColor];
     footerView.lineBreakMode = UILineBreakModeWordWrap;
@@ -118,7 +118,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		cell.textLabel.textAlignment = UITextAlignmentLeft;
     }

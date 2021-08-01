@@ -196,7 +196,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
 	{
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 //		[self configCell:cell];
 		cell.textLabel.font = [UIFont systemFontOfSize:16];
     }
@@ -221,7 +221,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-	UILabel* footerView = [[[UILabel alloc] init] autorelease];
+	UILabel* footerView = [[UILabel alloc] init];
     footerView.textAlignment = NSTextAlignmentCenter;
     footerView.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.8];
 //	footerView.shadowColor = [UIColor colorWithWhite:0.8 alpha:0.8];

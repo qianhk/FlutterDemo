@@ -10,6 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+@interface TestEntryItem: NSObject
+@property(nonatomic, strong) NSString *title;
+@property(nonatomic, copy) dispatch_block_t action;
+
+- (id)initWithTitle:(NSString *)title action:(dispatch_block_t)action;
+
+@end
+
 @interface TestEntryViewController : UITableViewController
 
 @end

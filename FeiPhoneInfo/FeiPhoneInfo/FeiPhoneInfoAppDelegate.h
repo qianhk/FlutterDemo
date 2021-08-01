@@ -7,14 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+@import Flutter;
 
 @class SwitchViewController;
 
-@interface FeiPhoneInfoAppDelegate : NSObject <UIApplicationDelegate>
+@interface FeiPhoneInfoAppDelegate : FlutterAppDelegate
 {
 	SwitchViewController* switchController;
+    
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
+
+@property (nonatomic,strong) FlutterEngine *flutterEngine;
 
 @end

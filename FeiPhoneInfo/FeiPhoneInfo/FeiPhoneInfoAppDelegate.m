@@ -8,6 +8,7 @@
 
 #import "FeiPhoneInfoAppDelegate.h"
 #import "SwitchViewController.h"
+#import <FlutterPluginRegistrant/GeneratedPluginRegistrant.h>
 
 @implementation FeiPhoneInfoAppDelegate
 
@@ -51,7 +52,14 @@
 //	NSLog(@"%p %u %p %u", str, [str retainCount], str2, [str2 retainCount]);
 //	[str release];
 //	NSLog(@"%p %u %p %u", str, [str retainCount], str2, [str2 retainCount]);
-    return YES;
+    
+    self.flutterEngine = [[FlutterEngine alloc] initWithName:@"kai_flutter_engine"];
+    // Runs the default Dart entrypoint with a default Flutter route.
+    [self.flutterEngine run];
+    // Used to connect plugins (only if you have plugins with iOS platform code).
+    [GeneratedPluginRegistrant registerWithRegistry:self.flutterEngine];
+    
+    return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -95,9 +103,9 @@
 
 - (void)dealloc
 {
-	[switchController release];
-	[_window release];
-    [super dealloc];
+//	[switchController release];
+//	[_window release];
+//    [super dealloc];
 }
 
 @end

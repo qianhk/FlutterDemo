@@ -59,18 +59,18 @@ const NSString* KTTNetIP = @"Net IP";
 
 - (void)dealloc
 {
-	[_lastFreeDiskSpace release];
-	[_lastFreeDiskSpaceStr release];
-	[_lastMemoryWire release];
-	[_lastMemoryActive release];
-	[_lastMemoryInactive release];
-	[_lastMemoryFree release];
-	[_lastUserMemoryStr release];
-	[reachable release];
-	_refreshHeaderView = nil;
-	[_lastUpdateDate release];
-	
-	[super dealloc];
+//	[_lastFreeDiskSpace release];
+//	[_lastFreeDiskSpaceStr release];
+//	[_lastMemoryWire release];
+//	[_lastMemoryActive release];
+//	[_lastMemoryInactive release];
+//	[_lastMemoryFree release];
+//	[_lastUserMemoryStr release];
+//	[reachable release];
+//	_refreshHeaderView = nil;
+//	[_lastUpdateDate release];
+//
+//	[super dealloc];
 }
 
 #pragma mark - View lifecycle
@@ -172,8 +172,8 @@ const NSString* KTTNetIP = @"Net IP";
 - (void)doneLoadingTableViewData
 {
 	_reloading = NO;
-	[_lastUpdateDate release];
-	_lastUpdateDate = [[NSDate date] retain];
+//	[_lastUpdateDate release];
+	_lastUpdateDate = [NSDate date];
 	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
 }
 
@@ -214,10 +214,10 @@ const NSString* KTTNetIP = @"Net IP";
 		view.delegate = self;
 		[self.tableView addSubview:view];
 		_refreshHeaderView = view;
-		[view release];
+//		[view release];
 		
 	}
-	_lastUpdateDate = [[NSDate date] retain];
+	_lastUpdateDate = [NSDate date];
 	UIDevice* device = [UIDevice currentDevice];
 	
 	[_arrKey addObject:KTTMemorySize];
@@ -260,7 +260,7 @@ const NSString* KTTNetIP = @"Net IP";
 	[_dic setObject:[device macaddress] forKey:KTTMacAddress];
 	
 	
-	reachable = [[Reachability reachabilityWithHostName:@"www.baidu.com"] retain];
+	reachable = [Reachability reachabilityWithHostName:@"www.baidu.com"];
 	NSString* reachableStatus = nil;
 	NetworkStatus netstatus = [reachable currentReachabilityStatus];
     switch (netstatus)
@@ -306,14 +306,14 @@ const NSString* KTTNetIP = @"Net IP";
 	[_dic setObject:[NSString stringWithFormat:@"%.2f GB", totalDiskSpace] forKey:KTTTotalDiskSpace];
 	
 	[_arrKey addObject:KTTFreeDiskSpace];
-	_lastFreeDiskSpace = [[device freeDiskSpace] retain];
+	_lastFreeDiskSpace = [device freeDiskSpace];
 	float freeDiskSpace = [_lastFreeDiskSpace floatValue] / 1024 / 1024 / 1024;
-	_lastFreeDiskSpaceStr = [[NSString stringWithFormat:@"%.2f GB", freeDiskSpace] retain];
+	_lastFreeDiskSpaceStr = [NSString stringWithFormat:@"%.2f GB", freeDiskSpace];
 	[_dic setObject:_lastFreeDiskSpaceStr forKey:KTTFreeDiskSpace];
 	
 	[_arrKey addObject:KTTMemoryUser];
 	float userMemory = [device userMemory] / 1024 / 1024;
-	_lastUserMemoryStr = [[NSString stringWithFormat:@"%.2f MB", userMemory] retain];
+	_lastUserMemoryStr = [NSString stringWithFormat:@"%.2f MB", userMemory];
 	[_dic setObject:_lastUserMemoryStr forKey:KTTMemoryUser];
 	
 //	[_arrKey addObject:KTTBusFrequency];
@@ -358,22 +358,22 @@ const NSString* KTTNetIP = @"Net IP";
 //						 , total, total * pageSize
 //						 ];
 		float tmpMemorySize = vmstat.wire_count * pageSize / 1024 / 1024;
-		_lastMemoryWire = [[NSString stringWithFormat:@"%.2f MB (%d%%)", tmpMemorySize, (int)wired] retain];
+		_lastMemoryWire = [NSString stringWithFormat:@"%.2f MB (%d%%)", tmpMemorySize, (int)wired];
 		[_dic setObject:_lastMemoryWire forKey:KTTMemorySize_Wire];
 		
 		[_arrKey addObject:KTTMemorySize_Active];
 		tmpMemorySize = vmstat.active_count * pageSize / 1024 / 1024;
-		_lastMemoryActive = [[NSString stringWithFormat:@"%.2f MB (%d%%)", tmpMemorySize, (int)active] retain];
+		_lastMemoryActive = [NSString stringWithFormat:@"%.2f MB (%d%%)", tmpMemorySize, (int)active];
 		[_dic setObject:_lastMemoryActive forKey:KTTMemorySize_Active];
 		
 		[_arrKey addObject:KTTMemorySize_Inactive];
 		tmpMemorySize = vmstat.inactive_count * pageSize / 1024 / 1024;
-		_lastMemoryInactive = [[NSString stringWithFormat:@"%.2f MB (%d%%)", tmpMemorySize, (int)inactive] retain];
+		_lastMemoryInactive = [NSString stringWithFormat:@"%.2f MB (%d%%)", tmpMemorySize, (int)inactive];
 		[_dic setObject:_lastMemoryInactive forKey:KTTMemorySize_Inactive];
 		
 		[_arrKey addObject:KTTMemorySize_Free];
 		tmpMemorySize = vmstat.free_count * pageSize / 1024 / 1024;
-		_lastMemoryFree = [[NSString stringWithFormat:@"%.2f MB (%d%%)", tmpMemorySize, (int)free] retain];
+		_lastMemoryFree = [NSString stringWithFormat:@"%.2f MB (%d%%)", tmpMemorySize, (int)free];
 		[_dic setObject:_lastMemoryFree forKey:KTTMemorySize_Free];
 	}
 	
@@ -460,16 +460,16 @@ const NSString* KTTNetIP = @"Net IP";
 	NSNumber* freeDiskSpace = [device freeDiskSpace];
 	if (![freeDiskSpace isEqualToNumber:_lastFreeDiskSpace])
 	{
-		[_lastFreeDiskSpace release];
-		_lastFreeDiskSpace = [freeDiskSpace retain];
+//		[_lastFreeDiskSpace release];
+		_lastFreeDiskSpace = freeDiskSpace;
 	
 		float freeDiskSpaceValue = [_lastFreeDiskSpace floatValue] / 1024 / 1024 / 1024;
 		NSString* thisDiskSpaceStr = [NSString stringWithFormat:@"%.2f GB", freeDiskSpaceValue];
 		if (![thisDiskSpaceStr isEqualToString:_lastFreeDiskSpaceStr])
 		{
 			needReload = YES;
-			[_lastFreeDiskSpaceStr release];
-			_lastFreeDiskSpaceStr = [thisDiskSpaceStr retain];
+//			[_lastFreeDiskSpaceStr release];
+			_lastFreeDiskSpaceStr = thisDiskSpaceStr;
 			[_dic setObject:_lastFreeDiskSpaceStr forKey:KTTFreeDiskSpace];
 		}
 	}
@@ -479,8 +479,8 @@ const NSString* KTTNetIP = @"Net IP";
 	if (![thisStr isEqualToString:_lastUserMemoryStr])
 	{
 		needReload = YES;
-		[_lastUserMemoryStr release];
-		_lastUserMemoryStr = [thisStr retain];
+//		[_lastUserMemoryStr release];
+		_lastUserMemoryStr = thisStr;
 		[_dic setObject:_lastUserMemoryStr forKey:KTTMemoryUser];
 	}
 	
@@ -506,8 +506,8 @@ const NSString* KTTNetIP = @"Net IP";
 		if (![thisStr isEqualToString:_lastMemoryWire])
 		{
 			needReload = YES;
-			[_lastMemoryWire release];
-			_lastMemoryWire = [thisStr retain];
+//			[_lastMemoryWire release];
+			_lastMemoryWire = thisStr;
 			[_dic setObject:_lastMemoryWire forKey:KTTMemorySize_Wire];
 		}
 
@@ -516,8 +516,8 @@ const NSString* KTTNetIP = @"Net IP";
 		if (![thisStr isEqualToString:_lastMemoryActive])
 		{
 			needReload = YES;
-			[_lastMemoryActive release];
-			_lastMemoryActive = [thisStr retain];
+//			[_lastMemoryActive release];
+			_lastMemoryActive = thisStr;
 			[_dic setObject:_lastMemoryActive forKey:KTTMemorySize_Active];
 		}
 
@@ -526,8 +526,8 @@ const NSString* KTTNetIP = @"Net IP";
 		if (![thisStr isEqualToString:_lastMemoryInactive])
 		{
 			needReload = YES;
-			[_lastMemoryInactive release];
-			_lastMemoryInactive = [thisStr retain];
+//			[_lastMemoryInactive release];
+			_lastMemoryInactive = thisStr;
 			[_dic setObject:_lastMemoryInactive forKey:KTTMemorySize_Inactive];
 		}
 
@@ -536,8 +536,8 @@ const NSString* KTTNetIP = @"Net IP";
 		if (![thisStr isEqualToString:_lastMemoryFree])
 		{
 			needReload = YES;
-			[_lastMemoryFree release];
-			_lastMemoryFree = [thisStr retain];
+//			[_lastMemoryFree release];
+			_lastMemoryFree = thisStr;
 			[_dic setObject:_lastMemoryFree forKey:KTTMemorySize_Free];
 		}
 	}
@@ -550,14 +550,14 @@ const NSString* KTTNetIP = @"Net IP";
 
 - (void)getNetIPThread
 {
-	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+//	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     
 	NSString* netIp = [[UIDevice currentDevice] whatismyipdotcom];
 	[_dic setObject:(netIp == nil) ? NSLocalizedString(@"no IP", "") : netIp forKey:KTTNetIP];
     
     [self performSelectorOnMainThread:@selector(getNetIPFinish) withObject:nil waitUntilDone:NO];
     
-    [pool release];
+//    [pool release];
 }
 
 - (void)getNetIPFinish
@@ -579,7 +579,7 @@ const NSString* KTTNetIP = @"Net IP";
 //	[[UIDevice currentDevice] unscheduleReachabilityWatcher];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
 	
-	[_lastUpdateDate release];
+//	[_lastUpdateDate release];
 	_lastUpdateDate = nil;
 	_refreshHeaderView = nil;
 }
@@ -608,7 +608,7 @@ const NSString* KTTNetIP = @"Net IP";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
 		[super configCell:cell];
     }
     UILabel *label = (UILabel *)[cell viewWithTag:6666];

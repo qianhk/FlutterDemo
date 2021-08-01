@@ -28,24 +28,24 @@
 	return result;
 }
 
-- (id) fetchCapability: (NSString *) capability
-{
-	void *libHandle = dlopen(GRAPHICS_SERVICES_PATH, RTLD_LAZY);
-	int (*GSSystemCopyCapability)(NSString *);
-	GSSystemCopyCapability = dlsym(libHandle, "GSSystemCopyCapability");
-	id capabilityValue = (id) GSSystemCopyCapability(capability);
-	dlclose(libHandle);
-	return [capabilityValue autorelease];
-}
+//- (id) fetchCapability: (NSString *) capability
+//{
+//	void *libHandle = dlopen(GRAPHICS_SERVICES_PATH, RTLD_LAZY);
+//	int (*GSSystemCopyCapability)(NSString *);
+//	GSSystemCopyCapability = dlsym(libHandle, "GSSystemCopyCapability");
+//	id capabilityValue = (id) GSSystemCopyCapability(capability);
+//	dlclose(libHandle);
+//	return [capabilityValue autorelease];
+//}
 
-- (void) scanCapabilities
-{
-	printf("Device: %s\n", [[self fetchCapability: UIDeviceMarketingNameString] UTF8String]);
-	for (NSString *capability in CAPABILITY_STRINGS)
-	{
-		printf("%s: %s\n", [capability UTF8String], [self supportsCapability:capability] ? "Yes" : "No");
-	}
-}
+//- (void) scanCapabilities
+//{
+//	printf("Device: %s\n", [[self fetchCapability: UIDeviceMarketingNameString] UTF8String]);
+//	for (NSString *capability in CAPABILITY_STRINGS)
+//	{
+//		printf("%s: %s\n", [capability UTF8String], [self supportsCapability:capability] ? "Yes" : "No");
+//	}
+//}
 
 - (NSArray *) capabilityArray
 {

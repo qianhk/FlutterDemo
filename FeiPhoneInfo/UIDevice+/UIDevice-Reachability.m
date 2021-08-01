@@ -209,10 +209,10 @@ SCNetworkReachabilityRef reachability;
 	va_list arglist;
 	if (!formatstring) return;
 	va_start(arglist, formatstring);
-	id outstring = [[[NSString alloc] initWithFormat:formatstring arguments:arglist] autorelease];
+	id outstring = [[NSString alloc] initWithFormat:formatstring arguments:arglist];
 	va_end(arglist);
 	
-    UIAlertView *av = [[[UIAlertView alloc] initWithTitle:outstring message:nil delegate:nil cancelButtonTitle:@"OK"otherButtonTitles:nil] autorelease];
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:outstring message:nil delegate:nil cancelButtonTitle:@"OK"otherButtonTitles:nil];
 	[av show];
 }
 
@@ -250,9 +250,7 @@ static void myClientCallback(void *refCon)
 #pragma mark Monitoring reachability
 static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkConnectionFlags flags, void* info)
 {
-	NSAutoreleasePool *pool = [NSAutoreleasePool new];
-	[(id)info performSelector:@selector(reachabilityChanged)];
-	[pool release];
+    [(__bridge id)info performSelector:@selector(reachabilityChanged)];
 }
 
 - (BOOL) scheduleReachabilityWatcher: (id) watcher
@@ -265,7 +263,7 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkConne
 	
 	[self pingReachabilityInternal];
 
-	SCNetworkReachabilityContext context = {0, watcher, NULL, NULL, NULL};
+    SCNetworkReachabilityContext context = {0, (__bridge void * _Nullable)(watcher), NULL, NULL, NULL};
 	if(SCNetworkReachabilitySetCallback(reachability, ReachabilityCallback, &context)) 
 	{
 		if(!SCNetworkReachabilityScheduleWithRunLoop(reachability, CFRunLoopGetCurrent(), kCFRunLoopCommonModes)) 

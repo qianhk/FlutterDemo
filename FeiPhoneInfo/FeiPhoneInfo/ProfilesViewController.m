@@ -111,8 +111,6 @@
 	
 	[self getIntegerValue:GL_STENCIL_BITS keyStr:@"Stencil_Bits"];
 	[self getIntegerValue:GL_DEPTH_BITS keyStr:@"Depth_Bits"];
-	
-	[_context release];
 }
 
 - (void)viewDidUnload
@@ -146,7 +144,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
 		[super configCell:cell];
     }
     UILabel *label = (UILabel *)[cell viewWithTag:6666];

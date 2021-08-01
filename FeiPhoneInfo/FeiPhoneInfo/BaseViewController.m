@@ -32,10 +32,10 @@
 
 - (void)dealloc
 {
-	[_dic release];
-	[_arrKey release];
+//	[_dic release];
+//	[_arrKey release];
 	
-	[super dealloc];
+//	[super dealloc];
 }
 
 #pragma mark - View lifecycle
@@ -128,7 +128,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     return cell;

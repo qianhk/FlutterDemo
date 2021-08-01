@@ -75,7 +75,7 @@ NSArray *getValue(NSString *iosearch)
     io_registry_entry_t entry = IORegistryGetRootEntry(masterPort);
     if (entry == MACH_PORT_NULL) return nil;
 	
-    CFTypeRef prop = IORegistryEntrySearchCFProperty(entry, kIODeviceTreePlane, (CFStringRef) iosearch, nil, kIORegistryIterateRecursively);
+    CFTypeRef prop = IORegistryEntrySearchCFProperty(entry, kIODeviceTreePlane, (__bridge CFStringRef) iosearch, nil, kIORegistryIterateRecursively);
     if (!prop) return nil;
 	
 	propID = CFGetTypeID(prop);
@@ -100,7 +100,7 @@ NSArray *getValue(NSString *iosearch)
 		return nil;
 	}
 	
-    NSString *p1 = [[[NSString alloc] initWithBytes:CFDataGetBytePtr(propData) length:bufSize encoding:1] autorelease];
+    NSString *p1 = [[NSString alloc] initWithBytes:CFDataGetBytePtr(propData) length:bufSize encoding:1];
     mach_port_deallocate(mach_task_self(), masterPort);
 	CFRelease(prop);
     return [p1 componentsSeparatedByString:@"\0"];

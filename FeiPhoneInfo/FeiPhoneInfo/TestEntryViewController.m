@@ -8,6 +8,8 @@
 
 #import "TestEntryViewController.h"
 #import "AppGlobalUI.h"
+#import "FeiPhoneInfoAppDelegate.h"
+@import Flutter;
 
 @interface TestEntryViewController ()
 
@@ -15,27 +17,24 @@
 
 @end
 
-@interface TestEntryItem: NSObject
-@property(nonatomic, strong) NSString *title;
-@property(nonatomic, copy) dispatch_block_t action;
-
-- (id)initWithTitle:(NSString *)title action:(dispatch_block_t)action;
-
-@end
-
-@implementation TestEntryItem
-
-- (id)initWithTitle:(NSString *)title action:(dispatch_block_t) action {
-    self = [super init];
-    if (self) {
-        _title = title;
-        _action = action;
-    }
-    return self;
-}
-@end
-
 @implementation TestEntryViewController
+
+- (void)initEntryList {
+    __weak typeof(self) weakSelf = self;
+    [_mTestArrasy addObject:[[TestEntryItem alloc] initWithTitle:@"NSLog" action:^{
+        NSLog(@"lookKai log From Test Entry");
+    }]];
+    [_mTestArrasy addObject:[[TestEntryItem alloc] initWithTitle:@"Flutter Demo" action:^{
+        [weakSelf showFlutterDemo];
+    }]];
+}
+
+- (void)showFlutterDemo {
+    FlutterEngine *flutterEngine = ((FeiPhoneInfoAppDelegate *)UIApplication.sharedApplication.delegate).flutterEngine;
+    FlutterViewController *flutterViewController = [[FlutterViewController alloc] initWithEngine:flutterEngine nibName:nil bundle:nil];
+    [self presentViewController:flutterViewController animated:YES completion:nil];
+}
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -55,12 +54,8 @@
     
     // Do any additional setup after loading the view.
     _mTestArrasy = [NSMutableArray new];
-    [_mTestArrasy addObject:[[TestEntryItem alloc] initWithTitle:@"NSLog" action:^{
-        NSLog(@"lookKai log From Test Entry");
-    }]];
-    [_mTestArrasy addObject:[[TestEntryItem alloc] initWithTitle:@"NSLog2" action:^{
-        NSLog(@"lookKai log From Test Entry2");
-    }]];
+    [self initEntryList];
+
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"TestEntryCell"];
     [self.tableView reloadData];
 }
@@ -105,3 +100,18 @@
 }
 
 @end
+
+
+
+@implementation TestEntryItem
+
+- (id)initWithTitle:(NSString *)title action:(dispatch_block_t) action {
+    self = [super init];
+    if (self) {
+        _title = title;
+        _action = action;
+    }
+    return self;
+}
+@end
+
