@@ -21,7 +21,7 @@ class Person {
 class Person2 {
   final String name;
   final int age;
-  String _innerName;
+  late String _innerName;
 
   Person2(this.name, this.age);
 
@@ -40,8 +40,8 @@ Future<String> getNetworkData() {
 }
 
 class User {
-  final String name;
-  final String email;
+  final String? name;
+  final String? email;
 
   User(this.name, this.email);
 
@@ -57,8 +57,8 @@ class User {
 
 @JsonSerializable()
 class Address {
-  String street;
-  String city;
+  String? street;
+  String? city;
 
   Address(this.street, this.city);
 
@@ -72,18 +72,18 @@ class User2 {
   User2(this.id, this.name, this.email, this.isAdult, this.registrationDateMillis, this.address);
 
   @JsonKey(required: true)
-  final int id;
+  final int? id;
 
-  final String name;
-  final String email;
+  final String? name;
+  final String? email;
 
   @JsonKey(defaultValue: true)
   final bool isAdult;
 
   @JsonKey(name: 'date_millis')
-  final int registrationDateMillis;
+  final int? registrationDateMillis;
 
-  Address address;
+  Address? address;
 
   factory User2.fromJson(Map<String, dynamic> json) => _$User2FromJson(json);
 
@@ -103,7 +103,7 @@ void testJson() {
   print('3. ToJson = $json');
 
   var user2 = User2.fromJson(userMap);
-  print('4. Howdy, ${user2.name}! email=${user2.isAdult} ${user2.address.city}.');
+  print('4. Howdy, ${user2.name}! email=${user2.isAdult} ${user2.address!.city}.');
   print('5. jsonEncode = ${jsonEncode(user2)}');
   print('6. ToJson = ${user2.toJson()}');
 }

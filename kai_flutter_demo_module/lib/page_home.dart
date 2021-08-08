@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'test_dart_syntax.dart';
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -15,7 +15,7 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
+  final String? title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -30,8 +30,8 @@ class EntryInfo {
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   int _counter = 0;
-  AnimationController _controller;
-  CurvedAnimation _curve;
+  late AnimationController _controller;
+  late CurvedAnimation _curve;
   List<EntryInfo> _EntryInfoList = [
     EntryInfo("Stack Positioned", "/test_page_1"),
     EntryInfo("BoxDecoration Shadow Transform", "test_page_2"),
@@ -104,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(widget.title!),
         actions: [
           IconButton(
             icon: Icon(Icons.restaurant_menu),
@@ -145,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             ),
             // NotificationListener<KaiNotification>(
             NotificationListener(
-              onNotification: (notification) {
+              onNotification: (dynamic notification) {
                 switch (notification.runtimeType) {
                   case ScrollStartNotification:
                     print("开始滚动");
@@ -178,7 +178,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                         info.router,
                         style: TextStyle(color: Colors.grey),
                       ),
-                      onTap: () {
+                      onTap: () async {
                         KaiNotification("Click List Item _ " + info.title).dispatch(context);
                         // Navigator.pushNamed(context, info.router, arguments: info.title);
                         navigatorPush(context, info.router, arguments: {'title': info.title});

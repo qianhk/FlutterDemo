@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TestPage4 extends StatefulWidget {
-  TestPage4({Key key, this.title = "TestPage4"}) : super(key: key);
+  TestPage4({Key? key, this.title = "TestPage4"}) : super(key: key);
   final String title;
 
   @override
@@ -10,10 +10,10 @@ class TestPage4 extends StatefulWidget {
 
 class _TestPage4State extends State<TestPage4> {
   int _selectedIndex = 1;
-  DateTime _lastPressedAt;
+  DateTime? _lastPressedAt;
 
   Future<bool> _onWillPop() async {
-    if (_lastPressedAt == null || DateTime.now().difference(_lastPressedAt) > Duration(seconds: 1)) {
+    if (_lastPressedAt == null || DateTime.now().difference(_lastPressedAt!) > Duration(seconds: 1)) {
       _lastPressedAt = DateTime.now();
       print("需要连续按两次返回");
       return false;

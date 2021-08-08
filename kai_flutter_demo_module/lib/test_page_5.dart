@@ -4,7 +4,7 @@ import 'change_notifier_provider.dart';
 import 'consumer.dart';
 
 class TestPage5 extends StatefulWidget {
-  TestPage5({Key key, this.title = "InheritedWidget"}) : super(key: key);
+  TestPage5({Key? key, this.title = "InheritedWidget"}) : super(key: key);
   final String title;
 
   @override
@@ -12,7 +12,7 @@ class TestPage5 extends StatefulWidget {
 }
 
 class ShareDataWidget extends InheritedWidget {
-  ShareDataWidget({@required this.data, Widget child}) : super(child: child) {
+  ShareDataWidget({required this.data, required Widget child}) : super(child: child) {
     print("ShareDataWidget: " + data.toString());
   }
 
@@ -21,7 +21,7 @@ class ShareDataWidget extends InheritedWidget {
   //定义一个便捷方法，方便子树中的widget获取共享数据
   static ShareDataWidget of(BuildContext context) {
     // return context.dependOnInheritedWidgetOfExactType<ShareDataWidget>();
-    return context.getElementForInheritedWidgetOfExactType<ShareDataWidget>().widget;
+    return context.getElementForInheritedWidgetOfExactType<ShareDataWidget>()!.widget as ShareDataWidget;
   }
 
   //该回调决定当data发生变化时，是否通知子树中依赖data的Widget
@@ -95,14 +95,14 @@ class _TestPage5State extends State<TestPage5> {
                       return Column(
                         children: <Widget>[
                           Consumer(
-                            builder: (BuildContext context, CartModel cart) {
-                              return Text("总价1: ${cart.totalPrice}");
+                            builder: (BuildContext context, CartModel? cart) {
+                              return Text("总价1: ${cart?.totalPrice}");
                             },
                             child: null,
                           ),
                           Builder(builder: (context) {
                             var cart = ChangeNotifierProvider.of<CartModel>(context);
-                            return Text("总价2: ${cart.totalPrice}");
+                            return Text("总价2: ${cart?.totalPrice}");
                           }),
                           Builder(builder: (context) {
                             print("ElevatedButton(添加商品) build");
@@ -110,7 +110,7 @@ class _TestPage5State extends State<TestPage5> {
                               child: Text("添加商品"),
                               onPressed: () {
                                 //给购物车中添加商品，添加后总价会更新
-                                ChangeNotifierProvider.of<CartModel>(context, listen: false).add(Item(20.0, 1));
+                                ChangeNotifierProvider.of<CartModel>(context, listen: false)?.add(Item(20.0, 1));
                               },
                             );
                           }),
@@ -167,11 +167,11 @@ class CartModel extends ChangeNotifier {
 }
 
 class KaiNavBar extends StatelessWidget {
-  final String title;
-  final Color color; //背景颜色
+  final String? title;
+  final Color? color; //背景颜色
 
   KaiNavBar({
-    Key key,
+    Key? key,
     this.color,
     this.title,
   });
@@ -195,11 +195,11 @@ class KaiNavBar extends StatelessWidget {
         ],
       ),
       child: Text(
-        title,
+        title!,
         style: TextStyle(
           fontWeight: FontWeight.bold,
           //根据背景色亮度来确定Title颜色
-          color: color.computeLuminance() < 0.5 ? Colors.white : Colors.black,
+          color: color!.computeLuminance() < 0.5 ? Colors.white : Colors.black,
         ),
       ),
       alignment: Alignment.center,

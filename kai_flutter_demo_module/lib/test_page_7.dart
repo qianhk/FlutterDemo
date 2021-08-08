@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:kai_flutter_demo_module/utils/kai_utils.dart';
 
 class TestPage7 extends StatefulWidget {
-  TestPage7({Key key, this.title = "对话框"}) : super(key: key);
+  TestPage7({Key? key, this.title = "对话框"}) : super(key: key);
   final String title;
 
   @override
@@ -15,7 +15,7 @@ class _TestPage7State extends State<TestPage7> {
   bool withTree = false; // 复选框选中状态
 
   void onPressedDialog1() async {
-    bool delete = await showDeleteConfirmDialog1();
+    bool? delete = await showDeleteConfirmDialog1();
     if (delete == null) {
       print("取消删除");
       Fluttertoast.showToast(msg: "取消删除");
@@ -40,7 +40,7 @@ class _TestPage7State extends State<TestPage7> {
 
   void onPressedDialog4() {}
 
-  Future<bool> showDeleteConfirmDialog1() {
+  Future<bool?> showDeleteConfirmDialog1() {
     return showDialog<bool>(
       context: context,
       builder: (context) {
@@ -65,7 +65,7 @@ class _TestPage7State extends State<TestPage7> {
     );
   }
 
-  Future<int> changeLanguage() async {
+  Future<int?> changeLanguage() async {
     // var instance = BoostNavigator.instance;
     // var appState2 = instance.appState;
     // var topContainer2 = appState2.topContainer;
@@ -172,7 +172,7 @@ class _TestPage7State extends State<TestPage7> {
 
   void onPressedDialog6() {}
 
-  Future<int> _showModalBottomSheet() {
+  Future<int?> _showModalBottomSheet() {
     return showModalBottomSheet<int>(
       context: context,
       builder: (BuildContext context) {
@@ -231,7 +231,7 @@ class _TestPage7State extends State<TestPage7> {
     );
   }
 
-  Future<DateTime> _showDatePicker1() {
+  Future<DateTime?> _showDatePicker1() {
     var date = DateTime.now();
     return showDatePicker(
       context: context,
@@ -244,7 +244,7 @@ class _TestPage7State extends State<TestPage7> {
     );
   }
 
-  Future<DateTime> _showDatePicker2() {
+  Future<DateTime?> _showDatePicker2() {
     var date = DateTime.now();
     return showCupertinoModalPopup(
       context: context,
@@ -267,7 +267,7 @@ class _TestPage7State extends State<TestPage7> {
     );
   }
 
-  Future<bool> showDeleteConfirmDialogWithCheck1() {
+  Future<bool?> showDeleteConfirmDialogWithCheck1() {
     withTree = false; // 默认复选框不选中
     return showDialog<bool>(
       context: context,
@@ -284,7 +284,7 @@ class _TestPage7State extends State<TestPage7> {
                   Text("同时删除子目录？"),
                   DialogCheckbox(
                     value: withTree,
-                    onChanged: (bool value) {
+                    onChanged: (bool? value) {
                       //复选框选中状态发生变化时重新构建UI
                       setState(() {
                         //更新复选框状态
@@ -314,7 +314,7 @@ class _TestPage7State extends State<TestPage7> {
     );
   }
 
-  Future<bool> showDeleteConfirmDialogWithCheck2() {
+  Future<bool?> showDeleteConfirmDialogWithCheck2() {
     withTree = false; // 默认复选框不选中
     return showDialog<bool>(
       context: context,
@@ -330,7 +330,7 @@ class _TestPage7State extends State<TestPage7> {
                   builder: (BuildContext context, StateSetter _setState) {
                     return Checkbox(
                         value: withTree, //默认不选中
-                        onChanged: (bool value) {
+                        onChanged: (bool? value) {
                           //_setState方法实际就是该StatefulWidget的setState方法，
                           //调用后builder方法会重新被调用
                           _setState(() {
@@ -361,7 +361,7 @@ class _TestPage7State extends State<TestPage7> {
     );
   }
 
-  Future<bool> showDeleteConfirmDialogWithCheck3() {
+  Future<bool?> showDeleteConfirmDialogWithCheck3() {
     bool _withTree = false;
     return showDialog<bool>(
       context: context,
@@ -379,7 +379,7 @@ class _TestPage7State extends State<TestPage7> {
                   Checkbox(
                     // 依然使用Checkbox组件
                     value: _withTree,
-                    onChanged: (bool value) {
+                    onChanged: (bool? value) {
                       // 此时context为对话框UI的根Element，我们
                       // 直接将对话框UI对应的Element标记为dirty
                       (context as Element).markNeedsBuild();
@@ -392,7 +392,7 @@ class _TestPage7State extends State<TestPage7> {
                     builder: (BuildContext context) {
                       return Checkbox(
                         value: _withTree,
-                        onChanged: (bool value) {
+                        onChanged: (bool? value) {
                           (context as Element).markNeedsBuild();
                           _withTree = !_withTree;
                         },
@@ -425,20 +425,20 @@ class _TestPage7State extends State<TestPage7> {
 // 单独封装一个内部管理选中状态的复选框组件
 class DialogCheckbox extends StatefulWidget {
   DialogCheckbox({
-    Key key,
+    Key? key,
     this.value,
-    @required this.onChanged,
+    required this.onChanged,
   });
 
-  final ValueChanged<bool> onChanged;
-  final bool value;
+  final ValueChanged<bool?> onChanged;
+  final bool? value;
 
   @override
   _DialogCheckboxState createState() => _DialogCheckboxState();
 }
 
 class _DialogCheckboxState extends State<DialogCheckbox> {
-  bool value;
+  bool? value;
 
   @override
   void initState() {

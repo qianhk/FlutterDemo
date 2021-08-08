@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 
 class TestPage8 extends StatefulWidget {
-  TestPage8({Key key, this.title = "TestPage8"}) : super(key: key);
-  final String title;
+  TestPage8({Key? key, this.title = "TestPage8"}) : super(key: key);
+  final String? title;
 
   @override
   _TestPage8State createState() => _TestPage8State();
@@ -13,12 +13,12 @@ class _TestPage8State extends State<TestPage8> with SingleTickerProviderStateMix
   String _operation = "No Gesture detected!";
   double _top = 0.0; //距顶部的偏移
   double _left = 0.0; //距左边的偏移
-  double _beginX, _beginY;
-  bool _appendInit;
+  double? _beginX, _beginY;
+  bool? _appendInit;
   TapGestureRecognizer _tapGestureRecognizer = new TapGestureRecognizer();
   bool _toggle = false; //变色开关
-  AnimationController _controller;
-  CurvedAnimation _curve;
+  late AnimationController _controller;
+  late CurvedAnimation _curve;
 
   @override
   void initState() {
@@ -51,7 +51,7 @@ class _TestPage8State extends State<TestPage8> with SingleTickerProviderStateMix
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title!),
       ),
       body: GestureDetector(
         onTap: () => updateText("Tap"),

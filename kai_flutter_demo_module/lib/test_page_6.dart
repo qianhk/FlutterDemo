@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'dart:convert';
@@ -12,8 +14,8 @@ class TestPage6 extends StatefulWidget {
 class _ThemeTestRouteState extends State<TestPage6> {
   MaterialColor _themeColor = Colors.teal; //当前路由主题色
   int _beginJs = 0;
-  List _httpDatas;
-  List _httpDatas2;
+  List? _httpDatas;
+  List? _httpDatas2;
 
   Future<void> _testUseHttpLoadData() async {
     String dataURL = 'https://jsonplaceholder.typicode.com/posts';
@@ -26,8 +28,8 @@ class _ThemeTestRouteState extends State<TestPage6> {
   Future<void> _testUseHttpLoadDataByIsolate() async {
     ReceivePort receivePort = ReceivePort();
     await Isolate.spawn(_dataLoader, receivePort.sendPort);
-    SendPort sendPort = await receivePort.first;
-    List msg = await _sendReceive(sendPort, "https://jsonplaceholder.typicode.com/posts");
+    var sendPort = await (receivePort.first);
+    List? msg = await (_sendReceive(sendPort, "https://jsonplaceholder.typicode.com/posts") as FutureOr<List<dynamic>?>);
 
     setState(() {
       _httpDatas2 = msg;
@@ -160,10 +162,12 @@ Future<String> mockNetworkData() {
   if (Random().nextBool()) {
     return Future.delayed(Duration(seconds: 2), () => "我是从互联网上获取的数据");
   } else {
-    return Future.delayed(Duration(seconds: 2), () {
-      // throw UnimplementedError("kai unimplement get network.");
-      throw UnimplementedError("kai un implement get data from network, only for test.");
-    });
+    return Future.delayed(
+        Duration(seconds: 2),
+        () {
+          // throw UnimplementedError("kai unimplement get network.");
+          throw UnimplementedError("kai un implement get data from network, only for test.");
+        } as FutureOr<String> Function()?);
   }
 }
 

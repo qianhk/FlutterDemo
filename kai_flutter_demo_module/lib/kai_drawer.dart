@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class KaiDrawer extends StatelessWidget {
   const KaiDrawer({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -23,7 +23,7 @@ class KaiDrawer extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: ClipOval(
                       child: Image.asset(
-                        "imgs/avatar.png",
+                        "assets/images/dncat.jpg",
                         width: 80,
                       ),
                     ),

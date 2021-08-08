@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class TestPage2 extends StatefulWidget {
-  TestPage2({Key key, this.title = "Test 02"}) : super(key: key);
+  TestPage2({Key? key, this.title = "Test 02"}) : super(key: key);
   final String title;
 
   @override
@@ -30,7 +30,7 @@ class _TestPage2State extends State<TestPage2> {
               ),
               DecoratedBox(
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [Colors.red, Colors.orange[700]]),
+                    gradient: LinearGradient(colors: [Colors.red, Colors.orange[700]!]),
                     borderRadius: BorderRadius.circular(4),
                     boxShadow: [
                       BoxShadow(

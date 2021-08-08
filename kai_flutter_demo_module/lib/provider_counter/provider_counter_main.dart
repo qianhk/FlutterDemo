@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProviderCounterPage extends StatefulWidget {
-  final String title;
-  const ProviderCounterPage({Key key, this.title}) : super(key: key);
+  final String? title;
+  const ProviderCounterPage({Key? key, this.title}) : super(key: key);
 
   @override
   _ProviderCounterPageState createState() => _ProviderCounterPageState();

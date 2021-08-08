@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:kai_flutter_demo_module/utils/kai_utils.dart';
 import 'kai_drawer.dart';
 
 class TestPage3 extends StatefulWidget {
-  TestPage3({Key key, this.title = "TestPage3"}) : super(key: key);
+  TestPage3({Key? key, this.title = "TestPage3"}) : super(key: key);
   final String title;
 
   @override
@@ -41,7 +42,11 @@ class _TestPage3State extends State<TestPage3> {
           //导航栏
           title: Text("Kai Test Page 03"),
           actions: <Widget>[
-            IconButton(icon: Icon(Icons.share), onPressed: () {}),
+            IconButton(
+                icon: Icon(Icons.exit_to_app),
+                onPressed: () {
+                  navigatorPop(context);
+                }),
           ],
           leading: Builder(builder: (context) {
             return IconButton(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'test_page_1.dart';
 import 'test_page_2.dart';
 import 'test_page_3.dart';
@@ -170,25 +171,94 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           // materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
-        routes: {
-          '/home': (context) => MyHomePage(title: 'Flutter Demo Home Page'),
-          '/test_page_1': (context) {
-            //ModalRoute.of(context).settings.arguments
-            return TestPage1(title: 'Test Page 01');
-          },
-          'test_page_2': (context) => TestPage2(),
-          'test_page_3': (context) => TestPage3(),
-          'test_page_4': (context) => TestPage4(),
-          'test_page_5': (context) => TestCustomProvider.TestPage5(),
-          'test_page_6': (context) => TestPage6(),
-          'test_page_7': (context) => TestPage7(),
-          'test_page_8': (context) => TestPage8(title: (ModalRoute.of(context).settings.arguments as Map)['title']),
-          'test_page_9': (context) => TestPage9(),
-          '/provider_counter_page': (context) => ProviderCounterPage(),
-          '/provider_shopper_page_login': (context) => Shopper.MyLogin(),
-          '/provider_shopper_page_catalog': (context) => Shopper.MyCatalog(),
-          '/provider_shopper_page_cart': (context) => Shopper.MyCart(),
-          '/dialogPage': (context) => DialogPage(),
+        onGenerateRoute: (RouteSettings settings) {
+          String? routeName = settings.name;
+          var args = <String, dynamic>{};
+          if (settings.arguments != null) {
+            args = settings.arguments as Map<String, dynamic>;
+          }
+
+          switch (routeName) {
+            case '/home':
+              return MaterialPageRoute<String>(
+                builder: (BuildContext context) => MyHomePage(title: 'Flutter Demo Home Page'),
+                settings: settings,
+              );
+            case '/test_page_1':
+              return MaterialPageRoute<String>(
+                builder: (BuildContext context) => TestPage1(title: 'Test Page 01'),
+                settings: settings,
+              );
+            case 'test_page_2':
+              return MaterialPageRoute<String>(
+                builder: (BuildContext context) => TestPage2(),
+                settings: settings,
+              );
+            case 'test_page_3':
+              return MaterialPageRoute<String>(
+                builder: (BuildContext context) => TestPage3(),
+                settings: settings,
+              );
+            case 'test_page_4':
+              return MaterialPageRoute<String>(
+                builder: (BuildContext context) => TestPage4(),
+                settings: settings,
+              );
+            case 'test_page_5':
+              return MaterialPageRoute<String>(
+                builder: (BuildContext context) => TestCustomProvider.TestPage5(),
+                settings: settings,
+              );
+            case 'test_page_6':
+              return MaterialPageRoute<String>(
+                builder: (BuildContext context) => TestPage6(),
+                settings: settings,
+              );
+            case 'test_page_7':
+              return MaterialPageRoute<String>(
+                builder: (BuildContext context) => TestPage7(),
+                settings: settings,
+              );
+            case 'test_page_8':
+              return MaterialPageRoute<String>(
+                builder: (BuildContext context) => TestPage8(title: args["title"]),
+                settings: settings,
+              );
+            case 'test_page_9':
+              return MaterialPageRoute<String>(
+                builder: (BuildContext context) => TestPage9(),
+                settings: settings,
+              );
+            case '/provider_counter_page':
+              return MaterialPageRoute<String>(
+                builder: (BuildContext context) => ProviderCounterPage(),
+                settings: settings,
+              );
+            case '/provider_shopper_page_login':
+              return MaterialPageRoute<String>(
+                builder: (BuildContext context) => Shopper.MyLogin(),
+                settings: settings,
+              );
+            case '/provider_shopper_page_catalog':
+              return MaterialPageRoute<String>(
+                builder: (BuildContext context) => Shopper.MyCatalog(),
+                settings: settings,
+              );
+            case '/provider_shopper_page_cart':
+              return MaterialPageRoute<String>(
+                builder: (BuildContext context) => Shopper.MyCart(),
+                settings: settings,
+              );
+            case '/dialogPage':
+              return MaterialPageRoute<String>(
+                builder: (BuildContext context) => DialogPage(),
+                settings: settings,
+              );
+          }
+        },
+        onUnknownRoute: (RouteSettings settings) {
+          String? routeName = settings.name;
+          Fluttertoast.showToast(msg: "unknown Route: $routeName");
         },
       ),
     );
