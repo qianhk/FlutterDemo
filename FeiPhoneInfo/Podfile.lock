@@ -1,10 +1,7 @@
 PODS:
   - Flutter (1.0.0)
-  - flutter_boost (0.0.2):
-    - Flutter
   - FlutterPluginRegistrant (0.0.1):
     - Flutter
-    - flutter_boost
     - fluttertoast
     - shared_preferences
   - fluttertoast (0.0.2):
@@ -18,7 +15,6 @@ PODS:
 
 DEPENDENCIES:
   - Flutter (from `../kai_flutter_demo_module/.ios/Flutter/engine`)
-  - flutter_boost (from `../kai_flutter_demo_module/.ios/.symlinks/plugins/flutter_boost/ios`)
   - FlutterPluginRegistrant (from `../kai_flutter_demo_module/.ios/Flutter/FlutterPluginRegistrant`)
   - fluttertoast (from `../kai_flutter_demo_module/.ios/.symlinks/plugins/fluttertoast/ios`)
   - kai_flutter_demo_module (from `../kai_flutter_demo_module/.ios/Flutter`)
@@ -31,8 +27,6 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Flutter:
     :path: "../kai_flutter_demo_module/.ios/Flutter/engine"
-  flutter_boost:
-    :path: "../kai_flutter_demo_module/.ios/.symlinks/plugins/flutter_boost/ios"
   FlutterPluginRegistrant:
     :path: "../kai_flutter_demo_module/.ios/Flutter/FlutterPluginRegistrant"
   fluttertoast:
@@ -44,8 +38,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: ac41d61a47ae5bf8195a5598d2d63754888ec0d5
-  flutter_boost: 1b5f53a54ba73726829691db891e85f40b4f6494
-  FlutterPluginRegistrant: 4fe491be7700b0ec9c6f25032613e481586dfff3
+  FlutterPluginRegistrant: c287cfad06312f1721bc0ac4d3271b23cc7da00f
   fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58
   kai_flutter_demo_module: 9fc425e896cf0bc7d5e00d32617a703f6ac132fa
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d

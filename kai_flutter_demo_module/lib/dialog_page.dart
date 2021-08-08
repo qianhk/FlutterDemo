@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boost/flutter_boost.dart';
+import 'package:kai_flutter_demo_module/utils/kai_utils.dart';
 
 class DialogPage extends StatefulWidget {
   const DialogPage({Key key}) : super(key: key);
@@ -30,7 +30,7 @@ class _DialogPageState extends State<DialogPage> {
               child: Text('点击退出弹窗'),
               onPressed: () {
                 //这里退出依然要用Boost的导航器，而不是官方的Navigator
-                BoostNavigator.instance.pop();
+                navigatorPop(context);
               }),
         ),
       ),

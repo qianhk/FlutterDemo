@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boost/flutter_boost.dart';
+import 'package:kai_flutter_demo_module/utils/kai_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'test_dart_syntax.dart';
 
@@ -181,12 +181,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                       onTap: () {
                         KaiNotification("Click List Item _ " + info.title).dispatch(context);
                         // Navigator.pushNamed(context, info.router, arguments: info.title);
-                        BoostNavigator.instance.push(
-                          info.router,
-                          withContainer: false,
-                          opaque: true,
-                          arguments: {'title': info.title},
-                        );
+                        navigatorPush(context, info.router, arguments: {'title': info.title});
                       },
                     );
                   },

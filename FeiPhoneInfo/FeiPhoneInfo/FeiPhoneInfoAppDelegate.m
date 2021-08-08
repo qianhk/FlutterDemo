@@ -44,11 +44,11 @@
     [navController.navigationBar setHidden:YES];
     self.window.rootViewController = navController;
     
-    DemoFlutterBoostDelegate *boostDelegate = [DemoFlutterBoostDelegate new];
-    boostDelegate.navController = navController;
-    [FlutterBoost.instance setup:application delegate:boostDelegate callback:^(FlutterEngine *engine) {
-        NSLog(@"lookKai in FlutterBoost setup callback engine:%@", engine);
-    }];
+//    DemoFlutterBoostDelegate *boostDelegate = [DemoFlutterBoostDelegate new];
+//    boostDelegate.navController = navController;
+//    [FlutterBoost.instance setup:application delegate:boostDelegate callback:^(FlutterEngine *engine) {
+//        NSLog(@"lookKai in FlutterBoost setup callback engine:%@", engine);
+//    }];
 	[self.window makeKeyAndVisible];
 	
 //	NSString * tmpS = [NSString stringWithFormat:@"432%d", 1];

@@ -10,7 +10,7 @@
 #import "AppGlobalUI.h"
 #import "FeiPhoneInfoAppDelegate.h"
 @import Flutter;
-#import <flutter_boost/FlutterBoost.h>
+//#import <flutter_boost/FlutterBoost.h>
 
 @interface TestEntryViewController ()
 
@@ -45,42 +45,53 @@
 }
 
 - (void)showFlutterDemoUseBoost {
-    FlutterBoostRouteOptions *options = [FlutterBoostRouteOptions new];
-    options.pageName = @"/home";
-    options.arguments = @{@"key_kai" :@"value_kai", @"key_int": @666};
-
-    //页面是否透明（用于透明弹窗场景），若不设置，默认情况下为true
-    options.opaque = true;
-
-    //这个是push操作完成的回调，而不是页面关闭的回调！！！！
-    options.completion = ^(BOOL success) {
-        NSLog(@"lookKai openPage completion: %@", @(success));
-    };
-
+//    FlutterBoostRouteOptions *options = [FlutterBoostRouteOptions new];
+//    options.pageName = @"/home";
+//    options.arguments = @{@"key_kai" :@"value_kai", @"key_int": @666};
+//
+//    //页面是否透明（用于透明弹窗场景），若不设置，默认情况下为true
+//    options.opaque = true;
+//
+//    //这个是push操作完成的回调，而不是页面关闭的回调！！！！
+//    options.completion = ^(BOOL success) {
+//        NSLog(@"lookKai openPage completion: %@", @(success));
+//    };
+//
+//
+//    options.onPageFinished = ^(NSDictionary *resultDic){
+//        NSLog(@"lookKai openPage onPageFinished result=%@", resultDic);
+//    };
+//
+//    [FlutterBoost.instance open:options];
     
-    options.onPageFinished = ^(NSDictionary *resultDic){
-        NSLog(@"lookKai openPage onPageFinished result=%@", resultDic);
-    };
-
-    [FlutterBoost.instance open:options];
+    FlutterEngine *flutterEngine =
+            ((FeiPhoneInfoAppDelegate *)UIApplication.sharedApplication.delegate).flutterEngine;
+    FlutterViewController *flutterVc =
+            [[FlutterViewController alloc] initWithEngine:flutterEngine nibName:nil bundle:nil];
+    [self.navigationController pushViewController:flutterVc animated:YES];
 }
 
 
 - (void)showFlutterDemoUseBoostWith:(NSString *)pageName {
-    FlutterBoostRouteOptions *options = [FlutterBoostRouteOptions new];
-    options.pageName = pageName;
-
-    //这个是push操作完成的回调，而不是页面关闭的回调！！！！
-    options.completion = ^(BOOL success) {
-        NSLog(@"lookKai openPage completion: %@", @(success));
-    };
-
+//    FlutterBoostRouteOptions *options = [FlutterBoostRouteOptions new];
+//    options.pageName = pageName;
+//
+//    //这个是push操作完成的回调，而不是页面关闭的回调！！！！
+//    options.completion = ^(BOOL success) {
+//        NSLog(@"lookKai openPage completion: %@", @(success));
+//    };
+//
+//
+//    options.onPageFinished = ^(NSDictionary *resultDic){
+//        NSLog(@"lookKai openPage onPageFinished result=%@", resultDic);
+//    };
+//
+//    [FlutterBoost.instance open:options];
     
-    options.onPageFinished = ^(NSDictionary *resultDic){
-        NSLog(@"lookKai openPage onPageFinished result=%@", resultDic);
-    };
-
-    [FlutterBoost.instance open:options];
+    FlutterEngine *flutterEngine = ((FeiPhoneInfoAppDelegate *)UIApplication.sharedApplication.delegate).flutterEngine;
+//    flutterEngine.page
+    FlutterViewController *flutterVc = [[FlutterViewController alloc] initWithEngine:flutterEngine nibName:nil bundle:nil];
+    [self.navigationController pushViewController:flutterVc animated:YES];
 }
 
 - (void)showFlutterDemo {

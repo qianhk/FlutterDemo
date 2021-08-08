@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_boost/boost_navigator.dart';
-import 'package:flutter_boost/flutter_boost.dart';
-import 'package:flutter_boost/overlay_entry.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:kai_flutter_demo_module/utils/kai_utils.dart';
 
 class TestPage7 extends StatefulWidget {
   TestPage7({Key key, this.title = "对话框"}) : super(key: key);
@@ -68,17 +66,17 @@ class _TestPage7State extends State<TestPage7> {
   }
 
   Future<int> changeLanguage() async {
-    var instance = BoostNavigator.instance;
-    var appState2 = instance.appState;
-    var topContainer2 = appState2.topContainer;
-    var navigator2 = topContainer2.navigator;
-    var context2 = navigator2.context;
-    // FlutterBoost.containerManager?.remove("2000000");
-    // BoostChannel.instance.
-    var currentContext = overlayKey.currentContext;
-    var currentState = overlayKey.currentState;
-    var currentWidget = overlayKey.currentWidget;
-    var boostContainer = BoostContainer.of(context);
+    // var instance = BoostNavigator.instance;
+    // var appState2 = instance.appState;
+    // var topContainer2 = appState2.topContainer;
+    // var navigator2 = topContainer2.navigator;
+    // var context2 = navigator2.context;
+    // // FlutterBoost.containerManager?.remove("2000000");
+    // // BoostChannel.instance.
+    // var currentContext = overlayKey.currentContext;
+    // var currentState = overlayKey.currentState;
+    // var currentWidget = overlayKey.currentWidget;
+    // var boostContainer = BoostContainer.of(context);
     var selfContext = context;
     return showDialog<int>(
         context: context,
@@ -125,11 +123,12 @@ class _TestPage7State extends State<TestPage7> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               ElevatedButton(
-                onPressed: () => BoostNavigator.instance.push(
-                  "/dialogPage",
-                  // withContainer: true,
-                  // opaque: false, //如果开启新容器，需要指定opaque为false
-                ),
+                // onPressed: () => BoostNavigator.instance.push(
+                //   "/dialogPage",
+                //   // withContainer: true,
+                //   // opaque: false, //如果开启新容器，需要指定opaque为false
+                // ),
+                onPressed: () => navigatorPush(context, '/dialogPage'),
                 child: Text("dialogPage"),
               ),
               ElevatedButton(

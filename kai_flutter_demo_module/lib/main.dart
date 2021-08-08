@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boost/flutter_boost.dart';
 import 'test_page_1.dart';
 import 'test_page_2.dart';
 import 'test_page_3.dart';
@@ -21,10 +20,10 @@ import 'provider_shopper/models/catalog.dart' as Shopper;
 
 import 'page_home.dart';
 
-class CustomFlutterBinding extends WidgetsFlutterBinding with BoostFlutterBinding {}
+// class CustomFlutterBinding extends WidgetsFlutterBinding with BoostFlutterBinding {}
 
 void main() {
-  CustomFlutterBinding();
+  // CustomFlutterBinding();
   runApp(MyApp());
 }
 
@@ -46,7 +45,7 @@ void main2() => runApp(Stack(
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
 
-  static Map<String, FlutterBoostRouteFactory> routerMap = {
+  static Map<String, Object> routerMap = {
     '/home': (settings, uniqueId) {
       return PageRouteBuilder<dynamic>(
           settings: settings,
@@ -112,33 +111,33 @@ class MyApp extends StatelessWidget {
     },
   };
 
-  Route<dynamic> routeFactory(RouteSettings settings, String uniqueId) {
-    FlutterBoostRouteFactory func = routerMap[settings.name];
-    if (func == null) {
-      return null;
-    }
-    return func(settings, uniqueId);
-  }
+  // Route<dynamic> routeFactory(RouteSettings settings, String uniqueId) {
+  //   FlutterBoostRouteFactory func = routerMap[settings.name];
+  //   if (func == null) {
+  //     return null;
+  //   }
+  //   return func(settings, uniqueId);
+  // }
 
-  @override
+  // @override
+  // Widget build1(BuildContext context) {
+  //   return MultiProvider(
+  //     providers: [
+  //       Provider(create: (context) => Shopper.CatalogModel()),
+  //       ChangeNotifierProxyProvider<Shopper.CatalogModel, Shopper.CartModel>(
+  //         create: (context) => Shopper.CartModel(),
+  //         update: (context, catalog, cart) {
+  //           if (cart == null) throw ArgumentError.notNull('cart');
+  //           cart.catalog = catalog;
+  //           return cart;
+  //         },
+  //       ),
+  //     ],
+  //     child: FlutterBoostApp(routeFactory),
+  //   );
+  // }
+
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider(create: (context) => Shopper.CatalogModel()),
-        ChangeNotifierProxyProvider<Shopper.CatalogModel, Shopper.CartModel>(
-          create: (context) => Shopper.CartModel(),
-          update: (context, catalog, cart) {
-            if (cart == null) throw ArgumentError.notNull('cart');
-            cart.catalog = catalog;
-            return cart;
-          },
-        ),
-      ],
-      child: FlutterBoostApp(routeFactory),
-    );
-  }
-
-  Widget build2(BuildContext context) {
     return MultiProvider(
       providers: [
         // In this sample app, CatalogModel never changes, so a simple Provider
@@ -158,7 +157,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
-        initialRoute: '/',
+        initialRoute: '/home',
         theme: ThemeData(
           // This is the theme of your application.
           //
@@ -172,7 +171,7 @@ class MyApp extends StatelessWidget {
           // materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         ),
         routes: {
-          '/': (context) => MyHomePage(title: 'Flutter Demo Home Page'),
+          '/home': (context) => MyHomePage(title: 'Flutter Demo Home Page'),
           '/test_page_1': (context) {
             //ModalRoute.of(context).settings.arguments
             return TestPage1(title: 'Test Page 01');
@@ -183,10 +182,13 @@ class MyApp extends StatelessWidget {
           'test_page_5': (context) => TestCustomProvider.TestPage5(),
           'test_page_6': (context) => TestPage6(),
           'test_page_7': (context) => TestPage7(),
-          'test_page_8': (context) => TestPage8(title: ModalRoute.of(context).settings.arguments),
+          'test_page_8': (context) => TestPage8(title: (ModalRoute.of(context).settings.arguments as Map)['title']),
           'test_page_9': (context) => TestPage9(),
           '/provider_counter_page': (context) => ProviderCounterPage(),
-          '/provider_shopper_page': (context) => Shopper.MyLogin(),
+          '/provider_shopper_page_login': (context) => Shopper.MyLogin(),
+          '/provider_shopper_page_catalog': (context) => Shopper.MyCatalog(),
+          '/provider_shopper_page_cart': (context) => Shopper.MyCart(),
+          '/dialogPage': (context) => DialogPage(),
         },
       ),
     );

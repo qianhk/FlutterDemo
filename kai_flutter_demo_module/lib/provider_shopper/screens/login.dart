@@ -3,8 +3,8 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_boost/flutter_boost.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import '../../utils/kai_utils.dart';
 import '../common/theme.dart';
 import 'catalog.dart';
 
@@ -41,7 +41,8 @@ class MyLogin extends StatelessWidget {
                 child: const Text('ENTER'),
                 onPressed: () {
                   // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyCatalog()));
-                  BoostNavigator.instance.pushReplacement('/provider_shopper_page_catalog');
+                  // BoostNavigator.instance.pushReplacement('/provider_shopper_page_catalog');
+                  navigatorPushReplacement(context, '/provider_shopper_page_catalog');
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.yellow,
@@ -60,8 +61,7 @@ class MyLogin extends StatelessWidget {
                     'keyFloat': 12.24,
                     "keyMap": {'hahaKey': 'hahaValue'}
                   };
-                  BoostNavigator.instance
-                      .push('nativeTestPage', arguments: args)
+                  navigatorPush(context, 'nativeTestPage', arguments: args)
                       .then((value) => Fluttertoast.showToast(msg: 'kaiReturnValue: $value'));
                 },
                 style: ElevatedButton.styleFrom(
