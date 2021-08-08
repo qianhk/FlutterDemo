@@ -17,7 +17,7 @@ class _ThemeTestRouteState extends State<TestPage6> {
 
   Future<void> _testUseHttpLoadData() async {
     String dataURL = 'https://jsonplaceholder.typicode.com/posts';
-    http.Response response = await http.get(dataURL);
+    http.Response response = await http.get(Uri.parse(dataURL));
     setState(() {
       _httpDatas = jsonDecode(response.body);
     });
@@ -47,7 +47,7 @@ class _ThemeTestRouteState extends State<TestPage6> {
       SendPort replyTo = msg[1];
 
       String dataURL = data;
-      http.Response response = await http.get(dataURL);
+      http.Response response = await http.get(Uri.parse(dataURL));
       // Lots of JSON to parse
       replyTo.send(jsonDecode(response.body));
     }

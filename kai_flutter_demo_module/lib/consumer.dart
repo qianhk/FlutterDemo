@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:kai_flutter_demo_module/change_notifier_provider.dart';
+import 'change_notifier_provider.dart';
 
 class Consumer<T> extends StatelessWidget {
   Consumer({

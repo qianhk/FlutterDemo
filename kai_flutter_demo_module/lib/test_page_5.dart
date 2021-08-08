@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:kai_flutter_demo_module/change_notifier_provider.dart';
-import 'package:kai_flutter_demo_module/consumer.dart';
+import 'change_notifier_provider.dart';
+import 'consumer.dart';
 
 class TestPage5 extends StatefulWidget {
   TestPage5({Key key, this.title = "InheritedWidget"}) : super(key: key);

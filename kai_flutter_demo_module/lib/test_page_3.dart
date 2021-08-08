@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kai_flutter_demo_module/kai_drawer.dart';
+import 'kai_drawer.dart';
 
 class TestPage3 extends StatefulWidget {
   TestPage3({Key key, this.title = "TestPage3"}) : super(key: key);
