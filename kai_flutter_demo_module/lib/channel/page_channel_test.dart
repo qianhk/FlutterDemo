@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kai_flutter_demo_module/custom/demo_kai_painter.dart';
 
 class ChannelTestPage extends StatefulWidget {
   const ChannelTestPage({Key key}) : super(key: key);
@@ -70,8 +71,9 @@ class _ChannelTestPageState extends State<ChannelTestPage> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
+            SizedBox(height: 10),
             Text(
               '$_methodChannelData',
             ),
@@ -86,6 +88,14 @@ class _ChannelTestPageState extends State<ChannelTestPage> {
               '$_eventChannelData',
             ),
             ElevatedButton(onPressed: _onPressedEventChannel, child: Text("Event Channel")),
+            SizedBox(height: 20),
+            DecoratedBox(
+              decoration: BoxDecoration(color: Colors.orange[50]),
+              child: CustomPaint(
+                size: Size(300, 160),
+                painter: DemoKaiPainter(),
+              ),
+            ),
           ],
         ),
       ),
