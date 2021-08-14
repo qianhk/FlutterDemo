@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boost/flutter_boost.dart';
+import 'channel/page_channel_test.dart';
 import 'test_page_1.dart';
 import 'test_page_2.dart';
 import 'test_page_3.dart';
@@ -110,6 +111,9 @@ class MyApp extends StatelessWidget {
         pageBuilder: (_, __, ___) => DialogPage(),
       );
     },
+    '/channel_test_page': (settings, uniqueId) {
+      return PageRouteBuilder<dynamic>(settings: settings, pageBuilder: (_, __, ___) => ChannelTestPage());
+    },
   };
 
   Route<dynamic> routeFactory(RouteSettings settings, String uniqueId) {
@@ -118,6 +122,23 @@ class MyApp extends StatelessWidget {
       return null;
     }
     return func(settings, uniqueId);
+  }
+
+  Widget _materialAppBuilder(Widget home) {
+    return MaterialApp(
+      home: home,
+      // builder: (context, child) => Scaffold(
+      //   body: GestureDetector(
+      //     onTap: () {
+      //       FocusScopeNode currentFocus = FocusScope.of(context);
+      //       if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+      //         FocusManager.instance.primaryFocus.unfocus();
+      //       }
+      //     },
+      //     child: child,
+      //   BasicMessageChannel),
+      // ),
+    );
   }
 
   @override
@@ -134,7 +155,10 @@ class MyApp extends StatelessWidget {
           },
         ),
       ],
-      child: FlutterBoostApp(routeFactory),
+      child: FlutterBoostApp(
+        routeFactory,
+        appBuilder: _materialAppBuilder,
+      ),
     );
   }
 

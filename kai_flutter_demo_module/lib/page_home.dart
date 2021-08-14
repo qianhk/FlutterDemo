@@ -43,6 +43,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     EntryInfo("Touch Listener Gesture", "test_page_8"),
     EntryInfo("Provider Counter", "/provider_counter_page"),
     EntryInfo("Provider Shopper", "/provider_shopper_page_login"),
+    EntryInfo("Channel Test", "/channel_test_page"),
     EntryInfo("test9", "test_page_9"),
   ];
 
