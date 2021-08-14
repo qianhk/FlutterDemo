@@ -17,13 +17,15 @@ class DemoKaiPainter extends CustomPainter {
     // print('lookKai painter: $size');
     canvas.save();
     var wholeRect = Rect.fromLTWH(0, 0, size.width, size.height);
-    canvas.clipRect(wholeRect);
+    // canvas.clipRect(wholeRect);
+
+    // canvas.drawColor(Colors.green[50], BlendMode.srcOver);
 
     _paint.color = Colors.amber;
     canvas.drawCircle(size.center(Offset.zero), size.width * 0.5 - _paint.strokeWidth / 2, _paint);
 
     _paint.color = Colors.blue;
-    canvas.drawOval(wholeRect.deflate(12 + _paint.strokeWidth / 2), _paint);
+    canvas.drawOval(wholeRect.deflate(6 + _paint.strokeWidth / 2), _paint);
 
     canvas.restore();
   }
