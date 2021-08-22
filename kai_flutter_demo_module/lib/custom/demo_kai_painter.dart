@@ -16,7 +16,8 @@ class DemoKaiPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     // print('lookKai painter: $size');
     canvas.save();
-    var wholeRect = Rect.fromLTWH(0, 0, size.width, size.height);
+    var wholeRect = Offset.zero & size;
+    ;
     // canvas.clipRect(wholeRect);
 
     // canvas.drawColor(Colors.green[50], BlendMode.srcOver);
