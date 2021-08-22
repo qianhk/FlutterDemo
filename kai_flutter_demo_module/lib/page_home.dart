@@ -45,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     EntryInfo("Provider Shopper", "/provider_shopper_page_login"),
     EntryInfo("Channel Test", "/channel_test_page"),
     EntryInfo("Custom Painter", "/demo_custom_painter_page"),
+    EntryInfo("Custom List Left", "/demo_list_custom_border"),
     EntryInfo("Custom Layout", "/custom_multi_child_layout"),
     EntryInfo("test9", "test_page_9"),
   ];

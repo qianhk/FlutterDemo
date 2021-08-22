@@ -3,6 +3,7 @@ import 'package:flutter_boost/flutter_boost.dart';
 import 'channel/page_channel_test.dart';
 import 'custom/custom_multi_render_demo_page.dart';
 import 'custom/demo_custom_painter_page.dart';
+import 'demo_list_custom_border_page.dart';
 import 'test_page_1.dart';
 import 'test_page_2.dart';
 import 'test_page_3.dart';
@@ -121,6 +122,9 @@ class MyApp extends StatelessWidget {
     },
     '/custom_multi_child_layout': (settings, uniqueId) {
       return PageRouteBuilder<dynamic>(settings: settings, pageBuilder: (_, __, ___) => CustomMultiRenderDemoPage());
+    },
+    '/demo_list_custom_border': (settings, uniqueId) {
+      return PageRouteBuilder<dynamic>(settings: settings, pageBuilder: (_, __, ___) => DemoListCustomBorderPage());
     },
   };
 
