@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'demo_kai_painter2.dart';
 import 'demo_shape_boder.dart';
+import 'demo_shape_boder2.dart';
 
 class DemoCustomPainterPage extends StatefulWidget {
   const DemoCustomPainterPage({Key key}) : super(key: key);
@@ -92,18 +93,21 @@ class _DemoCustomPainterPageState extends State<DemoCustomPainterPage> {
               ),
             ),
             SizedBox(height: 40),
-            Material(
-              color: Colors.orangeAccent,
-              elevation: 0,
-              shape: DemoShapeBoder(offset: Offset(0.9, 0.1)),
-              child: Container(
-                alignment: Alignment.center,
-                padding: EdgeInsets.all(10),
-                height: 80,
-                width: 300,
-                child: Text(
-                  "KaiKai2 Sharp Border",
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+            ClipPath(
+              clipper: ShapeBorderClipper(shape: DemoShapeBoder2()),
+              child: Material(
+                elevation: 0,
+                shape: DemoShapeBoder2(),
+                child: Container(
+                  alignment: Alignment.center,
+                  color: Colors.green[100],
+                  padding: EdgeInsets.all(10),
+                  height: 140,
+                  width: 300,
+                  child: Text(
+                    "KaiKai2 Sharp Border",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
                 ),
               ),
             ),

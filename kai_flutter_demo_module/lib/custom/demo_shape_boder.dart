@@ -29,7 +29,6 @@ class DemoShapeBoder extends ShapeBorder {
     var h = rect.height;
     var middleXY = Offset(offset.dx * w, offset.dy * h);
     _getHold(path, 1, size, middleXY);
-
     return path;
     // return null;
   }
