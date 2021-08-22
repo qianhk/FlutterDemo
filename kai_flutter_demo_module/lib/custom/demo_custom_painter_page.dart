@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'demo_kai_painter2.dart';
+import 'demo_shape_boder.dart';
 
 class DemoCustomPainterPage extends StatefulWidget {
   const DemoCustomPainterPage({Key key}) : super(key: key);
@@ -16,11 +17,12 @@ class _DemoCustomPainterPageState extends State<DemoCustomPainterPage> {
       appBar: AppBar(
         title: Text('Custom Painter'),
       ),
+      backgroundColor: Colors.blue[200],
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             DecoratedBox(
               position: DecorationPosition.foreground,
               decoration: BoxDecoration(
@@ -45,12 +47,12 @@ class _DemoCustomPainterPageState extends State<DemoCustomPainterPage> {
                 child: Image.asset(
                   'assets/images/hsfengjing.jpg',
                   width: 300,
-                  height: 140,
+                  height: 100,
                   fit: BoxFit.fill,
                 ),
               ),
             ),
-            SizedBox(height: 40),
+            SizedBox(height: 20),
             DecoratedBox(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40),
@@ -71,6 +73,38 @@ class _DemoCustomPainterPageState extends State<DemoCustomPainterPage> {
               child: CustomPaint(
                 size: Size(300, 140),
                 painter: DemoKaiPainter2(strokeWidth: 10, radius: 40),
+              ),
+            ),
+            SizedBox(height: 20),
+            Material(
+              color: Colors.orangeAccent,
+              elevation: 0,
+              shape: DemoShapeBoder(offset: Offset(0.9, 0.1)),
+              child: Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.all(10),
+                height: 80,
+                width: 300,
+                child: Text(
+                  "KaiKai Sharp Border",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              ),
+            ),
+            SizedBox(height: 40),
+            Material(
+              color: Colors.orangeAccent,
+              elevation: 0,
+              shape: DemoShapeBoder(offset: Offset(0.9, 0.1)),
+              child: Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.all(10),
+                height: 80,
+                width: 300,
+                child: Text(
+                  "KaiKai2 Sharp Border",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
               ),
             ),
           ],
