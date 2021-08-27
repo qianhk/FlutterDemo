@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DemoListLeftClipper extends CustomClipper<Path> {
   final double strokeWidth;
   final double radius;
-  final Path path = Path();
+  Path path = Path();
 
   DemoListLeftClipper({this.strokeWidth = 10, this.radius = 10});
 
@@ -16,7 +16,8 @@ class DemoListLeftClipper extends CustomClipper<Path> {
     } else {
       Rect rect = Offset.zero & size;
       path.reset();
-      path.addRRect(RRect.fromRectAndRadius(rect, Radius.circular(radius)));
+      path.addRect(rect);
+      // path.addRRect(RRect.fromRectAndRadius(rect, Radius.circular(radius)));
       return path;
     }
   }
@@ -25,14 +26,32 @@ class DemoListLeftClipper extends CustomClipper<Path> {
     path.reset();
     Rect rect = Offset.zero & size;
     Rect innerRect = rect.deflate(strokeWidth);
-    var outerRrect = RRect.fromRectAndRadius(rect, Radius.circular(radius));
-    var innerRrect = RRect.fromRectAndRadius(innerRect, Radius.circular(radius));
+    Radius circleRadius = Radius.circular(radius);
+    var outerRrect = RRect.fromRectAndRadius(rect, circleRadius);
+    var innerRrect = RRect.fromRectAndRadius(innerRect, circleRadius);
     path.addRRect(innerRrect);
     path.addRect(Rect.fromLTRB(rect.left, innerRect.top + radius, innerRect.right, innerRect.bottom - radius));
-    Rect leftTopRect = Rect.fromLTWH(0, 0, strokeWidth, strokeWidth + radius);
-    path.addRRect(RRect.fromRectAndCorners(leftTopRect, topLeft: Radius.circular(radius)));
-    Rect leftBottomRect = Rect.fromLTWH(0, size.height - strokeWidth - radius, strokeWidth, strokeWidth + radius);
-    path.addRRect(RRect.fromRectAndCorners(leftBottomRect, bottomLeft: Radius.circular(radius)));
+    if (radius <= strokeWidth) {
+      Rect leftTopRect = Rect.fromLTWH(0, 0, strokeWidth, strokeWidth + radius);
+      path.addRRect(RRect.fromRectAndCorners(leftTopRect, topLeft: circleRadius));
+    } else {
+      Rect leftTopRect = Rect.fromLTWH(0, 0, radius, strokeWidth + radius);
+      var rRect = RRect.fromRectAndCorners(leftTopRect, topLeft: circleRadius);
+      var clipRect = Rect.fromLTWH(strokeWidth, 0, radius, leftTopRect.height);
+      var combine = Path.combine(PathOperation.difference, Path()..addRRect(rRect), Path()..addRect(clipRect));
+      path.addPath(combine, Offset.zero);
+    }
+
+    if (radius <= strokeWidth) {
+      Rect leftBottomRect = Rect.fromLTWH(0, size.height - strokeWidth - radius, strokeWidth, strokeWidth + radius);
+      path.addRRect(RRect.fromRectAndCorners(leftBottomRect, bottomLeft: circleRadius));
+    } else {
+      Rect leftBottomRect = Rect.fromLTWH(0, size.height - strokeWidth - radius, radius, strokeWidth + radius);
+      var rRect = RRect.fromRectAndCorners(leftBottomRect, bottomLeft: circleRadius);
+      var clipRect = Rect.fromLTWH(strokeWidth, leftBottomRect.top, radius, leftBottomRect.height);
+      var combine = Path.combine(PathOperation.difference, Path()..addRRect(rRect), Path()..addRect(clipRect));
+      path.addPath(combine, Offset.zero);
+    }
     return path;
   }
 

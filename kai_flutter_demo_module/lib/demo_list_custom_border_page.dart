@@ -37,10 +37,10 @@ class _DemoListCustomBorderPageState extends State<DemoListCustomBorderPage> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 100),
         child: Material(
-          color: Colors.white,
-          shape: DemoListLeftBorder(),
+          color: Colors.red,
+          shape: DemoListLeftBorder(strokeWidth: 20, radius: 40),
           child: ClipPath(
-            clipper: DemoListLeftClipper(),
+            clipper: DemoListLeftClipper(strokeWidth: 20, radius: 40),
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.transparent,
@@ -54,17 +54,20 @@ class _DemoListCustomBorderPageState extends State<DemoListCustomBorderPage> {
                   physics: BouncingScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     var itemData = _dataList[index];
-                    return SizedBox(
-                      height: 60,
-                      child: Row(
-                        children: [
-                          CustomPaint(
-                            size: Size(10, 60),
-                            painter: DemoListItemLeftPrefixPainter(doIt: index % 5 == 3),
-                          ),
-                          SizedBox(width: 10),
-                          Text(itemData),
-                        ],
+                    return DecoratedBox(
+                      decoration: BoxDecoration(color: Colors.green[100]),
+                      child: SizedBox(
+                        height: 60,
+                        child: Row(
+                          children: [
+                            CustomPaint(
+                              size: Size(10, 60),
+                              painter: DemoListItemLeftPrefixPainter(doIt: index % 5 == 3),
+                            ),
+                            SizedBox(width: 10),
+                            Text(itemData),
+                          ],
+                        ),
                       ),
                     );
                   },

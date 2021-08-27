@@ -88,12 +88,12 @@ class DemoListLeftBorder extends ShapeBorder {
     // path.quadraticBezierTo(baseX, topY, baseX, topY + radius);
     // path.close();
 
-    var clipper = DemoListLeftClipper();
+    var clipper = DemoListLeftClipper(strokeWidth: strokeWidth, radius: radius);
 
     // path.addRRect(innerRrect);
     // path.addRect(Rect.fromLTRB(rect.left, innerRect.top + radius, innerRect.right, innerRect.bottom - radius));
     _paint.style = PaintingStyle.fill;
-    _paint.color = Colors.blue;
+    _paint.color = const Color(0xFFFFFF00);
     _paint.strokeWidth = 1;
     // canvas.drawPath(clipper.getMeClip(rect.size), _paint);
 
