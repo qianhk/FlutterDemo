@@ -109,7 +109,7 @@ class _TestPage2State extends State<TestPage2> {
                 ],
               ),
               Container(
-                margin: EdgeInsets.only(top: 50.0, left: 0.0),
+                margin: EdgeInsets.only(top: 20.0, left: 0.0),
                 constraints: BoxConstraints.tightFor(width: 200.0, height: 150.0),
                 decoration: BoxDecoration(
                     gradient: RadialGradient(colors: [Colors.red, Colors.orange], center: Alignment.topLeft, radius: .98),
@@ -119,6 +119,47 @@ class _TestPage2State extends State<TestPage2> {
                 child: Text(
                   "Kai",
                   style: TextStyle(color: Colors.white, fontSize: 40.0),
+                ),
+              ),
+              SizedBox(height: 30),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black, width: 5),
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.green,
+                      offset: Offset(0, 0),
+                      // blurRadius: 3,
+                      spreadRadius: 2,
+                    ),
+                  ],
+                ),
+                width: 300,
+                height: 200,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 100,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(color: Colors.blue),
+                        child: Row(
+                          children: [
+                            SizedBox(width: 100),
+                            Expanded(child: SizedBox()),
+                            SizedBox(width: 100),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                        child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Colors.pink[100],
+                      ),
+                      child: Text('abc'),
+                    )),
+                  ],
                 ),
               )
             ],
