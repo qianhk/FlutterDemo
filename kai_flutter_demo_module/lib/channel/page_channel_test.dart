@@ -52,11 +52,15 @@ class _ChannelTestPageState extends State<ChannelTestPage> {
 
   void _onPressedBaseMessageChannel() async {
     var result = await baseMsgChannel.send({'name': 'fei', 'age': 18});
-    var name = result['name'];
-    var age = result['age'];
-    setState(() {
-      _baseMessageChannelData = '$name,$age';
-    });
+    if (result is Map) {
+      var name = result['name'];
+      var age = result['age'];
+      setState(() {
+        _baseMessageChannelData = '$name,$age';
+      });
+    } else {
+      _baseMessageChannelData = '$result';
+    }
   }
 
   void _onPressedEventChannel() async {

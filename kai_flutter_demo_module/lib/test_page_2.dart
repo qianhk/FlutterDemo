@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'custom/copy_box_decoration.dart';
+
 class TestPage2 extends StatefulWidget {
   TestPage2({Key key, this.title = "Test 02"}) : super(key: key);
   final String title;
@@ -110,56 +112,52 @@ class _TestPage2State extends State<TestPage2> {
               ),
               Container(
                 margin: EdgeInsets.only(top: 20.0, left: 0.0),
-                constraints: BoxConstraints.tightFor(width: 200.0, height: 150.0),
+                constraints: BoxConstraints.tightFor(width: 300.0, height: 150.0),
                 decoration: BoxDecoration(
                     gradient: RadialGradient(colors: [Colors.red, Colors.orange], center: Alignment.topLeft, radius: .98),
                     boxShadow: [BoxShadow(color: Colors.black54, offset: Offset(2.0, 2.0), blurRadius: 4.0)]),
                 transform: Matrix4.rotationZ(.0),
                 alignment: Alignment.center,
                 child: Text(
-                  "Kai",
+                  "下图白色缝隙",
                   style: TextStyle(color: Colors.white, fontSize: 40.0),
                 ),
               ),
               SizedBox(height: 30),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black, width: 5),
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.green,
-                      offset: Offset(0, 0),
-                      // blurRadius: 3,
-                      spreadRadius: 2,
-                    ),
-                  ],
-                ),
+              SizedBox(
                 width: 300,
                 height: 200,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 100,
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(color: Colors.blue),
-                        child: Row(
-                          children: [
-                            SizedBox(width: 100),
-                            Expanded(child: SizedBox()),
-                            SizedBox(width: 100),
-                          ],
-                        ),
+                child: DecoratedBox(
+                  decoration: CopyBoxDecoration(
+                    color: Colors.white,
+                    // border: Border.all(color: Colors.black, width: 5),
+                    // borderRadius: BorderRadius.all(Radius.circular(10)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black,
+                        offset: Offset(0, 0),
+                        // blurRadius: 3,
+                        spreadRadius: 5,
                       ),
+                    ],
+                  ),
+                  // width: 300,
+                  // height: 200,
+                  child: DecoratedBox(
+                    decoration: CopyBoxDecoration(
+                      color: Colors.black,
+                      // borderRadius: BorderRadius.only(
+                      //   topLeft: Radius.circular(8),
+                      //   topRight: Radius.circular(8),
+                      // ),
                     ),
-                    Expanded(
-                        child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: Colors.pink[100],
-                      ),
-                      child: Text('abc'),
-                    )),
-                  ],
+                    child: Column(
+                      children: [
+                        SizedBox(height: 150, child: Container()),
+                        Expanded(child: Container(decoration: CopyBoxDecoration(color: Colors.green[100]))),
+                      ],
+                    ),
+                  ),
                 ),
               )
             ],
