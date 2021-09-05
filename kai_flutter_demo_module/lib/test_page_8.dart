@@ -182,16 +182,16 @@ class _TestPage8State extends State<TestPage8> with SingleTickerProviderStateMix
                         onPressed: () {
                           Fluttertoast.showToast(msg: 'orange button');
                         },
-                        child: Icon(Icons.account_box, size: 80, color: Colors.orange),
+                        child: Icon(Icons.account_box, size: 60, color: Colors.orange),
                       )),
                   Transform.translate(
                     transformHitTests: true,
-                    offset: Offset(140, -40),
+                    offset: Offset(125, -40),
                     child: ElevatedButton(
                       onPressed: () {
                         Fluttertoast.showToast(msg: 'purple button');
                       },
-                      child: Icon(Icons.access_alarm, size: 80, color: Colors.purple),
+                      child: Icon(Icons.access_alarm, size: 60, color: Colors.purple),
                     ),
                   ),
                   Align(
@@ -200,7 +200,7 @@ class _TestPage8State extends State<TestPage8> with SingleTickerProviderStateMix
                       onPressed: () {
                         Fluttertoast.showToast(msg: 'Pink button');
                       },
-                      child: Icon(Icons.airplanemode_active, size: 80, color: Colors.pink),
+                      child: Icon(Icons.airplanemode_active, size: 60, color: Colors.pink),
                     ),
                   ),
                 ],
