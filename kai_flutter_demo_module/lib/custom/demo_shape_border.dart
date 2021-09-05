@@ -1,36 +1,37 @@
 import 'package:flutter/material.dart';
 
-class DemoShapeBoder extends ShapeBorder {
+class DemoShapeBorder extends ShapeBorder {
   final Offset offset;
   final double size;
 
   @override
   EdgeInsetsGeometry get dimensions => null;
 
-  DemoShapeBoder({this.offset = const Offset(0.1, 0.1), this.size = 20});
+  DemoShapeBorder({this.offset = const Offset(0.1, 0.1), this.size = 20});
 
   @override
   Path getInnerPath(Rect rect, {TextDirection textDirection}) {
-    // var path = Path();
-    // path.addRRect(RRect.fromRectAndRadius(rect, Radius.circular(40)));
-    // return path;
-    return null;
+    var path = Path();
+    path.addRRect(RRect.fromRectAndRadius(rect.deflate(20), Radius.circular(40)));
+    return path;
+    // return null;
   }
 
   @override
   Path getOuterPath(Rect rect, {TextDirection textDirection}) {
     var path = Path();
+    // path.addRect(rect);
     path.fillType = PathFillType.evenOdd;
     // path.addRect(Rect.fromLTRB(20, rect.top, rect.right, rect.bottom));
     // path.addOval(rect); //多个形状则默认重叠部分
-    path.addRRect(RRect.fromRectAndRadius(rect, Radius.circular(16)));
+    path.addRRect(RRect.fromRectAndRadius(rect.deflate(0), Radius.circular(16)));
 
     var w = rect.width;
     var h = rect.height;
     var middleXY = Offset(offset.dx * w, offset.dy * h);
     _getHold(path, 1, size, middleXY);
-    return path;
-    // return null;
+    // return path;
+    return null;
   }
 
   _getHold(Path path, int count, double size, Offset middle) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class DemoShapeBoder2 extends ShapeBorder {
+class DemoShapeBorder2 extends ShapeBorder {
   final double strokeWidth;
   final double radius;
 
@@ -9,7 +9,7 @@ class DemoShapeBoder2 extends ShapeBorder {
   @override
   EdgeInsetsGeometry get dimensions => null;
 
-  DemoShapeBoder2({this.strokeWidth = 10, this.radius = 10}) {
+  DemoShapeBorder2({this.strokeWidth = 10, this.radius = 10}) {
     _paint.isAntiAlias = true;
   }
 

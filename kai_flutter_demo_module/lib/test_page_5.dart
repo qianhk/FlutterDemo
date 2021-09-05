@@ -132,6 +132,18 @@ class _TestPage5State extends State<TestPage5> {
                     //背景为白色，则title自动为黑色
                     KaiNavBar(color: Colors.yellow[100], title: "标题"),
               ),
+              SizedBox(height: 20),
+              Container(
+                width: 300,
+                height: 100,
+                decoration: BoxDecoration(
+                  border: Border.all(width: 20, color: Colors.transparent),
+                  color: Colors.red,
+                ),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(color: Colors.green),
+                ),
+              )
             ],
           ),
         ),

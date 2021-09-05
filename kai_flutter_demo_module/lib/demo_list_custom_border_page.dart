@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kai_flutter_demo_module/custom/demo_list_item_left_prefix_painter.dart';
-import 'package:kai_flutter_demo_module/custom/demo_list_left_boder.dart';
+import 'package:kai_flutter_demo_module/custom/demo_list_left_border.dart';
 
 import 'custom/demo_list_left_clipper.dart';
 import 'custom/kai_overscroll_behavior.dart';

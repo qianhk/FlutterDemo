@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'demo_kai_painter2.dart';
-import 'demo_shape_boder.dart';
-import 'demo_shape_boder2.dart';
+import 'demo_shape_border.dart';
+import 'demo_shape_border2.dart';
 
 class DemoCustomPainterPage extends StatefulWidget {
   const DemoCustomPainterPage({Key key}) : super(key: key);
@@ -44,7 +44,7 @@ class _DemoCustomPainterPageState extends State<DemoCustomPainterPage> {
                 // ],
               ),
               child: Opacity(
-                opacity: 0.99,
+                opacity: 0.49,
                 child: Image.asset(
                   'assets/images/hsfengjing.jpg',
                   width: 300,
@@ -80,7 +80,7 @@ class _DemoCustomPainterPageState extends State<DemoCustomPainterPage> {
             Material(
               color: Colors.orangeAccent,
               elevation: 0,
-              shape: DemoShapeBoder(offset: Offset(0.9, 0.1)),
+              shape: DemoShapeBorder(offset: Offset(0.9, 0.1)),
               child: Container(
                 alignment: Alignment.center,
                 padding: EdgeInsets.all(10),
@@ -94,10 +94,10 @@ class _DemoCustomPainterPageState extends State<DemoCustomPainterPage> {
             ),
             SizedBox(height: 40),
             ClipPath(
-              clipper: ShapeBorderClipper(shape: DemoShapeBoder2()),
+              clipper: ShapeBorderClipper(shape: DemoShapeBorder2()),
               child: Material(
                 elevation: 0,
-                shape: DemoShapeBoder2(),
+                shape: DemoShapeBorder2(),
                 child: Container(
                   alignment: Alignment.center,
                   color: Colors.green[100],

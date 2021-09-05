@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class TestPage8 extends StatefulWidget {
   TestPage8({Key key, this.title = "TestPage8"}) : super(key: key);
@@ -79,12 +80,12 @@ class _TestPage8State extends State<TestPage8> with SingleTickerProviderStateMix
             color: Colors.green[50],
             child: Stack(
               // fit: StackFit.expand,
-              clipBehavior: Clip.antiAlias,
+              clipBehavior: Clip.none,
               children: <Widget>[
                 Listener(
                   child: ConstrainedBox(
                     constraints: BoxConstraints.tight(Size(300.0, 200.0)),
-                    child: DecoratedBox(decoration: BoxDecoration(color: Colors.blue)),
+                    child: DecoratedBox(decoration: BoxDecoration(color: Colors.lightGreenAccent)),
                   ),
                   onPointerDown: (event) => print("down0"),
                 ),
@@ -165,6 +166,34 @@ class _TestPage8State extends State<TestPage8> with SingleTickerProviderStateMix
                         TextSpan(text: "你好世界"),
                       ],
                     ),
+                  ),
+                ),
+                Positioned(
+                    left: 40,
+                    top: -30,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Fluttertoast.showToast(msg: 'orange button');
+                      },
+                      child: Icon(Icons.account_box, size: 60, color: Colors.orange),
+                    )),
+                Transform.translate(
+                  transformHitTests: true,
+                  offset: Offset(150, -30),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Fluttertoast.showToast(msg: 'green button');
+                    },
+                    child: Icon(Icons.account_box, size: 60, color: Colors.green),
+                  ),
+                ),
+                Align(
+                  alignment: AlignmentDirectional(0.8, -1.1),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Fluttertoast.showToast(msg: 'Pink button');
+                    },
+                    child: Icon(Icons.account_box, size: 60, color: Colors.pink),
                   ),
                 ),
               ],
