@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class ProviderCounterPage extends StatefulWidget {
   final String title;
@@ -10,6 +12,13 @@ class ProviderCounterPage extends StatefulWidget {
 }
 
 class _ProviderCounterPageState extends State<ProviderCounterPage> {
+  void testHttpRequest() async {
+    String testUrl = 'https://baidu.com';
+    print('lookKai testHttpRequest url=$testUrl');
+    http.Response response = await http.get(Uri.parse(testUrl));
+    print('lookKai testHttpRequest response=${response.body}');
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<Counter>(
@@ -37,6 +46,7 @@ class _ProviderCounterPageState extends State<ProviderCounterPage> {
               onPressed: () {
                 var counter = context.read<Counter>();
                 counter.increment();
+                testHttpRequest();
               },
               tooltip: 'Increment',
               child: const Icon(Icons.add),

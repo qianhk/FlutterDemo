@@ -73,6 +73,7 @@
 		0CC612B9C4501DA7D7CA2C00 /* Pods-FeiPhoneInfo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FeiPhoneInfo.release.xcconfig"; path = "Target Support Files/Pods-FeiPhoneInfo/Pods-FeiPhoneInfo.release.xcconfig"; sourceTree = "<group>"; };
 		19DD378A147F808099BDD273 /* AppGlobalUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppGlobalUI.h; sourceTree = "<group>"; };
 		19DD3A2B5EAFC0686720E403 /* AppGlobalUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppGlobalUI.m; sourceTree = "<group>"; };
+		2A084D22286847AD008A97A3 /* FeiPhoneInfo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FeiPhoneInfo.entitlements; sourceTree = "<group>"; };
 		2A50AA1F1E4B3DB500B88151 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2A50AA231E4B40AF00B88151 /* LaunchScreen2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen2.storyboard; sourceTree = "<group>"; };
 		2A6675D826B6700E000666AC /* TestEntryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestEntryViewController.h; sourceTree = "<group>"; };
@@ -251,6 +252,7 @@
 		D94E0D80143054DB00552FBE /* FeiPhoneInfo */ = {
 			isa = PBXGroup;
 			children = (
+				2A084D22286847AD008A97A3 /* FeiPhoneInfo.entitlements */,
 				2A6675DB26B685DF000666AC /* Flutter */,
 				2A6675D826B6700E000666AC /* TestEntryViewController.h */,
 				2A6675D926B6700E000666AC /* TestEntryViewController.m */,
@@ -404,8 +406,8 @@
 				ORGANIZATIONNAME = TTPod;
 				TargetAttributes = {
 					D94E0D75143054DB00552FBE = {
-						DevelopmentTeam = P8232VD523;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = A27YPEY3N3;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -612,7 +614,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = arm64;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -633,7 +635,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -645,7 +647,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
+				ARCHS = arm64;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -659,7 +661,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
@@ -676,10 +678,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P8232VD523;
+				CODE_SIGN_ENTITLEMENTS = FeiPhoneInfo/FeiPhoneInfo.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 10000;
+				DEVELOPMENT_TEAM = A27YPEY3N3;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SDKROOT)//System/Library/Frameworks\"",
@@ -689,11 +694,12 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "FeiPhoneInfo/FeiPhoneInfo-Info.plist";
 				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.njnu.FeiPhoneInfo;
+				PRODUCT_BUNDLE_IDENTIFIER = njnu.kai.deviceinfo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = njnu_kai_wildcard_develop;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -705,10 +711,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = P8232VD523;
+				CODE_SIGN_ENTITLEMENTS = FeiPhoneInfo/FeiPhoneInfo.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 10000;
+				DEVELOPMENT_TEAM = A27YPEY3N3;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SDKROOT)//System/Library/Frameworks\"",
@@ -718,11 +727,12 @@
 				GCC_VERSION = "";
 				INFOPLIST_FILE = "FeiPhoneInfo/FeiPhoneInfo-Info.plist";
 				LIBRARY_SEARCH_PATHS = "";
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.edu.njnu.FeiPhoneInfo;
+				PRODUCT_BUNDLE_IDENTIFIER = njnu.kai.deviceinfo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = njnu_kai_wildcard_develop;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

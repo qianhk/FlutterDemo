@@ -43,7 +43,7 @@ EXTERNAL SOURCES:
     :path: "../kai_flutter_demo_module/.ios/.symlinks/plugins/shared_preferences/ios"
 
 SPEC CHECKSUMS:
-  Flutter: ac41d61a47ae5bf8195a5598d2d63754888ec0d5
+  Flutter: bdfa2e8fe0e2880a2c6a58a0b1a8675c262a07af
   flutter_boost: 1b5f53a54ba73726829691db891e85f40b4f6494
   FlutterPluginRegistrant: 4fe491be7700b0ec9c6f25032613e481586dfff3
   fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58

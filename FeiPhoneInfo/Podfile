@@ -1,5 +1,5 @@
 
-platform :ios, '9.0'
+platform :ios, '12.1'
 
 flutter_application_path = '../kai_flutter_demo_module'
 load File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')

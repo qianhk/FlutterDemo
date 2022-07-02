@@ -1,27 +1,12 @@
-import static groovy.io.FileType.FILES
-
-import com.android.builder.model.AndroidProject
 import com.android.build.OutputFile
+import com.android.builder.model.AndroidProject
 import groovy.json.JsonSlurper
-import java.nio.file.Path
-import java.nio.file.Paths
-import java.util.regex.Matcher
-import java.util.regex.Pattern
 import org.apache.tools.ant.taskdefs.condition.Os
-import org.gradle.api.DefaultTask
-import org.gradle.api.GradleException
-import org.gradle.api.Project
-import org.gradle.api.Plugin
-import org.gradle.api.Task
-import org.gradle.api.file.CopySpec
-import org.gradle.api.file.FileCollection
-import org.gradle.api.tasks.Copy
-import org.gradle.api.tasks.InputFiles
-import org.gradle.api.tasks.OutputDirectory
-import org.gradle.api.tasks.TaskAction
-import org.gradle.api.tasks.bundling.Jar
 import org.gradle.internal.os.OperatingSystem
-import org.gradle.util.VersionNumber
+
+import java.nio.file.Paths
+
+//apply from: "../../../KaiAndroid/flutter.gradle"
 
 buildscript {
     repositories {
@@ -248,16 +233,49 @@ class FlutterPlugin implements Plugin<Project> {
         if (!supportsBuildMode(flutterBuildMode)) {
             return
         }
-        // The embedding is set as an API dependency in a Flutter plugin.
-        // Therefore, don't make the app project depend on the embedding if there are Flutter
-        // plugins.
-        // This prevents duplicated classes when using custom build types. That is, a custom build
-        // type like profile is used, and the plugin and app projects have API dependencies on the
-        // embedding.
-        if (!isFlutterAppProject() || getPluginList().size() == 0) {
-            addApiDependencies(project, buildType.name,
-                    "io.flutter:flutter_embedding_$flutterBuildMode:$engineVersion")
+
+        // add local engine dependencies [start]
+        if (useLocalEngine()) {
+            String engineOutPath = project.property('local-engine-out')
+            File engineOut = project.file(engineOutPath)
+            if (!engineOut.isDirectory()) {
+                throw new GradleException('local-engine-out must point to a local engine build')
+            }
+            // 当使用本地engine时添加flutter.jar文件依赖
+            File flutterJar = Paths.get(engineOut.absolutePath, "flutter.jar").toFile()
+            if (!flutterJar.isFile()) {
+                throw new GradleException('Local engine build does not contain flutter.jar')
+            }
+            project.dependencies {
+                // 添加自动生成的`GeneratedPluginRegistrant.java`文件需要的@Keep和@NonNull需要的依赖库
+                implementation 'androidx.annotation:annotation:1.1.0'
+                if (project.getConfigurations().findByName("api")) {
+                    println "api"
+                    "${flutterBuildMode}Api" project.files(flutterJar)
+                } else {
+                    println "compile"
+                    "${flutterBuildMode}Compile" project.files(flutterJar)
+                }
+            }
+            return
         }
+        // add local engine dependencies [end]
+
+        String hostedRepository = System.env.FLUTTER_STORAGE_BASE_URL ?: DEFAULT_MAVEN_HOST
+        String repository = useLocalEngine()
+                ? project.property('local-engine-repo')
+                : "$hostedRepository/download.flutter.io"
+        project.rootProject.allprojects {
+            repositories {
+                maven {
+                    url repository
+                }
+            }
+        }
+        // Add the embedding dependency.
+        addApiDependencies(project, buildType.name,
+                "io.flutter:flutter_embedding_$flutterBuildMode:$engineVersion")
+
         List<String> platforms = getTargetPlatforms().collect()
         // Debug mode includes x86 and x64, which are commonly used in emulators.
         if (flutterBuildMode == "debug" && !useLocalEngine()) {
@@ -304,9 +322,9 @@ class FlutterPlugin implements Plugin<Project> {
         }
         // Add plugin dependency to the app project.
         project.dependencies {
-            api pluginProject
+            implementation pluginProject
         }
-        Closure addEmbeddingDependencyToPlugin = { buildType ->
+        Closure addEmbeddingCompileOnlyDependency = { buildType ->
             String flutterBuildMode = buildModeFor(buildType)
             // In AGP 3.5, the embedding must be added as an API implementation,
             // so java8 features are desugared against the runtime classpath.
@@ -314,30 +332,48 @@ class FlutterPlugin implements Plugin<Project> {
             if (!supportsBuildMode(flutterBuildMode)) {
                 return
             }
-            if (!pluginProject.hasProperty('android')) {
-                return
+            // add local engine dependencies [start]
+            if (useLocalEngine()) {
+                String engineOutPath = project.property('local-engine-out')
+                File engineOut = project.file(engineOutPath)
+                if (!engineOut.isDirectory()) {
+                    throw new GradleException('local-engine-out must point to a local engine build')
+                }
+                // 当使用本地engine时添加flutter.jar文件依赖
+                File flutterJar = Paths.get(engineOut.absolutePath, "flutter.jar").toFile()
+                if (!flutterJar.isFile()) {
+                    throw new GradleException('Local engine build does not contain flutter.jar')
+                }
+                pluginProject.dependencies {
+                    if (pluginProject.getConfigurations().findByName("api")) {
+                        println "api"
+                        "${flutterBuildMode}Api" pluginProject.files(flutterJar)
+                    } else {
+                        println "compile"
+                        "${flutterBuildMode}Compile" pluginProject.files(flutterJar)
+                    }
+                }
+            } else {
+                addApiDependencies(
+                        pluginProject,
+                        buildType.name,
+                        "io.flutter:flutter_embedding_$flutterBuildMode:$engineVersion"
+                )
             }
-            // Copy build types from the app to the plugin.
-            // This allows to build apps with plugins and custom build types or flavors.
-            pluginProject.android.buildTypes {
-                "${buildType.name}" {}
-            }
-            // The embedding is API dependency of the plugin, so the AGP is able to desugar
-            // default method implementations when the interface is implemented by a plugin.
-            //
-            // See https://issuetracker.google.com/139821726, and
-            // https://github.com/flutter/flutter/issues/72185 for more details.
-            addApiDependencies(
-              pluginProject,
-              buildType.name,
-              "io.flutter:flutter_embedding_$flutterBuildMode:$engineVersion"
-            )
+            // add local engine dependencies [end]
         }
-        // Wait until the Android plugin loaded.
         pluginProject.afterEvaluate {
-            project.android.buildTypes.all addEmbeddingDependencyToPlugin
+            pluginProject.android.buildTypes {
+                profile {
+                    initWith debug
+                }
+            }
+            pluginProject.android.buildTypes.each addEmbeddingCompileOnlyDependency
+            pluginProject.android.buildTypes.whenObjectAdded addEmbeddingCompileOnlyDependency
         }
     }
+
+
 
     // Returns `true` if the given path contains an `android/build.gradle` file.
     //
